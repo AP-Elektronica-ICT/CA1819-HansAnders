@@ -14,8 +14,10 @@ Dus in het kort:
 
 ## Schema Architectuur
 
-Communicatie systeem
-<img src="images/schema_architectuur_globaal.png" />
+<br />
+<img src="images/schema_architectuur_globaal.png" /><br />
+Communicatie systeem <br />
 
-Technologie en Software architectuur
+
 <img src="images/schema_architectuur.png" />
+Technologie en Software architectuur
