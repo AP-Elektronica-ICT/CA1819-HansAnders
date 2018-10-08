@@ -27,10 +27,10 @@ Technologie en Software architectuur<br /><br />
 ### Login
 Onderstaande afbeelding laat het scherm zien dat je ziet als je bent ingelogd. Links zie je een lijst met je gemaakte games die je kan aanpassen als je er op klikt, onderaan kan je een nieuw spel maken. Rechts zie je data van je profiel.
 <img src="images/New Mockup 7.png" /> <br /> 
-###Spelinstellingen
+### Spelinstellingen
 Op onderstaande afbeelding zie je hoe je het spel kan installen. Onderaan zie algemene instellingen van het spel, daarboven zie je een kaart met de ingestelde plaatsen erop. Als je op een plaats op de kaart klikt kan je een locatie toevoegen.
 <img src="images/New Mockup 1.png" /> <br /> 
-###Locatie-instellingen
+### Locatie-instellingen
 Bij een locatie kan je je eigen vragen, hints en puzzels toevoegen. Lins zie je knoppen om dingen toe te voegen, in het midden en rechts zie je lijsten waar alle vragen en hints in staan.
 <img src="images/New Mockup 2.png" /> <br /> 
 <img src="images/New Mockup 3.png" />
