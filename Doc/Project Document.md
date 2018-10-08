@@ -47,7 +47,7 @@ Over de puzzels moet nog nagedacht worden, op onderstaande afbeeldingen zie je a
 
 ### Login Scherm:
 <div style="text-align: right">
-<img src="images/login scherm.png" width="100" />
+<img src="images/login scherm.png" width="100" style="float: left" />
 Het scherm dat men ziet wanneer de game is opgestart, men kan een naam opgeven en ofwel in een bestaand spel meespelen ofwel zelf een nieuw spel starten. Men kan kiezen in welk team men wilt en ook het aantal teams aanpassen wanneer men een nieuw spel starten.
 </div>
 
