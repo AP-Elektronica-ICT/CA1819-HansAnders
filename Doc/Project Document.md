@@ -33,7 +33,13 @@ Op onderstaande afbeelding zie je hoe je het spel kan installen. Onderaan zie al
 ### Locatie-instellingen
 Bij een locatie kan je je eigen vragen, hints en puzzels toevoegen. Lins zie je knoppen om dingen toe te voegen, in het midden en rechts zie je lijsten waar alle vragen en hints in staan.
 <img src="images/New Mockup 2.png" /> <br /> 
-<img src="images/New Mockup 3.png" />
-<img src="images/New Mockup 4.png" />
+### AR hints
+AR hints zijn hints die je kan vinden voor de vragen op de locatie door gebruik te maken van AR. Links kan je je afbeelding toevoegen, als deze is toegevoegd kan je de afbeelding zien. In het midden kan je de tekst intypen die tevoorschijn zal komen met je AR camera. Rechts zie je wat je zal zien met je AR camera.
+<img src="images/New Mockup 3.png" /> <br /> 
+### Vragen toevoegen
+Om een vraag toe te voegen kan je optioneel een afbeelding toevoegen, een vraag toevoegen en het antwoord toevoegen.
+<img src="images/New Mockup 4.png" /> <br /> 
+### puzzels toevoegen
+work in progress
 <img src="images/New Mockup 5.png" />
 <img src="images/New Mockup 6.png" />
