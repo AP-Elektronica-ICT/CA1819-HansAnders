@@ -50,22 +50,26 @@ work in progress
 <img src="images/login scherm.png" width="100" />
 Het scherm dat men ziet wanneer de game is opgestart, men kan een naam opgeven en ofwel in een bestaand spel meespelen ofwel zelf een nieuw spel starten. Men kan kiezen in welk team men wilt en ook het aantal teams aanpassen wanneer men een nieuw spel starten.
 </div>
+
 ### Nieuw Spel Starten:
 <div style="text-align: right">
 <img src="images/opzetten nieuwe game.png" width="100" />
 Wanneer men een nieuw spel aan het opzetten is zal men een lobby id zijn toegewezen waarmee anderen kunnen joinen.
 Men kan kiezen welk puzzel te starten en ook welke locaties er niet meer toegankelijk zijn.
 </div>
+
 ### De Map:
 <div style="text-align: right">
 <img src="images/main game -map.png" width="100" />
 Men kan hier de huidige locatie zien, de locaties die gecaptured zijn, locaties die nog gecaptured moeten worden, informatie over wie de beste is en meer.
 </div>
+
 ### Capturen locatie:
 <div style="text-align: right">
 <img src="images/details captured locatie.png" width="100" />
 Je kan zien wie een locatie heeft gecaptured door erop te klikken op de map.
 </div>
+
 ### Locatie capturen:
 <div style="text-align: right">
 <img src="images/capturen locatie.png" width="100" />
