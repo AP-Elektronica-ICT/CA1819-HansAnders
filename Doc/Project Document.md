@@ -40,7 +40,7 @@ AR hints zijn hints die je kan vinden voor de vragen op de locatie door gebruik 
 Om een vraag toe te voegen kan je optioneel een afbeelding toevoegen, een vraag toevoegen en het antwoord toevoegen.
 <img src="images/New Mockup 4.png" /> <br /> 
 ### puzzels toevoegen
-work in progress
+Over de puzzels moet nog nagedacht worden, op onderstaande afbeeldingen zie je al hoe een kruiswoordraadsel en sudoku kan worden toegevoegd.
 <img src="images/New Mockup 5.png" />
 <img src="images/New Mockup 6.png" />
 
