@@ -22,6 +22,10 @@ Communicatie systeem<br /><br />
 <img src="images/schema_architectuur.png" />
 Technologie en Software architectuur<br /><br />
 
+
+## Web interface
+### Login
+Onderstaande afbeelding laat het scherm zien dat je ziet als je bent ingelogd. Links zie je een lijst met je gemaakte games die je kan aanpassen als je er op klikt, onderaan kan je een nieuw spel maken. Rechts zie je data van je profiel.
 <img src="images/New Mockup 7.png" />
 <img src="images/New Mockup 1.png" />
 <img src="images/New Mockup 2.png" />
