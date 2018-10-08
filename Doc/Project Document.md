@@ -21,3 +21,11 @@ Communicatie systeem<br /><br />
 
 <img src="images/schema_architectuur.png" />
 Technologie en Software architectuur<br /><br />
+
+<img src="images/New Mockup 7.png" />
+<img src="images/New Mockup 1.png" />
+<img src="images/New Mockup 2.png" />
+<img src="images/New Mockup 3.png" />
+<img src="images/New Mockup 4.png" />
+<img src="images/New Mockup 5.png" />
+<img src="images/New Mockup 6.png" />
