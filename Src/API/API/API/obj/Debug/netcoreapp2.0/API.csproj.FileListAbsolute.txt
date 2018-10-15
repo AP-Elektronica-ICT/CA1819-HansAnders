@@ -1,0 +1,11 @@
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\API.deps.json
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.json
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.dev.json
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\API.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.csprojAssemblyReference.cache
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.csproj.CoreCompileInputs.cache
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.AssemblyInfoInputs.cache
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\API.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.pdb
