@@ -1,0 +1,4 @@
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.csprojResolveAssemblyReference.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.csproj.CoreCompileInputs.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.AssemblyInfoInputs.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
