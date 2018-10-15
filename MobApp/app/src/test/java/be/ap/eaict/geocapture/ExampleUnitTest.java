@@ -1,4 +1,4 @@
-package be.ap.geocapture.geocapture;
+package be.ap.eaict.geocapture;
 
 import org.junit.Test;
 
