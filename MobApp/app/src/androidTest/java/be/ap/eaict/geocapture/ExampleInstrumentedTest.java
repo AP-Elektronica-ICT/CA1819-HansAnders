@@ -1,4 +1,4 @@
-package be.ap.geocapture.geocapture;
+package be.ap.eaict.geocapture;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("be.ap.geocapture.geocapture", appContext.getPackageName());
+        assertEquals("be.ap.eaict.geocapture", appContext.getPackageName());
     }
 }
