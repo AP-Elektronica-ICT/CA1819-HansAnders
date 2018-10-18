@@ -5,16 +5,21 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+import { AuthService } from './services/auth.service';
+import { LoginBarComponent } from './login-bar/login-bar.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoginBarComponent
   ],
   imports: [
     BrowserModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
