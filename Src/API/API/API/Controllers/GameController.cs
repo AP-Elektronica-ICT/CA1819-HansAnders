@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Interfaces;
 
 namespace API.Controllers
 {
@@ -11,6 +12,17 @@ namespace API.Controllers
     [Route("api/Game")]
     public class GameController : Controller
     {
+        private IGameService gameService;
+
+        public GameController(IGameService service)
+        {
+            this.gameService = service; 
+        }
+
+
+
+
+
         // GET: api/Game
         [HttpGet]
         public IEnumerable<string> Get()

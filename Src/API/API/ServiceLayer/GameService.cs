@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServiceLayer
 {
-    class GameService
+    public class GameService
     {
     }
 }

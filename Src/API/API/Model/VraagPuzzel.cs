@@ -9,6 +9,7 @@ namespace Model
         string antwoord;
         public VraagPuzzel(string omschrijving, string antwoord): base(omschrijving)
         {
+            this.antwoord = antwoord;
 
         }
     }

@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
+    <ProjectReference Include="..\viewmodels\viewmodels.csproj" />
   </ItemGroup>
 
 </Project>
