@@ -5060,6 +5060,9 @@
       "Interfaces/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Interfaces.dll": {}
         },
@@ -5080,9 +5083,27 @@
           "bin/placeholder/Model.dll": {}
         }
       },
+      "RepositoryLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "2.1.4"
+        },
+        "compile": {
+          "bin/placeholder/RepositoryLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepositoryLayer.dll": {}
+        }
+      },
       "ServiceLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Interfaces": "1.0.0",
+          "Model": "1.0.0",
+          "RepositoryLayer": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/ServiceLayer.dll": {}
         },
@@ -13383,6 +13404,11 @@
       "type": "project",
       "path": "../Model/Model.csproj",
       "msbuildProject": "../Model/Model.csproj"
+    },
+    "RepositoryLayer/1.0.0": {
+      "type": "project",
+      "path": "../RepositoryLayer/RepositoryLayer.csproj",
+      "msbuildProject": "../RepositoryLayer/RepositoryLayer.csproj"
     },
     "ServiceLayer/1.0.0": {
       "type": "project",

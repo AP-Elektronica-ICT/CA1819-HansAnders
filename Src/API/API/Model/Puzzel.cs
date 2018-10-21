@@ -6,6 +6,7 @@ namespace Model
 {
     abstract class Puzzel
     {
+        int ID;
         string Omschrijving;
 
         public Puzzel(string omschrijving)

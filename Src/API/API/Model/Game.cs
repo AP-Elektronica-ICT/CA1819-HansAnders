@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Model
 {
-    class Game
+    public class Game
     {
         int ID;
         int teamamount;
         List<Team> Teams;
-        List<Puzzel> Puzzels;
+        Locatie speelLocatie;
     }
 }

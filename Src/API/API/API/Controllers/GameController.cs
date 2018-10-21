@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Interfaces;
+using Model;
 
 namespace API.Controllers
 {
     [Produces("application/json")]
     [Route("api/Game")]
-    public class GameController : Controller
+    public class GameController : Controller // APP backend
     {
         private IGameService gameService;
 
@@ -18,9 +19,6 @@ namespace API.Controllers
         {
             this.gameService = service; 
         }
-
-
-
 
 
         // GET: api/Game
@@ -32,9 +30,9 @@ namespace API.Controllers
 
         // GET: api/Game/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Game Get(int id)
         {
-            return "value";
+            return gameService.getGame(id);
         }
         
         // POST: api/Game
