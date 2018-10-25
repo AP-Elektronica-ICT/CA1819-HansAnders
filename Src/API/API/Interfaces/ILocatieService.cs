@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Interfaces
 {
-    interface IPuzzelService
+    interface ILocatieService
     {
     }
 }

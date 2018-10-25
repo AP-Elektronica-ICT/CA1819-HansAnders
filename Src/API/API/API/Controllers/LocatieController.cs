@@ -9,7 +9,7 @@ namespace API.Controllers
 {
     [Produces("application/json")]
     [Route("api/Puzzels")]
-    public class PuzzelsController : Controller
+    public class LocatieController : Controller
     {
         // GET: api/Puzzels
         [HttpGet]

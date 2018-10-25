@@ -18,8 +18,33 @@ namespace Model
                 new User("jantje")
             );
 
-            context.Puzzels.Add(
-                new VraagPuzzel("wa is 1+1", "2")
+            context.locaties.Add(
+                new Locatie(
+                    "antwerpen", 
+                    new List<PuzzelVerzameling> {
+                        new PuzzelVerzameling(
+                            "kerk",
+                            new List<Puzzel> {
+                                new VraagPuzzel("wat is 1+1", "2"),
+                                new VraagPuzzel("wat is 1+1", "2"),
+                                new VraagPuzzel("wat is 1+1", "2"),
+                            },
+                            4.65419f,
+                            4.65132f
+                        ),
+                        new PuzzelVerzameling(
+                            "kathdraal",
+                            new List<Puzzel> {
+                                new VraagPuzzel("wat is 1+1", "2"),
+                                new VraagPuzzel("wat is 1+1", "2"),
+                                new VraagPuzzel("wat is 1+1", "2"),
+                            },
+                            4.789f,
+                            4.123f
+                        ),
+                    },
+                    60*60*5
+                )
             );
 
             context.SaveChanges();

@@ -2,7 +2,7 @@
 
 namespace ServiceLayer
 {
-    public class PuzzelService
+    public class LocatieService
     {
     }
 }

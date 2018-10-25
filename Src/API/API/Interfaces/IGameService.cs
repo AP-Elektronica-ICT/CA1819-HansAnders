@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Model;
 
 namespace Interfaces
 {
@@ -8,7 +9,8 @@ namespace Interfaces
     {
         int CreateGame(int teams);
         void updateGame(int gameId, int teams, int players, int puzzelId, List<int> selectedLocaties);
-        void joinGame(string displayName, int gameId, int team);
+        bool joinGame(string displayName, int gameId, int teamId);
+        Game getGame(int gameId);
 
 
     }

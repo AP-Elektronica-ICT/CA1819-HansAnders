@@ -17,6 +17,6 @@ namespace Model
 
         public DbSet<Game> Games { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Puzzel> Puzzels { get; set; }
+        public DbSet<Locatie> locaties { get; set; }
     }
 }
