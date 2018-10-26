@@ -16,3 +16,14 @@ D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.AssemblyInfoInputs.cache
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
 >>>>>>> 996c2a16a2e0d39bc9b9535b13dc912436597c77
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\Interfaces.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\Model.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\RepositoryLayer.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\ServiceLayer.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\viewmodels.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\Interfaces.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\Model.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\ServiceLayer.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\viewmodels.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\bin\Debug\netcoreapp2.0\RepositoryLayer.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\API\obj\Debug\netcoreapp2.0\API.csproj.CopyComplete

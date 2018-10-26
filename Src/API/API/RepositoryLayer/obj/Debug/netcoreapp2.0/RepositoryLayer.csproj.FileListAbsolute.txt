@@ -4,3 +4,6 @@ D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.csproj.CoreCompileInputs.cache
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.AssemblyInfoInputs.cache
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.AssemblyInfo.cs
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\bin\Debug\netcoreapp2.0\RepositoryLayer.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.pdb
