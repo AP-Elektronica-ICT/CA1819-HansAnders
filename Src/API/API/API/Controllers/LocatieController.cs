@@ -8,30 +8,30 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Puzzels")]
+    [Route("api/Locatie")]
     public class LocatieController : Controller
     {
-        // GET: api/Puzzels
+        // GET: api/Locatie
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Puzzels/5
+        // GET: api/Locatie/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
             return "value";
         }
         
-        // POST: api/Puzzels
+        // POST: api/Locatie
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
         
-        // PUT: api/Puzzels/5
+        // PUT: api/Locatie/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

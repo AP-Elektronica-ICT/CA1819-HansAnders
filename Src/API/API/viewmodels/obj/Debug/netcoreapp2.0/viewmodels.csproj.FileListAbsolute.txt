@@ -1,0 +1,9 @@
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\bin\Debug\netcoreapp2.0\viewmodels.deps.json
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\bin\Debug\netcoreapp2.0\viewmodels.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\bin\Debug\netcoreapp2.0\viewmodels.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\obj\Debug\netcoreapp2.0\viewmodels.csprojAssemblyReference.cache
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\obj\Debug\netcoreapp2.0\viewmodels.csproj.CoreCompileInputs.cache
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\obj\Debug\netcoreapp2.0\viewmodels.AssemblyInfoInputs.cache
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\obj\Debug\netcoreapp2.0\viewmodels.AssemblyInfo.cs
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\obj\Debug\netcoreapp2.0\viewmodels.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\API\viewmodels\obj\Debug\netcoreapp2.0\viewmodels.pdb
