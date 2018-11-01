@@ -11,6 +11,7 @@ import { LoginBarComponent } from './login-bar/login-bar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -27,7 +28,10 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD5_lt4N02VyQfNEWpt5f3DnzPwnHZ35DI'
+    })
   ],
   exports: [RouterModule],
   providers: [ AuthService, AuthGuard ],
