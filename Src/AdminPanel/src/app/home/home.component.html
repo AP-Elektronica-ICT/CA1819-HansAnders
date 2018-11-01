@@ -1,5 +1,11 @@
 <h1>{{ title }}</h1>
 
-<agm-map style="height:700px" [latitude]="lat" [longitude]="lng">
- <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+<agm-map (mapClick)="clickMap($event)" style="height:700px" [latitude]="lat" [longitude]="lng">
+
+  <agm-marker 
+  *ngFor="let marker of markers"
+  [latitude]="marker.lat"
+  [longitude]="marker.lng"
+  >
+  </agm-marker>
 </agm-map>
