@@ -10,7 +10,7 @@ export class AuthService {
       clientID: 'F8JcJPcZc64vcvqw9CF1wkoPTw6u5NoY',
       domain: 'yorick.eu.auth0.com',
       responseType: 'token id_token',
-      redirectUri: 'http://localhost:4200/login',
+      redirectUri: 'http://localhost:4200/home',
       scope: 'openid'
     });
 
@@ -25,7 +25,7 @@ export class AuthService {
         if (authResult && authResult.accessToken && authResult.idToken) {
           window.location.hash = '';
           this.setSession(authResult);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
         } else if (err) {
           this.router.navigate(['/']);
           console.log(err);

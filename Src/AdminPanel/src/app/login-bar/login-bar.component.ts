@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -7,18 +7,16 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login-bar.component.scss']
 })
 
-export class LoginBarComponent implements OnInit {
-  authenticated: boolean = false;
+export class LoginBarComponent {
+  
+  constructor(public auth: AuthService) { }
 
-  constructor(private autservice: AuthService) { 
-     
+  login() {
+    this.auth.login()
   }
 
-  ngOnInit() {
+  logout(){
+    this.auth.logout()
   }
 
-  login(){
-    this.autservice.login();
-    this.authenticated = true;
-  }
 }

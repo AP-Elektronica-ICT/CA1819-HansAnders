@@ -1,9 +1,11 @@
-<button
-  (click)="auth.login()">
-  Sign Up or Login
-</button>
+<h1>{{ title }}</h1>
 
-<button
-  (click)="auth.logout()">
-  Logout
-</button>
+<agm-map (mapClick)="clickMap($event)" style="height:700px" [latitude]="lat" [longitude]="lng">
+
+  <agm-marker 
+  *ngFor="let marker of markers"
+  [latitude]="marker.lat"
+  [longitude]="marker.lng"
+  >
+  </agm-marker>
+</agm-map>
