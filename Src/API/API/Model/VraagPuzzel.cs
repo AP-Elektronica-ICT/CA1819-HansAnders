@@ -6,7 +6,7 @@ namespace Model
 {
     class VraagPuzzel : Puzzel
     {
-        string antwoord;
+        public string antwoord { get; set; }
         public VraagPuzzel(string omschrijving, string antwoord): base(omschrijving)
         {
             this.antwoord = antwoord;

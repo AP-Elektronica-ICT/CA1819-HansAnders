@@ -4,8 +4,8 @@ namespace Model
 {
     public class User
     {
-        int ID;
-        string Name;
+        public int ID { get; set; }
+        public string Name { get; set; }
         public User(string name)
         {
             this.Name = name;

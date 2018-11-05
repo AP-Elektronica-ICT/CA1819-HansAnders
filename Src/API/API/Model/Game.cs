@@ -6,9 +6,10 @@ namespace Model
 {
     public class Game
     {
-        int ID;
-        int teamamount;
-        List<Team> Teams;
-        Locatie speelLocatie;
+        public int ID { get; set; }
+        public int teamamount { get; set; }
+        public List<Team> Teams { get; set; }
+        public regio speelLocatie { get; set; }
+        public int starttijd { get; set; }
     }
 }

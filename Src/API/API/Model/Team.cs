@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Model
 {
-    class Team
+    public class Team
     {
-        List<User> Users;
-        string TeamName;
+        public List<User> Users { get; set; }
+        public string TeamName { get; set; }
         public Team(string teamname, List<User> users)
         {
             this.TeamName = teamname;

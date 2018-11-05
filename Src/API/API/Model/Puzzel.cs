@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Model
 {
-    abstract class Puzzel
+    public abstract class Puzzel
     {
-        int ID;
-        string Omschrijving;
+        public int ID { get; set; }
+        public string Omschrijving { get; set; }
 
         public Puzzel(string omschrijving)
         {

@@ -4,17 +4,19 @@ using System.Text;
 
 namespace Model
 {
-    class Locatie
+    public class Locatie
     {
-        string locatienaam;
-        List<PuzzelVerzameling> puzzelverzamelingen;
-        int time;
+        public string locatienaam { get; set; }
+        public List<Puzzel> puzzels { get; set; }
+        public float lng { get; set; }
+        public float lat { get; set; }
 
-        public Locatie(string naam, List<PuzzelVerzameling> verzamelingen, int time)
+        public Locatie(string naam, List<Puzzel> puzzels, float lng, float lat)
         {
             this.locatienaam = naam;
-            this.puzzelverzamelingen = verzamelingen;
-            this.time = time;
+            this.puzzels = puzzels;
+            this.lng = lng;
+            this.lat = lat;
         }
     }
 }

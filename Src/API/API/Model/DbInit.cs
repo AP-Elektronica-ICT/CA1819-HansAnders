@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-    class DbInit
+    public class DbInit
     {
         public static void Initialize(GameContext context)
         {
@@ -18,11 +18,11 @@ namespace Model
                 new User("jantje")
             );
 
-            context.locaties.Add(
-                new Locatie(
+            context.Regios.Add(
+                new regio(
                     "antwerpen", 
-                    new List<PuzzelVerzameling> {
-                        new PuzzelVerzameling(
+                    new List<Locatie> {
+                        new Locatie(
                             "kerk",
                             new List<Puzzel> {
                                 new VraagPuzzel("wat is 1+1", "2"),
@@ -32,7 +32,7 @@ namespace Model
                             4.65419f,
                             4.65132f
                         ),
-                        new PuzzelVerzameling(
+                        new Locatie(
                             "kathdraal",
                             new List<Puzzel> {
                                 new VraagPuzzel("wat is 1+1", "2"),

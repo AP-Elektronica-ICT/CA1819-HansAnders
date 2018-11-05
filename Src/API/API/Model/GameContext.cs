@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-    class GameContext : DbContext
+    public class GameContext : DbContext
     {
         public GameContext(DbContextOptions<GameContext> options):base(options)
         {
@@ -17,6 +17,6 @@ namespace Model
 
         public DbSet<Game> Games { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Locatie> locaties { get; set; }
+        public DbSet<regio> Regios { get; set; }
     }
 }
