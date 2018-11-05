@@ -15,7 +15,7 @@ import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: '', component: HomeComponent }
+  { path: 'home', component: HomeComponent }
  //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard]}
 ];
 
