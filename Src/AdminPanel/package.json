@@ -33,8 +33,11 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.2.0",
+<<<<<<< HEAD
     "zone.js": "~0.8.26",
     "rxjs-compat": "^6.3.3"
+=======
+>>>>>>> eb0208123850e722d3509543ab459e1fb9c4a94d
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
