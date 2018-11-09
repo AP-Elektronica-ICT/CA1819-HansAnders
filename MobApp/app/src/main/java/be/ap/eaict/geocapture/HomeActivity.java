@@ -39,6 +39,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        Button btnMarkersList = (Button) findViewById(R.id.btnList);
+        btnMarkersList.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(HomeActivity.this, MarkerListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public boolean IsServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
