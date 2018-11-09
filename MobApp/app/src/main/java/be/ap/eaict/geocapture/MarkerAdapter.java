@@ -32,5 +32,4 @@ public class MarkerAdapter extends ArrayAdapter<String> {
 
         return view;
     }
-
 }

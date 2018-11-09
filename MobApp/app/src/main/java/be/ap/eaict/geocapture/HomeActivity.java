@@ -46,6 +46,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnRegionList = (Button) findViewById(R.id.btnRegion);
+        btnRegionList.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(HomeActivity.this, RegionListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public boolean IsServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
