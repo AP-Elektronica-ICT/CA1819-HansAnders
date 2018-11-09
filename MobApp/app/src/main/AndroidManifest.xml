@@ -33,6 +33,7 @@
         <activity android:name=".MapActivity" />
         <activity android:name=".MarkerListActivity"></activity>
         <activity android:name=".RegionListActivity"></activity>
+        <activity android:name=".HostConfigActivity"></activity>
     </application>
 
 </manifest>

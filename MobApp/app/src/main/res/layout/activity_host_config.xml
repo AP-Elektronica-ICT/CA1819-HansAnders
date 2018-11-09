@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginTop="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aantal Teams:" />
+        <EditText
+            android:id="@+id/teamCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_gravity="end"
+            android:inputType="textPersonName"
+            android:text="10" />
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lobby ID:" />
+
+    <TextView
+        android:layout_marginTop="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecteer regio:" />
+
+    <ListView
+        android:id="@+id/region_list"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+    </ListView>
+
+    <TextView
+        android:layout_marginTop="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecteer markers:" />
+    <ListView
+        android:id="@+id/markers_list"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+    </ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/btnStart"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0px"
+        android:paddingBottom="0px"
+        android:text="Start Game" />
+</LinearLayout>

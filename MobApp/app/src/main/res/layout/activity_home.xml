@@ -11,6 +11,15 @@
     >
 
     <Button
+        android:id="@+id/btnHost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Host"
+        app:layout_constraintTop_toBottomOf="@+id/btnList"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Map"

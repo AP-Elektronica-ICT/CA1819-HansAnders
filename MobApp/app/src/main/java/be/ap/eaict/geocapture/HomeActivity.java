@@ -31,6 +31,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private  void init(){
+        Button btnHostConfig = (Button) findViewById(R.id.btnHost);
+        btnHostConfig.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(HomeActivity.this, HostConfigActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button btnMap = (Button) findViewById(R.id.btnMap);
         btnMap.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
