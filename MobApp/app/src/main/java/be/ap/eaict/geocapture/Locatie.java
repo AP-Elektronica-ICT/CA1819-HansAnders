@@ -8,4 +8,11 @@ public class Locatie {
     public List<Puzzel> puzzels;
     public float lng;
     public float lat;
+    public Locatie(String locatienaam, List<Puzzel> puzzels, float lng, float lat)
+    {
+        this.locatienaam = locatienaam;
+        this.puzzels = puzzels;
+        this.lng = lng;
+        this.lat = lat;
+    }
 }

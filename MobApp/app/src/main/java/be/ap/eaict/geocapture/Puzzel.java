@@ -5,4 +5,9 @@ public class Puzzel {
     public String Omschrijving;
     public String antwoord;
 
+    public Puzzel(String omschrijving, String antwoord)
+    {
+        this.Omschrijving = omschrijving;
+        this.antwoord = antwoord;
+    }
 }
