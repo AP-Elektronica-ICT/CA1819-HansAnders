@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\brent\\source\\repos\\WebApplication5\\Interfaces\\Interfaces.csproj",
+      "projectUniqueName": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\Interfaces.csproj",
       "projectName": "Interfaces",
-      "projectPath": "c:\\users\\brent\\source\\repos\\WebApplication5\\Interfaces\\Interfaces.csproj",
+      "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\Interfaces.csproj",
       "packagesPath": "C:\\Users\\brent\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\brent\\source\\repos\\WebApplication5\\Interfaces\\obj\\",
+      "outputPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

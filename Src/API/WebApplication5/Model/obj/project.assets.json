@@ -2770,11 +2770,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\brent\\source\\repos\\WebApplication5\\Model\\Model.csproj",
+      "projectUniqueName": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj",
       "projectName": "Model",
-      "projectPath": "c:\\users\\brent\\source\\repos\\WebApplication5\\Model\\Model.csproj",
+      "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj",
       "packagesPath": "C:\\Users\\brent\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\brent\\source\\repos\\WebApplication5\\Model\\obj\\",
+      "outputPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

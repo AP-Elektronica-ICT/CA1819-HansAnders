@@ -13276,11 +13276,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\brent\\source\\repos\\WebApplication5\\WebApplication5\\WebApplication5.csproj",
+      "projectUniqueName": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\WebApplication5\\WebApplication5.csproj",
       "projectName": "WebApplication5",
-      "projectPath": "C:\\Users\\brent\\source\\repos\\WebApplication5\\WebApplication5\\WebApplication5.csproj",
+      "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\WebApplication5\\WebApplication5.csproj",
       "packagesPath": "C:\\Users\\brent\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\brent\\source\\repos\\WebApplication5\\WebApplication5\\obj\\",
+      "outputPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\WebApplication5\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13299,8 +13299,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\brent\\source\\repos\\WebApplication5\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\brent\\source\\repos\\WebApplication5\\Model\\Model.csproj"
+            "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj": {
+              "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj"
             }
           }
         }

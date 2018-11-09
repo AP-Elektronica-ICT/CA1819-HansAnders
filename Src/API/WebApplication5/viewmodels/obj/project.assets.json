@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\brent\\source\\repos\\WebApplication5\\viewmodels\\viewmodels.csproj",
+      "projectUniqueName": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\viewmodels\\viewmodels.csproj",
       "projectName": "viewmodels",
-      "projectPath": "c:\\users\\brent\\source\\repos\\WebApplication5\\viewmodels\\viewmodels.csproj",
+      "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\viewmodels\\viewmodels.csproj",
       "packagesPath": "C:\\Users\\brent\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\brent\\source\\repos\\WebApplication5\\viewmodels\\obj\\",
+      "outputPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\viewmodels\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
