@@ -38,7 +38,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     .title(locatie.getLocatienaam()));
         }
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(locaties.get(0).getLng(), locaties.get(0).getLat())));
-        googleMap.setMinZoomPreference(14);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locaties.get(0).getLng(), locaties.get(0).getLat()),14));
     }
 }

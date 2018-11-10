@@ -38,12 +38,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btnMap = (Button) findViewById(R.id.btnMap);
-        btnMap.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                startActivity(new Intent(HomeActivity.this, MapActivity.class));
-            }
-        });
 
     }
     public boolean IsServicesOK(){
