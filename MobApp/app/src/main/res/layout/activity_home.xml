@@ -20,11 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Name:" />
+
         <EditText
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,11 +54,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="Team:" />
+
         <EditText
             android:id="@+id/txtTeam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
     <Button
@@ -79,11 +83,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="Teams:" />
+
         <EditText
             android:id="@+id/txtHostTeams"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
     <Button
