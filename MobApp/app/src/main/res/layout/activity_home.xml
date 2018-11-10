@@ -60,11 +60,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnHost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Host"/>
+        android:text="Join game"
+        android:id="@+id/btnNewGame"/>
 
 
 
@@ -88,9 +87,10 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnHost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create new game"
-        android:id="@+id/btnNewGame"/>
+        android:layout_marginBottom="15dp"
+        android:text="Create new game"/>
 
 </LinearLayout>
