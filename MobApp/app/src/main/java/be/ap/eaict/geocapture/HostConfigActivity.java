@@ -17,6 +17,7 @@ import be.ap.eaict.geocapture.Model.Regio;
 public class HostConfigActivity extends AppCompatActivity {
 
     Game game;
+    List<Locatie> regiolocaties = new ArrayList<Locatie>();
 
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class HostConfigActivity extends AppCompatActivity {
 
 
         final ListView locationsList = (ListView) findViewById(R.id.markers_list);
-        final HostConfigLocatiesAdapter locationAdapter = new HostConfigLocatiesAdapter(this, new ArrayList<Locatie>());
+        final HostConfigLocatiesAdapter locationAdapter = new HostConfigLocatiesAdapter(this, regiolocaties);
         locationsList.setAdapter(locationAdapter);
 
         regiosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -38,16 +39,20 @@ public class HostConfigActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Regio regio = (Regio) adapterView.getItemAtPosition(position);
                 locationAdapter.clear();
-                locationAdapter.addAll(regio.getLocaties());
+                regiolocaties = regio.getLocaties();
+                locationAdapter.addAll(regiolocaties);
             }
         });
 
         locationsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                adapterView.getSelectedItem();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                regiolocaties.get(position).used = !regiolocaties.get(position).used;
+                locationAdapter.clear();
+                locationAdapter.addAll(regiolocaties);
             }
         });
+
 
 
     }
