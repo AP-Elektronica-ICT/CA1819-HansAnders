@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,11 @@ public class HomeActivity extends AppCompatActivity {
         Button btnHostConfig = (Button) findViewById(R.id.btnHost);
         btnHostConfig.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                startActivity(new Intent(HomeActivity.this, HostConfigActivity.class));
+                EditText teams = (EditText) findViewById(R.id.txtHostTeams);
+                Integer strTeams = Integer.parseInt(teams.getText().toString());
+                Intent i = new Intent(HomeActivity.this, HostConfigActivity.class);
+                i.putExtra("teams",strTeams);
+                startActivity(i);
             }
         });
 
