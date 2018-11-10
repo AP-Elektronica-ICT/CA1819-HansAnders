@@ -1,8 +1,11 @@
 package be.ap.eaict.geocapture;
 
 import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.List;
+
+import be.ap.eaict.geocapture.Model.Locatie;
+import be.ap.eaict.geocapture.Model.Puzzel;
+import be.ap.eaict.geocapture.Model.Regio;
 
 public class DummyRepositoryRegios implements IDummyRepositoryRegios{
 
@@ -23,11 +26,11 @@ public class DummyRepositoryRegios implements IDummyRepositoryRegios{
                     "Antwerpen",
                     new ArrayList<Locatie>(){{
                         add(new Locatie(
-                                "kerk",
+                                "kathedraal",
                                 new ArrayList<Puzzel>(){{
                                     add(new Puzzel("wat wordt het meetst verkocht in starbucks", "drankje 3"));
                                     add(new Puzzel("hoe ver kan je geraken met een enkele trein(locatie)", "destinatie x"));
-                                    add(new Puzzel("wa uur is locket x open", "5:50"));
+                                    add(new Puzzel("wa uur is locket x open", "4:20"));
                                 }},
                                 51.217263f,4.421034f
                         ));
@@ -47,7 +50,7 @@ public class DummyRepositoryRegios implements IDummyRepositoryRegios{
                     "Brasschaat",
                     new ArrayList<Locatie>(){{
                         add(new Locatie(
-                                "kerk",
+                                "zwembad",
                                 new ArrayList<Puzzel>(){{
                                     add(new Puzzel("wie is hier het meest bekend", "yorick"));
                                     add(new Puzzel("wat doet deze persoon", "lijntje coca cola"));
@@ -56,7 +59,7 @@ public class DummyRepositoryRegios implements IDummyRepositoryRegios{
                                 51.217263f,4.421034f
                         ));
                         add(new Locatie(
-                                "kerk",
+                                "park",
                                 new ArrayList<Puzzel>(){{
                                     add(new Puzzel("wat is beeld y", "19"));
                                     add(new Puzzel("wanneer is beeld t", "2"));

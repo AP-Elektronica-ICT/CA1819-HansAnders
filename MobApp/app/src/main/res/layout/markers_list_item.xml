@@ -6,7 +6,8 @@
     android:gravity="right"
     android:orientation="horizontal"
     android:padding="10dp"
-
+    android:id="@+id/marker_background"
+    android:background="@android:color/darker_gray"
     >
 
     <ImageView

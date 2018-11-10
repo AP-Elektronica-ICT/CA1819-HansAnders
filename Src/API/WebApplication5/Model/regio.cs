@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-    public class regio
+    public class Regio
     {
         public int Id { get; set; }
         public string naam { get; set; }

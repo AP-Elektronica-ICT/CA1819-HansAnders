@@ -18,7 +18,7 @@ namespace Model
                 new User() { Name = "Jantje" }
             );
             context.Regios.Add(
-               new regio() {
+               new Regio() {
                    naam = "antwerpen",
                    locaties = 
                    new List<Locatie> {

@@ -34,32 +34,28 @@ public class HomeActivity extends AppCompatActivity {
         Button btnHostConfig = (Button) findViewById(R.id.btnHost);
         btnHostConfig.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(HomeActivity.this, HostConfigActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(HomeActivity.this, HostConfigActivity.class));
             }
         });
 
         Button btnMap = (Button) findViewById(R.id.btnMap);
         btnMap.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(HomeActivity.this, MapActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(HomeActivity.this, MapActivity.class));
             }
         });
 
         Button btnMarkersList = (Button) findViewById(R.id.btnList);
         btnMarkersList.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(HomeActivity.this, MarkerListActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(HomeActivity.this, MarkerListActivity.class));
             }
         });
 
-        Button btnRegionList = (Button) findViewById(R.id.btnRegion);
-        btnRegionList.setOnClickListener(new View.OnClickListener(){
+        Button btnlocationsList = (Button) findViewById(R.id.btnRegion);
+        btnlocationsList.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(HomeActivity.this, RegionListActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(HomeActivity.this, RegionListActivity.class));
             }
         });
     }

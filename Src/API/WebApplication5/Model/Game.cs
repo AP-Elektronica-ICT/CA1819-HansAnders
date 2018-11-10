@@ -9,7 +9,8 @@ namespace Model
         public int ID { get; set; }
         public int teamamount { get; set; }
         public List<Team> Teams { get; set; }
-        public regio speelLocatie { get; set; }
+        public List<Locatie> DisabledLocaties { get; set; }
+        public Regio regio { get; set; }
         public int starttijd { get; set; }
     }
 }

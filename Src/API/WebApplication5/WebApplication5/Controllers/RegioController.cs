@@ -22,7 +22,7 @@ namespace WebApplication5.Controllers
 
         // GET: api/Regio
         [HttpGet]
-        public IEnumerable<regio> GetRegios()
+        public IEnumerable<Regio> GetRegios()
         {
             return _context.Regios;
         }
@@ -48,7 +48,7 @@ namespace WebApplication5.Controllers
 
         // PUT: api/Regio/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Putregio([FromRoute] int id, [FromBody] regio regio)
+        public async Task<IActionResult> Putregio([FromRoute] int id, [FromBody] Regio regio)
         {
             if (!ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace WebApplication5.Controllers
 
         // POST: api/Regio
         [HttpPost]
-        public async Task<IActionResult> Postregio([FromBody] regio regio)
+        public async Task<IActionResult> Postregio([FromBody] Regio regio)
         {
             if (!ModelState.IsValid)
             {
