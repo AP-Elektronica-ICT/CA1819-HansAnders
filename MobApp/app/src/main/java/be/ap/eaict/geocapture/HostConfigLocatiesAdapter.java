@@ -29,9 +29,9 @@ public class HostConfigLocatiesAdapter extends ArrayAdapter<Locatie> {
 
         LinearLayout background = (LinearLayout) view.findViewById(R.id.marker_background);
         if (getItem(position).used)
-            background.setBackgroundColor(Color.LTGRAY);
-        else
             background.setBackgroundColor(Color.WHITE);
+        else
+            background.setBackgroundColor(Color.rgb(255, 200,200));
 
         return view;
     }
