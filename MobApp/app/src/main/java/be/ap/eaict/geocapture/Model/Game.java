@@ -7,18 +7,18 @@ public class Game {
     private int ID;
     private int teamamount;
     private Regio regio;
-    private int starttijd;
+    private long starttijd;
 
     public List<Team> Teams;
-    public List<Locatie> DisabledLocaties;
+    private List<Locatie> EnabledLocaties;
 
-    public Game(int teamamount, Regio regio, int starttijd, List<Team> teams, List<Locatie> disabledLocaties)
+    public Game(int teamamount, Regio regio, long starttijd, List<Team> teams, List<Locatie> enabledLocaties)
     {
         this.teamamount = teamamount;
         this.regio = regio;
         this.starttijd = starttijd;
         this.Teams = teams;
-        this.DisabledLocaties = disabledLocaties;
+        this.EnabledLocaties = enabledLocaties;
 
     }
 
@@ -30,7 +30,11 @@ public class Game {
         return regio;
     }
 
-    public int getStarttijd() {
+    public long getStarttijd() {
         return starttijd;
+    }
+
+    public List<Locatie> getEnabledLocaties() {
+        return EnabledLocaties;
     }
 }

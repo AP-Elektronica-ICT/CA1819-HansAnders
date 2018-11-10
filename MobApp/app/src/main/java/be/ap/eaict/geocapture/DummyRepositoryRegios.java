@@ -3,6 +3,7 @@ package be.ap.eaict.geocapture;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.ap.eaict.geocapture.Model.Game;
 import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Puzzel;
 import be.ap.eaict.geocapture.Model.Regio;
@@ -91,5 +92,16 @@ public class DummyRepositoryRegios implements IDummyRepositoryRegios{
         }};
 
         return regios;
+    }
+
+    private static Game game;
+    @Override
+    public Game getGame() {
+        return game;
+    }
+
+    @Override
+    public void createGame(Game game) {
+        this.game = game;
     }
 }

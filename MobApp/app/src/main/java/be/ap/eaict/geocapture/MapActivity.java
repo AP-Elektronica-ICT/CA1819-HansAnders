@@ -30,7 +30,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap){
         DummyRepositoryRegios dummyRepositoryRegios = new DummyRepositoryRegios();
-        List<Locatie> locaties = dummyRepositoryRegios.getRegios().get(0).getLocaties();
+        List<Locatie> locaties = dummyRepositoryRegios.getGame().getEnabledLocaties();
 
         for(Locatie locatie:locaties){
             LatLng latLng = new LatLng(locatie.getLng(), locatie.getLat());
