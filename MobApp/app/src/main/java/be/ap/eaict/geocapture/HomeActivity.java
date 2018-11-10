@@ -45,19 +45,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btnMarkersList = (Button) findViewById(R.id.btnList);
-        btnMarkersList.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                startActivity(new Intent(HomeActivity.this, MarkerListActivity.class));
-            }
-        });
-
-        Button btnlocationsList = (Button) findViewById(R.id.btnRegion);
-        btnlocationsList.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                startActivity(new Intent(HomeActivity.this, RegionListActivity.class));
-            }
-        });
     }
     public boolean IsServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
