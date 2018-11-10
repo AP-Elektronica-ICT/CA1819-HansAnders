@@ -93,14 +93,4 @@
         android:text="Create new game"
         android:id="@+id/btnNewGame"/>
 
-
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Map test"
-        android:id="@+id/btnMap"/>
-
-
 </LinearLayout>

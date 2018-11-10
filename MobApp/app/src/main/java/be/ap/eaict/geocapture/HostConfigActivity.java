@@ -1,10 +1,12 @@
 package be.ap.eaict.geocapture;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -54,6 +56,11 @@ public class HostConfigActivity extends AppCompatActivity {
         });
 
 
-
+        Button btnStart = (Button) findViewById(R.id.btnStart);
+        btnStart.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                startActivity(new Intent(HostConfigActivity.this, MapActivity.class));
+            }
+        });
     }
 }
