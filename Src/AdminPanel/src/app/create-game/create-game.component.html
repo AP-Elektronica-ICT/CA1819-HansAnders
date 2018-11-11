@@ -1,15 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <agm-map (mapClick)="clickMap($event)"  [latitude]="lat" [longitude]="lng">
-
-            <agm-marker 
-            *ngFor="let marker of markers"
-            [latitude]="marker.lat"
-            [longitude]="marker.lng"
-            >
-            </agm-marker>
-        </agm-map>
+        <form class="text-center border border-light p-5">
+          <div class="form-group">
+            <label for="city"></label>
+            <input id="city" type="text" class="form-control mb-4">
+            <label for="puzzels"></label>
+            <input id="city" type="text" class="form-control mb-4">
+          </div>
+        </form>
     </div>
     <div class="col">
       hallo
