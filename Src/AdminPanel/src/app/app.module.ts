@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
+import { CreateGameComponent } from './create-game/create-game.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    LoginBarComponent
+    LoginBarComponent,
+    CreateGameComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

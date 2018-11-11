@@ -1,11 +1,17 @@
-<h1>{{ title }}</h1>
 
-<agm-map (mapClick)="clickMap($event)" style="height:700px" [latitude]="lat" [longitude]="lng">
+<div class="container">
+  <div class="row">
+    <div class="col-1">
+      <h1>{{ title }}</h1>
+      <agm-map (mapClick)="clickMap($event)" [latitude]="lat" [longitude]="lng">
 
-  <agm-marker 
-  *ngFor="let marker of markers"
-  [latitude]="marker.lat"
-  [longitude]="marker.lng"
-  >
-  </agm-marker>
-</agm-map>
+        <agm-marker 
+        *ngFor="let marker of markers"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+        >
+        </agm-marker>
+      </agm-map>
+    </div>
+  </div>
+</div>
