@@ -96,6 +96,29 @@ namespace WebApplication5.Controllers
             return CreatedAtAction("Getregio", new { id = regio.Id }, regio);
         }
 
+
+        // POST: api/puzzel
+        [HttpPost]
+        [Route("{regioid}/{LocatieId}/addpuzzel")]
+        public async Task<IActionResult> AddPuzzelToMarker([FromBody] Puzzel puzzel, int LocatieId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var locatie = await _context.locaties.SingleOrDefaultAsync(m => m.Id == LocatieId);
+
+            if (locatie != null)
+            {
+                locatie.puzzels.Add(puzzel);
+                await _context.SaveChangesAsync();
+                return Created("puzzel", puzzel);
+            }
+            else
+                return NotFound();
+        }
+
         // DELETE: api/Regio/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteregio([FromRoute] int id)

@@ -81,6 +81,8 @@ namespace WebApplication5.Controllers
             return NoContent();
         }
 
+
+
         // POST: api/Game
         [HttpPost]
         public async Task<IActionResult> PostGame([FromBody] Game game)

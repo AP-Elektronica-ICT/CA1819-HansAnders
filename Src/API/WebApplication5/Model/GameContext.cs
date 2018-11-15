@@ -18,7 +18,7 @@ namespace Model
         public DbSet<Game> Games { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Regio> Regios { get; set; }
-        public DbSet<VraagPuzzel> vraagPuzzels { get; set; }
-        public DbSet<ARPuzzel> arPuzzels { get; set; }
+        public DbSet<Locatie> locaties { get; set; }
+        public DbSet<Puzzel> puzzels { get; set; }
     }
 }
