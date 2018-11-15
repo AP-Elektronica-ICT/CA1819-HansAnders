@@ -24,6 +24,10 @@ export class HomeComponent {
       lng:$event.coords.lng
     });
   }
+
+  onRegioClick(id: number) {
+    console.log(id)
+  }
   
 }
 export interface position{
