@@ -14,9 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         if (IsServicesOK()){
             init();
         }
+
     }
 
     private  void init(){
@@ -36,9 +37,11 @@ public class HomeActivity extends AppCompatActivity {
         btnHostConfig.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 EditText teams = (EditText) findViewById(R.id.txtHostTeams);
-                Integer strTeams = Integer.parseInt(teams.getText().toString());
+                int Teams = 0;
+                if(teams.getText().length() > 0)
+                    Teams = Integer.parseInt(teams.getText().toString());
                 Intent i = new Intent(HomeActivity.this, HostConfigActivity.class);
-                i.putExtra("teams",strTeams);
+                i.putExtra("teams",Teams);
                 startActivity(i);
             }
         });
