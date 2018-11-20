@@ -24,7 +24,8 @@ namespace WebApplication5.Controllers
         [HttpGet]
         public IEnumerable<Regio> GetRegios()
         {
-            return _context.Regios;
+            
+            return _context.Regios.Include(r=>r.locaties).ThenInclude(l=>l.puzzels);
         }
 
         // GET: api/Regio/5
