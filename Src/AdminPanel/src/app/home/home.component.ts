@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent {
 
+  id: string
   constructor(public auth: AuthService) { }
   ngOnInit() {
     this.auth.handleAuthentication()
@@ -28,8 +29,18 @@ export class HomeComponent {
   onRegioClick(id: number) {
     console.log(id)
   }
-  
+
+  AddQuestion() {
+    console.log("id")
+  }
+
+
+
 }
+  
+
+
+
 export interface position{
   lat: number,
   lng: number

@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateGameComponent } from './create-game/create-game.component';
 import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -36,7 +37,8 @@ const routes: Routes = [
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD5_lt4N02VyQfNEWpt5f3DnzPwnHZ35DI'
-    })
+    }),
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [ AuthService, AuthGuard ],
