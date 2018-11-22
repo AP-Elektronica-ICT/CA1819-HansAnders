@@ -14,6 +14,7 @@ import { CreateGameComponent } from './create-game/create-game.component';
 import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
+import { VragenService } from './services/vragen.service';
 
 
 const routes: Routes = [
@@ -41,7 +42,11 @@ const routes: Routes = [
     FormsModule
   ],
   exports: [RouterModule],
-  providers: [ AuthService, AuthGuard ],
+  providers: [ 
+    AuthService, 
+    AuthGuard,
+    VragenService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
