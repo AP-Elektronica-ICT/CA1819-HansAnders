@@ -33,9 +33,6 @@ export class HomeComponent {
   AddQuestion() {
     console.log("id")
   }
-
-
-
 }
   
 
