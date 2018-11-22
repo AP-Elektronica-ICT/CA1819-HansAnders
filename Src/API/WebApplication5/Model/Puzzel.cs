@@ -7,8 +7,8 @@ namespace Model
     public class Puzzel
     {
         public int Id { get; set; }
-        public string Omschrijving { get; set; }
-        public string antwoord { get; set; }
+        public string Vraag { get; set; }
+        public string Antwoord { get; set; }
        /*   public Puzzel(string omschrijving)
           {
               this.Omschrijving = omschrijving;
