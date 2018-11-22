@@ -45,8 +45,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
     public boolean IsServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
