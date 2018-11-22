@@ -7,13 +7,14 @@ import { Observable } from "rxjs/Observable";
 export class VragenService {
     constructor(private _http: HttpClient) { }
 
-    getVraag() : Observable<Vraag>
-    {
-        return this._http.get<Vraag>(`http://api.openweathermap.org/data/2.5/forecast/daily?q=Antwerpen&units=metric&cnt=4&appid=bd5e378503939ddaee76f12ad7a97608`)
+
+    postVraag(Vraag: Vraag, regioId: number, locatieId: number): Observable<Vraag[]> {
+        return this._http.post<Vraag[]>("http://localhost:39858/api/Regio/"+regioId+"/"+locatieId+"/addpuzzel", Vraag)
     }
 
-    postVraag(Vraag: Vraag): Observable<Vraag> {
-        return this._http.post<Vraag>("http://localhost:5000/", Vraag)
+    getRegios(): Observable<Vraag>
+    {
+        return this._http.get<Vraag>("TODO")
     }
 
 }

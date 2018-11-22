@@ -15,6 +15,7 @@ import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { VragenService } from './services/vragen.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD5_lt4N02VyQfNEWpt5f3DnzPwnHZ35DI'
     }),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [ 

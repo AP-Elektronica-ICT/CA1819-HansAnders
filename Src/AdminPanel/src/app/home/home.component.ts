@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { VragenService, Vraag } from '../services/vragen.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,13 @@ import { AuthService } from '../services/auth.service';
 export class HomeComponent {
 
   id: string
-  constructor(public auth: AuthService) { }
+  Vraag: string
+  Antwoord: string
+  constructor(
+    public auth: AuthService,
+    private _svc: VragenService
+    ) {}
+
   ngOnInit() {
     this.auth.handleAuthentication()
   }
@@ -31,7 +38,13 @@ export class HomeComponent {
   }
 
   AddQuestion() {
-    console.log("id")
+    var vraag: Vraag=({
+      Id: 0,
+      Vraag: this.Vraag,
+      Antwoord: this.Antwoord
+    })
+    this._svc.postVraag(vraag, 1,1).subscribe(() => {alert("Vraag Toegevoegd")} )  
+    
   }
 }
   

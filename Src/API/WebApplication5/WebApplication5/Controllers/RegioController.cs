@@ -108,7 +108,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var locatie = await _context.locaties.SingleOrDefaultAsync(m => m.Id == LocatieId);
+            var locatie = await _context.locaties.Include(l=>l.puzzels).SingleOrDefaultAsync(m => m.Id == LocatieId);
 
             if (locatie != null)
             {
