@@ -1,19 +1,26 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <form class="text-center border border-light p-5">
-            <label for="title"></label>
-            <input id="title" type="text" class="form-control mb-4">
-            <label for="city"></label>
-            <input id="city" type="text" class="form-control mb-4">
-            <label for="puzzels"></label>
-            <select id="puzzels" class="form-control mb-4">
-              <!--gevuld worden met puzzels uit de database-->
-            </select>
-        </form>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Hoe maak in een spel aan?</h2>
+      <p>
+        Om een spel aan te maken, geef je een naam en locatie op. ook geef je een tijdspan van het spel aan. De tijdspan kan varieren van minimaal 1 uur tot maximaal 6 uur.
+      </p>
     </div>
     <div class="col">
-      hallo
+        <h2>Create Game</h2>
+        <form class="text-center border border-light p-5">
+            <label for="title">Naam spel</label>
+            <input id="title" type="text" class="form-control mb-4" required />
+            <label for="city">Locatie/Stad</label>
+            <input id="city" type="text" class="form-control mb-4" required />
+            <label for="timespan">Tijsspan (in uren)</label>
+            <input id="timespan" type="number" min="1" max="6" class="form-control mb-4" required />
+        </form>
     </div>
   </div>
 </div>
