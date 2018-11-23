@@ -49,6 +49,7 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             }
 
             app.UseMvc();
+
             DbInit.Initialize(context);
         }
     }

@@ -120,6 +120,22 @@ namespace WebApplication5.Controllers
                 return NotFound();
         }
 
+        // POST: api/Regio/5/addMarker
+        [HttpPost("{id}/addLocatie")]
+        public async Task<IActionResult> AddMarker([FromBody] Locatie locatie,[FromRoute] int Id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == Id);
+            regio.locaties.Add(locatie);
+            //await _context.SaveChangesAsync();
+            _context.SaveChanges();
+
+            return CreatedAtAction("Getregio", new { id = locatie.Id }, locatie);
+        }
+
         // DELETE: api/Regio/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteregio([FromRoute] int id)

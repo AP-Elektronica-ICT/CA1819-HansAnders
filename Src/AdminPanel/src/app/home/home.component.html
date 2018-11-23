@@ -7,20 +7,15 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">naam</th>
-              <th scope="col">plaats</th>
+              <th scope="col">tijd</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let regio of regioslist">
-              <th scope="row">regio.id</th>
-              <td>regio.naam</td>
-              <td>regio.plaats</td>
-            </tr>
-            <tr (click)="onRegioClick(1)">
-              <th scope="row">1</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>                                          
+            <tr *ngFor="let regio of Regios; let i = index" (click)="RegioSelect(i)">
+              <th scope="row">{{regio.id}}</th>
+              <td>{{regio.naam}}</td>
+              <td>{{regio.tijd}}</td>
+            </tr>                                        
           </tbody>
         </table>
       
@@ -30,11 +25,12 @@
 
   <div class="col-md-6">  
     <h1>{{ title }}</h1>
-    <agm-map style="height:700px" (mapClick)="clickMap($event)"  [latitude]="lat" [longitude]="lng">
-      <agm-marker 
-      *ngFor="let marker of markers"
+    <agm-map *ngIf="Regios" style="height:700px" (mapClick)="clickMap($event)"  [latitude]="lat" [longitude]="lng">
+      <agm-marker (markerClick)="markerClicked(marker)"
+      *ngFor="let marker of Regios[RegioSelected].locaties"
       [latitude]="marker.lat"
       [longitude]="marker.lng">
+      <agm-info-window><strong>{{marker.locatienaam}}</strong></agm-info-window>
       </agm-marker>
     </agm-map>
   </div>

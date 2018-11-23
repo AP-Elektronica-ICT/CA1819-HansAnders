@@ -19,7 +19,7 @@ namespace Model
             );
             context.Regios.Add(
                new Regio() {
-                   naam = "antwerpen",
+                   naam = "foemp",
                    locaties = 
                    new List<Locatie> {
                         new Locatie(){
@@ -30,8 +30,8 @@ namespace Model
                                 new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x"},
                                 new Puzzel(){Vraag = "wa uur is locket x open", Antwoord = "5:50"},
                             },
-                            lat = 51.217263f,
-                            lng = 4.421034f
+                            lat = 55.217263f,
+                            lng = 6.421034f
 
                         },
                         new Locatie(){
@@ -42,8 +42,8 @@ namespace Model
                                 new Puzzel(){Vraag = "wanneer is beeld x", Antwoord = "2"},
                                 new Puzzel(){Vraag = "waarom is dit een ding", Antwoord = "nee"},
                             },
-                            lat = 51.220214f,
-                            lng = 4.402223f
+                            lat = 55.220214f,
+                            lng = 6.402223f
 
                         }
                    },
