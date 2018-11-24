@@ -40,10 +40,10 @@ public class HomeActivity extends AppCompatActivity {
 
                 //start game instance in backend so that lobbyid is created and people can join
                 final GameRepository gameRepository = new GameRepository();
-                gameRepository.startGame();
+                gameRepository.startGame(Teams);
 
                 Intent i = new Intent(HomeActivity.this, HostConfigActivity.class);
-                i.putExtra("teams", Teams);
+                //i.putExtra("teams", Teams);
                 i.putExtra("name", findViewById(R.id.txtName).toString());
                 startActivity(i);
             }

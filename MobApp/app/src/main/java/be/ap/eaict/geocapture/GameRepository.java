@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.ap.eaict.geocapture.Model.Game;
+import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Regio;
+import be.ap.eaict.geocapture.Model.Team;
 
 public class GameRepository implements IGameRepository{
 
@@ -43,36 +45,44 @@ public class GameRepository implements IGameRepository{
             this.userName = username;
             this.team = team;
             this.lobbyId = lobbyId;
-
         }
 
         return false;
     }
 
-    public void startGame()//new lobby that people can join
+    public void startGame(int teams)//new lobby that people can join
     {
-        //api call to create new game and create lobby id so people can join
+        List<Team> listTeams = new ArrayList<>();
+        for(int i =0; i< teams; i++)
+        {
+           listTeams.add(new Team());//empty teams initiated
+        }
+        Game startgame = new Game(null,System.currentTimeMillis(), listTeams, null);
+        //POST startgame
 
+        //api call to create new game and create lobby id so people can join
         // API POST EMPTY GAME! --> WILL RETURN GAME WITH ID
 
         this.lobbyId = 0;// << -----
     }
 
     @Override
-    public void createGame(Game game, String userName) {
+    public void createGame(Regio regio, List<Locatie> enabledlocaties, String userName) {
+        Game game = getGame();
+        game = new Game(regio, game.getStarttijd(), game.Teams, game.getEnabledLocaties());
         //API CALL to create game in backend
 
-        //API PUT (.../api/game/id)
-        this.game = game;
+        //API PUT game (.../api/game/id)
+
+        this.JoinGame(userName,0,this.lobbyId); // host joins team 0 by default
     }
 
-    private static Game game;//this should be in backend
     @Override
     public Game getGame() {
 
         //API CALL for game information
 
-        return game;
+        return null;
     }
 
 

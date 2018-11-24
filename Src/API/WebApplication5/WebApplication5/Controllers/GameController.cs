@@ -113,13 +113,15 @@ namespace WebApplication5.Controllers
             {
                 return NotFound();
             }
+            
+            for(int i = 0; i < game.Teams.Count; i++)
+                if(i == team)
+                {
+                    game.Teams[team].Users.Add(user);
+                    return Ok(game);
+                }
 
-            return Ok(game);
-
-
-
-
-            return null;
+            return NotFound();
         }
 
 

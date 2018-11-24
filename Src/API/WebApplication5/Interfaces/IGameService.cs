@@ -11,7 +11,6 @@ namespace Interfaces
         void updateGame(int gameId, int teams, int players, int puzzelId, List<int> selectedLocaties);
         bool joinGame(string displayName, int gameId, int teamId);
         Game getGame(int gameId);
-
-
+        
     }
 }

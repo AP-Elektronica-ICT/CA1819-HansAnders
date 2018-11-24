@@ -39,3 +39,7 @@ D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplicatio
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.AssemblyInfo.cs
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.dll
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Interfaces.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\ServiceLayer.dll
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\ServiceLayer.pdb
+D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Interfaces.pdb

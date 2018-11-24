@@ -30,7 +30,7 @@ public class HostConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_config);
 
-        final int teams = getIntent().getIntExtra("teams", 0);
+        //final int teams = getIntent().getIntExtra("teams", 0);
         //final TextView TextView_teams = (TextView)findViewById(R.id.hostconfig_teams);
         //TextView_teams.setText(""+teams);
 
@@ -79,7 +79,7 @@ public class HostConfigActivity extends AppCompatActivity {
                         if(locatie.used) enabledLocaties.add(locatie);
                     Log.d(TAG,"enabledlocaties caluclated");
 
-                    dummyRepositoryRegios.createGame(new Game(teams,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+                    dummyRepositoryRegios.createGame(new Game(0,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
                     //GameRepository.createGame(new Game(teams,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
