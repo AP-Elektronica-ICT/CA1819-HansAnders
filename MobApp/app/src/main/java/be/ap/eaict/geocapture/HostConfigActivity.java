@@ -64,6 +64,8 @@ public class HostConfigActivity extends AppCompatActivity {
             }
         });
 
+        TextView txtDeelnemers = (TextView) findViewById(R.id.txtDeelnemers);
+        // somehow let this pull the amount of players from database and let it show here
 
         Button btnStart = (Button) findViewById(R.id.btnStart);
         btnStart.setOnClickListener(new View.OnClickListener(){
@@ -76,9 +78,12 @@ public class HostConfigActivity extends AppCompatActivity {
                     for(Locatie locatie: regiolocaties)
                         if(locatie.used) enabledLocaties.add(locatie);
                     Log.d(TAG,"enabledlocaties caluclated");
-                    dummyRepositoryRegios.createGame(new Game(teams,regio,System.currentTimeMillis(),new ArrayList<Team>(),enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+
+                    dummyRepositoryRegios.createGame(new Game(teams,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+
+                    //GameRepository.createGame(new Game(teams,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+
                     Intent mapintent = new Intent(HostConfigActivity.this, MapActivity.class);
-                    Log.d(TAG,"created intent");
                     startActivity(mapintent);
                 }
                 else

@@ -3,15 +3,11 @@ package be.ap.eaict.geocapture;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -33,16 +29,38 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private  void init(){
-        Button btnHostConfig = (Button) findViewById(R.id.btnHost);
+        //create new game:
+        Button btnHostConfig = (Button) findViewById(R.id.btnHostGame);
         btnHostConfig.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 EditText teams = (EditText) findViewById(R.id.txtHostTeams);
                 int Teams = 0;
                 if(teams.getText().length() > 0)
                     Teams = Integer.parseInt(teams.getText().toString());
+
+                //start game instance in backend so that lobbyid is created and people can join
+                final GameRepository gameRepository = new GameRepository();
+                gameRepository.startGame();
+
                 Intent i = new Intent(HomeActivity.this, HostConfigActivity.class);
-                i.putExtra("teams",Teams);
+                i.putExtra("teams", Teams);
+                i.putExtra("name", findViewById(R.id.txtName).toString());
                 startActivity(i);
+            }
+        });
+
+        Button btnJoinGame = (Button) findViewById(R.id.btnNewGame);
+        btnJoinGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final GameRepository gameRepository = new GameRepository();
+                boolean canjoin = gameRepository.JoinGame(
+                        findViewById(R.id.txtName).toString(),
+                        Integer.parseInt(findViewById(R.id.txtTeam).toString()),
+                        Integer.parseInt(findViewById(R.id.txtLobbyId).toString()));
+
+                Intent mapintent = new Intent(HomeActivity.this, MapActivity.class);
+                startActivity(mapintent);
             }
         });
     }

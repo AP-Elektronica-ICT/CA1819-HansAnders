@@ -31,21 +31,36 @@
     <ListView
         android:id="@+id/region_list"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="125dp">
-    </ListView>
+        android:layout_height="162dp"
+        android:layout_weight="1"></ListView>
 
     <TextView
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selecteer markers:" />
+
     <ListView
-        android:layout_weight="1"
         android:id="@+id/markers_list"
         android:layout_width="match_parent"
-        android:layout_height="125dp">
-    </ListView>
+        android:layout_height="152dp"
+        android:layout_weight="1"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Deelnemers:" />
+        <TextView
+            android:id="@+id/txtDeelnemers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"

@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Join game"
-        android:id="@+id/btnNewGame"/>
+        android:id="@+id/btnJoinGame"/>
 
 
 
@@ -94,7 +94,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnHost"
+        android:id="@+id/btnHostGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"

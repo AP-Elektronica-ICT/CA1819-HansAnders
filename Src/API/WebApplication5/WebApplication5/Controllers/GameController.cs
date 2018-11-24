@@ -10,7 +10,7 @@ using Model;
 namespace WebApplication5.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Game")]
+    [Route("api/Game")] 
     public class GameController : Controller
     {
         private readonly GameContext _context;
@@ -95,8 +95,33 @@ namespace WebApplication5.Controllers
             _context.Games.Add(game);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGame", new { id = game.ID }, game);
+            return CreatedAtAction("Game", new { id = game.ID }, game);
         }
+
+
+        [HttpPost("join/{id}")]
+        public async Task<IActionResult> JoinGame(int id,[FromBody] User user, [FromBody] int team)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var game = await _context.Games.SingleOrDefaultAsync(m => m.ID == id);
+
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(game);
+
+
+
+
+            return null;
+        }
+
 
         // DELETE: api/Game/5
         [HttpDelete("{id}")]

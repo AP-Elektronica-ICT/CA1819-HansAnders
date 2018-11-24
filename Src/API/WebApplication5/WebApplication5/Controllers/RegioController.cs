@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using ServiceLayer;
 
 namespace WebApplication5.Controllers
 {
@@ -32,6 +33,7 @@ namespace WebApplication5.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Getregio([FromRoute] int id)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -5029,6 +5029,16 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Interfaces.dll": {}
+        }
+      },
       "Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -5040,6 +5050,20 @@
         },
         "runtime": {
           "bin/placeholder/Model.dll": {}
+        }
+      },
+      "ServiceLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Interfaces": "1.0.0",
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ServiceLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ServiceLayer.dll": {}
         }
       }
     }
@@ -13255,10 +13279,20 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../Interfaces/Interfaces.csproj",
+      "msbuildProject": "../Interfaces/Interfaces.csproj"
+    },
     "Model/1.0.0": {
       "type": "project",
       "path": "../Model/Model.csproj",
       "msbuildProject": "../Model/Model.csproj"
+    },
+    "ServiceLayer/1.0.0": {
+      "type": "project",
+      "path": "../ServiceLayer/ServiceLayer.csproj",
+      "msbuildProject": "../ServiceLayer/ServiceLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -13266,7 +13300,8 @@
       "Microsoft.AspNetCore.All >= 2.0.9",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3",
-      "Model >= 1.0.0"
+      "Model >= 1.0.0",
+      "ServiceLayer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -13301,6 +13336,9 @@
           "projectReferences": {
             "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj": {
               "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj"
+            },
+            "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\ServiceLayer.csproj": {
+              "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\ServiceLayer.csproj"
             }
           }
         }
