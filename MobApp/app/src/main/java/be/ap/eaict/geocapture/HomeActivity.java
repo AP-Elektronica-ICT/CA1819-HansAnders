@@ -13,6 +13,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.*;
+
+import cz.msebera.android.httpclient.Header;
+
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
@@ -25,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         if (IsServicesOK()){
             init();
         }
+        HttpCall();
 
     }
 
@@ -49,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btnJoinGame = (Button) findViewById(R.id.btnNewGame);
+        Button btnJoinGame = (Button) findViewById(R.id.btnJoinGame);
         btnJoinGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,4 +88,36 @@ public class HomeActivity extends AppCompatActivity {
         }
         return false;
     }
+    public void HttpCall(){
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("http://localhost:39858/api/values/4", new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+                // called before request is started
+                Log.d(TAG, "onStart: api call started");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                // called when response HTTP status is "200 OK"
+                Log.d(TAG, "onSuccess: api call success");
+                Log.d(TAG, "onSuccess:" + statusCode);
+                Log.d(TAG, "onSuccess: "+ headers);
+                Log.d(TAG, "onSuccess: "+responseBody);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                Log.d(TAG, "onFailure: api call failure");
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+                // called when request is retried
+            }
+        });
+    }
+
 }

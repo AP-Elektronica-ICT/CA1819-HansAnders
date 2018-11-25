@@ -79,7 +79,7 @@ public class HostConfigActivity extends AppCompatActivity {
                         if(locatie.used) enabledLocaties.add(locatie);
                     Log.d(TAG,"enabledlocaties caluclated");
 
-                    dummyRepositoryRegios.createGame(new Game(0,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+                    //dummyRepositoryRegios.createGame(new Game(0,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
                     //GameRepository.createGame(new Game(teams,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
