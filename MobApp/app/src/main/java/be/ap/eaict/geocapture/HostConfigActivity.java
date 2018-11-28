@@ -30,6 +30,8 @@ public class HostConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_config);
 
+
+
         //final int teams = getIntent().getIntExtra("teams", 0);
         //final TextView TextView_teams = (TextView)findViewById(R.id.hostconfig_teams);
         //TextView_teams.setText(""+teams);

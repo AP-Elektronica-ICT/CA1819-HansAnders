@@ -13,11 +13,29 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.util.IOUtils;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.*;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.ap.eaict.geocapture.Model.Regio;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpEntity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -32,7 +50,6 @@ public class HomeActivity extends AppCompatActivity {
             init();
         }
         HttpCall();
-
     }
 
     private  void init(){
@@ -88,34 +105,30 @@ public class HomeActivity extends AppCompatActivity {
         }
         return false;
     }
-    public void HttpCall(){
+     public void HttpCall(){
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://localhost:39858/api/values/4", new AsyncHttpResponseHandler() {
-
+        client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {
             @Override
-            public void onStart() {
-                // called before request is started
-                Log.d(TAG, "onStart: api call started");
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
                 Log.d(TAG, "onSuccess: api call success");
-                Log.d(TAG, "onSuccess:" + statusCode);
-                Log.d(TAG, "onSuccess: "+ headers);
-                Log.d(TAG, "onSuccess: "+responseBody);
+                try {
+                    String str = new String(res, "UTF-8");
+
+                    Gson gson = new Gson();
+                    List<Regio> recipesList = gson.fromJson(str, new TypeToken<List<Regio>>() {}.getType());
+
+                    Log.d(TAG, "onSuccess: fromclasslist: "+recipesList.get(0).getLocaties().get(0).getLat());
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
                 Log.d(TAG, "onFailure: api call failure");
-            }
-
-            @Override
-            public void onRetry(int retryNo) {
-                // called when request is retried
             }
         });
     }
