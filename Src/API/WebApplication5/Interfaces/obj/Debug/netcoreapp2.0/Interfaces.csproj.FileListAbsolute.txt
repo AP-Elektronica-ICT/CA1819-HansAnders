@@ -10,3 +10,14 @@ D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\Inte
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csproj.CopyComplete
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.dll
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Interfaces.deps.json
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Interfaces.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Interfaces.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Model.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Model.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csproj.CoreCompileInputs.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.AssemblyInfoInputs.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.AssemblyInfo.cs
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csprojResolveAssemblyReference.cache

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="WebApplication520181127093524" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\WebApplication5\\obj\\Release\\netcoreapp2\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>
