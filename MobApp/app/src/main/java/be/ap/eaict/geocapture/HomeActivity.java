@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
             init();
         }
         HttpCall();
+        (new GameRepository()).getRegios();
     }
 
     private  void init(){
@@ -105,7 +107,8 @@ public class HomeActivity extends AppCompatActivity {
         }
         return false;
     }
-     public void HttpCall(){
+
+    public void HttpCall(){
         AsyncHttpClient client = new AsyncHttpClient();
         client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {
             @Override

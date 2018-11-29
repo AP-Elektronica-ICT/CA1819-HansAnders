@@ -2,6 +2,7 @@ package be.ap.eaict.geocapture;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,10 @@ public class HostConfigLocatiesAdapter extends ArrayAdapter<Locatie> {
         txtMarker.setText(getItem(position).getLocatienaam());
 
         LinearLayout background = (LinearLayout) view.findViewById(R.id.marker_background);
-        if (getItem(position).used)
+        Log.d("tag", "getView: " + getItem(position));
+        Locatie l = getItem(position);
+        Log.d("t", "getView: " + l);
+        if (l.used == null || l.used == true)
             background.setBackgroundColor(Color.WHITE);
         else
             background.setBackgroundColor(Color.rgb(255, 200,200));

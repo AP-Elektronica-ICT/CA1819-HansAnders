@@ -1,5 +1,14 @@
 package be.ap.eaict.geocapture;
 
+import android.util.Log;
+
+import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +16,7 @@ import be.ap.eaict.geocapture.Model.Game;
 import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Regio;
 import be.ap.eaict.geocapture.Model.Team;
+import cz.msebera.android.httpclient.Header;
 
 public class GameRepository implements IGameRepository{
 
@@ -20,21 +30,41 @@ public class GameRepository implements IGameRepository{
         return repo;
     }
 
-    private String userName;
+    public static String userName;
     private int userKey; // api should return a key it should use to identify the user or sth
-    private int team;
-    private int lobbyId;
-
+    private static int team;
+    private static int lobbyId;
+    public static List<Regio> regios = new ArrayList<>();
 
     @Override
-    public List<Regio> getRegios() {
-        List<Regio> regios = new ArrayList<>();
-
+    public void getRegios() {
         //API CALL
-        return regios;
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                try {
+                    String str = new String(res, "UTF-8");
+
+                    Gson gson = new Gson();
+                    regios = gson.fromJson(str, new TypeToken<List<Regio>>() {}.getType());
+
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
+        Log.d("tag", "onSuccess: "+regios);
     }
 
-    public boolean JoinGame(String username, int team, int lobbyId)
+    static public boolean JoinGame(String username, int intTeam, int intLobbyId)
     {
 
         //try to join game with information:  txtTeam, txtLobbyId, txtName is valid by doing API CALL
@@ -42,9 +72,9 @@ public class GameRepository implements IGameRepository{
 
         if(true)//api call returns true or false (.../api/game/join/id)
         {
-            this.userName = username;
-            this.team = team;
-            this.lobbyId = lobbyId;
+            userName = username;
+            team = intTeam;
+            lobbyId = intLobbyId;
         }
 
         return false;
@@ -66,24 +96,20 @@ public class GameRepository implements IGameRepository{
         this.lobbyId = 0;// << -----
     }
 
-    @Override
-    public void createGame(Regio regio, List<Locatie> enabledlocaties, String userName) {
+
+    static public void createGame(Regio regio, List<Locatie> enabledlocaties) {
         Game game = getGame();
-        game = new Game(regio, game.getStarttijd(), game.Teams, game.getEnabledLocaties());
+        game = new Game(regio, game.getStarttijd(), game.Teams, enabledlocaties);
         //API CALL to create game in backend
 
         //API PUT game (.../api/game/id)
 
-        this.JoinGame(userName,0,this.lobbyId); // host joins team 0 by default
+        JoinGame(userName,0,lobbyId); // host joins team 0 by default
     }
 
-    @Override
-    public Game getGame() {
 
-        //API CALL for game information
+    static public Game getGame() {
 
         return null;
     }
-
-
 }
