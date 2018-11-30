@@ -3677,7 +3677,7 @@
       ]
     },
     "Microsoft.Extensions.Logging.Abstractions/2.0.2": {
-      "sha512": "72iP9bY5OhMxZbaqP76T6Egq7+/g+yDEm9FL8bc9yB3nVTCbtiSHkIRRdhMXxXKxxtmtzPHe4iewdRKA9uSZYQ==",
+      "sha512": "B1F5GAMGCIuYzL1LouJ08ie+CrTYGzLVd1gfJHWpjXtIfNwzs2PZxsuLYLIAqMTlpiDcoB8PSZHbzU5bMOi+gg==",
       "type": "package",
       "path": "microsoft.extensions.logging.abstractions/2.0.2",
       "files": [
@@ -3690,7 +3690,7 @@
       ]
     },
     "Microsoft.Extensions.Options/2.0.2": {
-      "sha512": "UwoGhA9IST5AqeVz6Ig3fwAmVCHkVPU0Mv+gBpYWLu9J1UM4QSqLGTcEZaEuhGZ9HCkS5BC2mHCMv9g+oIvntg==",
+      "sha512": "OrIk/xmo5rsN4ufV32cjAQgM9uCoe6FaNijFX7Huwdg8T3z5L5r1kMBMwjROvDJZNiNkcfJ6iJi2JhCRi6GTfA==",
       "type": "package",
       "path": "microsoft.extensions.options/2.0.2",
       "files": [
@@ -4198,12 +4198,11 @@
       ]
     },
     "Remotion.Linq/2.1.1": {
-      "sha512": "m9y+SLyqYEDcc3lnqAHO2VOsdIeDuO02IuBXeo7CIDve2J3ahXQRieZt2DuoXgCnWW83PgN6+8CQsaORlwAMXw==",
+      "sha512": "IJn0BqkvwEDpP+2qjvci7n4/a9f7DhKESLWb2/uG4xQh3rTkGTBUz69bI4IivCoKkTFAqjXxYDZw2K/npohjsw==",
       "type": "package",
       "path": "remotion.linq/2.1.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net35/Remotion.Linq.XML",
         "lib/net35/Remotion.Linq.dll",
         "lib/net40/Remotion.Linq.XML",
@@ -5728,23 +5727,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\brent\\.nuget\\packages\\": {},
+    "C:\\Users\\Yorick\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\ServiceLayer.csproj",
+      "projectUniqueName": "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\ServiceLayer.csproj",
       "projectName": "ServiceLayer",
-      "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\ServiceLayer.csproj",
-      "packagesPath": "C:\\Users\\brent\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\obj\\",
+      "projectPath": "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\ServiceLayer.csproj",
+      "packagesPath": "C:\\Users\\Yorick\\.nuget\\packages\\",
+      "outputPath": "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\ServiceLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\brent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Yorick\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5757,11 +5759,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\Interfaces.csproj": {
-              "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\Interfaces.csproj"
+            "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\Interfaces.csproj": {
+              "projectPath": "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Interfaces\\Interfaces.csproj"
             },
-            "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj": {
-              "projectPath": "D:\\Users\\brent\\Desktop\\1819school\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj"
+            "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj": {
+              "projectPath": "D:\\3EA\\CloudApplications\\CA1819-HansAnders\\Src\\API\\WebApplication5\\Model\\Model.csproj"
             }
           }
         }
@@ -5778,7 +5780,7 @@
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0",
             "autoReferenced": true
           }
         },
