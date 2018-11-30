@@ -1,0 +1,12 @@
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\bin\Debug\netcoreapp2.0\RepositoryLayer.deps.json
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\bin\Debug\netcoreapp2.0\RepositoryLayer.dll
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\bin\Debug\netcoreapp2.0\RepositoryLayer.pdb
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\bin\Debug\netcoreapp2.0\Model.dll
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\bin\Debug\netcoreapp2.0\Model.pdb
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.csprojAssemblyReference.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.csproj.CoreCompileInputs.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.AssemblyInfoInputs.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.AssemblyInfo.cs
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.csproj.CopyComplete
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.dll
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\RepositoryLayer\obj\Debug\netcoreapp2.0\RepositoryLayer.pdb

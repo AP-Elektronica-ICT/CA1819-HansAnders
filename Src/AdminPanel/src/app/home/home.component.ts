@@ -21,7 +21,7 @@ export class HomeComponent {
     ) {}
 
   ngOnInit() {
-    this.auth.handleAuthentication()
+    this.auth.handleAuthentication();
     this._svc.getRegios().subscribe(result => this.Regios = result);
   }
   title: string = 'Click to add places';

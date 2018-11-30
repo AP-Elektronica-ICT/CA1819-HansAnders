@@ -21,3 +21,15 @@ D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\ob
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.dll
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.pdb
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Interfaces.deps.json
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Interfaces.dll
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Interfaces.pdb
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Model.dll
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\bin\Debug\netcoreapp2.0\Model.pdb
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csprojAssemblyReference.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.AssemblyInfoInputs.cache
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.AssemblyInfo.cs
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.csproj.CopyComplete
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.dll
+C:\Users\Ruben\Documents\Dropbox\School\Semester1Jaar3\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\Interfaces\obj\Debug\netcoreapp2.0\Interfaces.pdb

@@ -15,9 +15,11 @@ namespace WebApplication5.Controllers
     public class RegioController : Controller
     {
         private readonly GameContext _context;
+        private RegioService _regioService;
 
         public RegioController(GameContext context)
         {
+            _regioService = new RegioService(context);
             _context = context;
         }
 
@@ -86,17 +88,23 @@ namespace WebApplication5.Controllers
 
         // POST: api/Regio
         [HttpPost]
+        [Route("addgame")]
         public async Task<IActionResult> Postregio([FromBody] Regio regio)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            _context.Regios.Add(regio);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("Getregio", new { id = regio.Id }, regio);
+            //_regioService.addGame(regio);
+            if (regio != null)
+            {
+                _context.Regios.Add(regio);
+                _context.SaveChanges();
+                return Created("Created regio", regio);
+            }
+            else {
+                return NotFound();
+            }  
         }
 
 

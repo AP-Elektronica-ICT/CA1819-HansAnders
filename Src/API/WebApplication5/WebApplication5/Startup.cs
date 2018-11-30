@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Model;
+using WebApplication5.Hubs;
 
 namespace WebApplication5
 {
@@ -25,7 +26,12 @@ namespace WebApplication5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(o => o.AddPolicy("MyCors", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddDbContext<GameContext>(options =>
 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -33,6 +39,7 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
             services.AddCors();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +56,11 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             }
 
             app.UseMvc();
-
+            app.UseCors("MyCors");
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<RegioHub>("/regioHub");
+            });
             DbInit.Initialize(context);
         }
     }
