@@ -33,7 +33,6 @@ D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplicatio
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\WebApplication5.pdb
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Model.dll
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Model.pdb
-D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.csprojResolveAssemblyReference.cache
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.csproj.CoreCompileInputs.cache
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.AssemblyInfoInputs.cache
 D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.AssemblyInfo.cs
@@ -43,3 +42,8 @@ D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebA
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\ServiceLayer.dll
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\ServiceLayer.pdb
 D:\Users\Brent\Desktop\1819school\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Interfaces.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Interfaces.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\ServiceLayer.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\ServiceLayer.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\bin\Debug\netcoreapp2.0\Interfaces.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\WebApplication5\obj\Debug\netcoreapp2.0\WebApplication5.csprojResolveAssemblyReference.cache

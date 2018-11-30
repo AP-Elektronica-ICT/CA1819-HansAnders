@@ -42,3 +42,26 @@ export interface Locatie{
     lng: number,
     lat: number
 }
+
+export interface Game{
+    id: number,
+    teamamount: number,
+    teams: Team[],
+    EnabledLocaties: Locatie[],
+    regio: Regio,
+    starttijd: number
+}
+
+export interface Team{
+    id: number,
+    users: User[],
+    capturedLocaties: Locatie[],
+    teamName: number
+}
+
+export interface User{
+    id: number,
+    name: string,
+    lng: number,
+    lat: number
+}

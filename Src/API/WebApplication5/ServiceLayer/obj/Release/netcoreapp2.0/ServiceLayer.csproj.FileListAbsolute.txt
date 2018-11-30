@@ -1,0 +1,13 @@
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\ServiceLayer.deps.json
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\ServiceLayer.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\ServiceLayer.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\Interfaces.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\Model.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\Interfaces.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\bin\Release\netcoreapp2.0\Model.pdb
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\obj\Release\netcoreapp2.0\ServiceLayer.csprojResolveAssemblyReference.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\obj\Release\netcoreapp2.0\ServiceLayer.csproj.CoreCompileInputs.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\obj\Release\netcoreapp2.0\ServiceLayer.AssemblyInfoInputs.cache
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\obj\Release\netcoreapp2.0\ServiceLayer.AssemblyInfo.cs
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\obj\Release\netcoreapp2.0\ServiceLayer.dll
+D:\3EA\CloudApplications\CA1819-HansAnders\Src\API\WebApplication5\ServiceLayer\obj\Release\netcoreapp2.0\ServiceLayer.pdb

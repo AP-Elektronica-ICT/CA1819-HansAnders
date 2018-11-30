@@ -13,10 +13,35 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.util.IOUtils;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.*;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.ap.eaict.geocapture.Model.Regio;
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpEntity;
+
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +50,8 @@ public class HomeActivity extends AppCompatActivity {
         if (IsServicesOK()){
             init();
         }
-
+        HttpCall();
+        (new GameRepository()).getRegios();
     }
 
     private  void init(){
@@ -49,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btnJoinGame = (Button) findViewById(R.id.btnNewGame);
+        Button btnJoinGame = (Button) findViewById(R.id.btnJoinGame);
         btnJoinGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,4 +107,33 @@ public class HomeActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    public void HttpCall(){
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                Log.d(TAG, "onSuccess: api call success");
+                try {
+                    String str = new String(res, "UTF-8");
+
+                    Gson gson = new Gson();
+                    List<Regio> recipesList = gson.fromJson(str, new TypeToken<List<Regio>>() {}.getType());
+
+                    Log.d(TAG, "onSuccess: fromclasslist: "+recipesList.get(0).getLocaties().get(0).getLat());
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                Log.d(TAG, "onFailure: api call failure");
+            }
+        });
+    }
+
 }
