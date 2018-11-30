@@ -56,17 +56,12 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             }
 
             app.UseMvc();
-<<<<<<< HEAD
             app.UseCors("MyCors");
             app.UseSignalR(routes =>
             {
                 routes.MapHub<RegioHub>("/regioHub");
             });
             DbInit.Initialize(context);
-=======
-
-            //DbInit.Initialize(context);
->>>>>>> master
         }
     }
 }
