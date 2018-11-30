@@ -61,7 +61,7 @@ public class GameRepository implements IGameRepository{
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
             }
         });
-        Log.d("tag", "onSuccess: "+regios);
+
     }
 
     static public boolean JoinGame(String username, int intTeam, int intLobbyId)
