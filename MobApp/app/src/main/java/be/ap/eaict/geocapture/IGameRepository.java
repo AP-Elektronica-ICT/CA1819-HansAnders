@@ -7,7 +7,5 @@ import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Regio;
 
 public interface IGameRepository {
-    List<Regio> getRegios();
-    Game getGame();
-    void createGame(Regio regio, List<Locatie> enabledlocaties, String userName);
+    void getRegios();
 }

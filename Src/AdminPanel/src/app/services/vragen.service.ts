@@ -9,15 +9,15 @@ export class VragenService {
 
 
     postVraag(Vraag: Vraag, regioId: number, locatieId: number): Observable<Vraag[]> {
-        return this._http.post<Vraag[]>("http://localhost:39858/api/Regio/"+regioId+"/"+locatieId+"/addpuzzel", Vraag)
+        return this._http.post<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+regioId+"/"+locatieId+"/addpuzzel", Vraag)
     }
 
     getRegios(): Observable<Regio[]>
     {
-        return this._http.get<Regio[]>("http://localhost:39858/api/Regio")
+        return this._http.get<Regio[]>("http://webapplication520181127093524.azurewebsites.net/api/Regio")
     }
     postLocatie(regioId: number, locatie: Locatie): Observable<Locatie> {
-        return this._http.post<Locatie>("http://localhost:39858/api/Regio/"+regioId+"/addLocatie", locatie)
+        return this._http.post<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+regioId+"/addLocatie", locatie)
     }
 }
 
