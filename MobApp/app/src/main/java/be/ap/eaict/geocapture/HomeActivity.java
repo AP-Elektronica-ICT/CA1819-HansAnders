@@ -65,13 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                     Teams = Integer.parseInt(teams.getText().toString());
 
                 //start game instance in backend so that lobbyid is created and people can join
-                final GameRepository gameRepository = new GameRepository();
-                gameRepository.startGame(Teams);
-
-                Intent i = new Intent(HomeActivity.this, HostConfigActivity.class);
-                //i.putExtra("teams", Teams);
-                i.putExtra("name", findViewById(R.id.txtName).toString());
-                startActivity(i);
+                (new GameRepository()).startGame(Teams, findViewById(R.id.txtName).toString(), HomeActivity.this);
             }
         });
 
@@ -80,10 +74,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final GameRepository gameRepository = new GameRepository();
-                boolean canjoin = gameRepository.JoinGame(
+                gameRepository.JoinGame(
                         findViewById(R.id.txtName).toString(),
                         Integer.parseInt(findViewById(R.id.txtTeam).toString()),
-                        Integer.parseInt(findViewById(R.id.txtLobbyId).toString()));
+                        Integer.parseInt(findViewById(R.id.txtLobbyId).toString()), HomeActivity.this);
 
                 Intent mapintent = new Intent(HomeActivity.this, MapActivity.class);
                 startActivity(mapintent);

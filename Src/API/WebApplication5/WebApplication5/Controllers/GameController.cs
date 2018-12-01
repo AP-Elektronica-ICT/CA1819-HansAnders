@@ -36,7 +36,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var game = await _context.Games.SingleOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Games.Include(t=>t.Teams).Include(l => l.regio).ThenInclude(m=>m.locaties).SingleOrDefaultAsync(m => m.ID == id);
 
             if (game == null)
             {
@@ -107,7 +107,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var game = await _context.Games.SingleOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Games.Include(t => t.Teams).Include(l => l.regio).ThenInclude(m => m.locaties).SingleOrDefaultAsync(m => m.ID == id);
 
             if (game == null)
             {
@@ -118,7 +118,7 @@ namespace WebApplication5.Controllers
                 if(i == team)
                 {
                     game.Teams[team].Users.Add(user);
-                    return Ok(game);
+                    return Ok(user);
                 }
 
             return NotFound();

@@ -1,5 +1,7 @@
 package be.ap.eaict.geocapture;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
@@ -7,6 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.*;
+import com.loopj.android.http.*;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -16,9 +25,10 @@ import be.ap.eaict.geocapture.Model.Game;
 import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Regio;
 import be.ap.eaict.geocapture.Model.Team;
+import be.ap.eaict.geocapture.Model.User;
 import cz.msebera.android.httpclient.Header;
 
-public class GameRepository implements IGameRepository{
+public class GameRepository extends AppCompatActivity implements IGameRepository {
 
     private static IGameRepository repo = null;
 
@@ -31,16 +41,16 @@ public class GameRepository implements IGameRepository{
     }
 
     public static String userName;
-    private int userKey; // api should return a key it should use to identify the user or sth
+    private static int userKey; // api should return a key it should use to identify the user or sth
     private static int team;
     private static int lobbyId;
     public static List<Regio> regios = new ArrayList<>();
 
+
     @Override
     public void getRegios() {
         //API CALL
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {
+        SyncAPICall.get("Regio/", new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
@@ -49,7 +59,44 @@ public class GameRepository implements IGameRepository{
 
                     Gson gson = new Gson();
                     regios = gson.fromJson(str, new TypeToken<List<Regio>>() {}.getType());
+                    Log.d("tag", "onSuccess: "+regios);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
+    }
+
+    public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)
+    {
+
+        //try to join game with information:  txtTeam, txtLobbyId, txtName is valid by doing API CALL
+        //if returns false, game can't be started, API call should return the error information (game doesn't exist, name already in use, can't join team xx....)
+        final User user = new User(username, 4,6);
+        RequestParams params = new RequestParams();
+        params.put("user", user);
+        params.put("team", intTeam);
+
+
+        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId), params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                try {
+                    String str = new String(res, "UTF-8");
+                    Gson gson = new Gson();
+
+                    userName = username;
+                    team = intTeam;
+                    lobbyId = intLobbyId;
+
+                    Intent i = new Intent(homeActivity , MapActivity.class);
+                    startActivity(i);
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -61,26 +108,11 @@ public class GameRepository implements IGameRepository{
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
             }
         });
-        Log.d("tag", "onSuccess: "+regios);
-    }
-
-    static public boolean JoinGame(String username, int intTeam, int intLobbyId)
-    {
-
-        //try to join game with information:  txtTeam, txtLobbyId, txtName is valid by doing API CALL
-        //if returns false, game can't be started, API call should return the error information (game doesn't exist, name already in use, can't join team xx....)
-
-        if(true)//api call returns true or false (.../api/game/join/id)
-        {
-            userName = username;
-            team = intTeam;
-            lobbyId = intLobbyId;
-        }
 
         return false;
     }
 
-    public void startGame(int teams)//new lobby that people can join
+    public void startGame(int teams, final String name, final HomeActivity homeActivity)//new lobby that people can join
     {
         List<Team> listTeams = new ArrayList<>();
         for(int i =0; i< teams; i++)
@@ -92,24 +124,80 @@ public class GameRepository implements IGameRepository{
 
         //api call to create new game and create lobby id so people can join
         // API POST EMPTY GAME! --> WILL RETURN GAME WITH ID
+        RequestParams params = new RequestParams();
+        params.put("game", startgame);
 
-        this.lobbyId = 0;// << -----
+        SyncAPICall.post("Game/", params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                try {
+                    String str = new String(res, "UTF-8");
+                    Gson gson = new Gson();
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+                    lobbyId = game.ID;
+
+                    Intent i = new Intent(homeActivity , HostConfigActivity.class);
+                    i.putExtra("name", name);
+                    startActivity(i);
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
     }
 
-
-    static public void createGame(Regio regio, List<Locatie> enabledlocaties) {
-        Game game = getGame();
+    public void createGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) {
         game = new Game(regio, game.getStarttijd(), game.Teams, enabledlocaties);
         //API CALL to create game in backend
 
         //API PUT game (.../api/game/id)
+        RequestParams params = new RequestParams();
+        params.put("game", game);
 
-        JoinGame(userName,0,lobbyId); // host joins team 0 by default
+        SyncAPICall.put("Game/"+Integer.toString(lobbyId), params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                (new GameRepository()).JoinGame(userName,0,lobbyId, hostConfigActivity); // host joins team 0 by default
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
+
     }
 
+    public static Game game;
+    static public void getGame(int lobbyId) {
 
-    static public Game getGame() {
+        SyncAPICall.get("Game/"+Integer.toString(lobbyId), new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                try {
+                    String str = new String(res, "UTF-8");
 
-        return null;
+                    Gson gson = new Gson();
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
     }
 }

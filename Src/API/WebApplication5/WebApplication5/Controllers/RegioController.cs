@@ -41,7 +41,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == id);
 
             if (regio == null)
             {

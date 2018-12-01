@@ -98,7 +98,7 @@ public class HostConfigActivity extends AppCompatActivity {
                     //dummyRepositoryRegios.createGame(new Game(0,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 // public void createGame(Regio regio, List<Locatie> enabledlocaties, String userName) {
 
-                    GameRepository.createGame(regio,enabledLocaties);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+                    (new GameRepository()).createGame(regio,enabledLocaties, HostConfigActivity.this);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
                     Intent mapintent = new Intent(HostConfigActivity.this, MapActivity.class);
                     startActivity(mapintent);

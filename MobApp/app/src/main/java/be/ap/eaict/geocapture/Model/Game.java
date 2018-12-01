@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Game {
 
-    private int ID;
+    public int ID;
     private Regio regio;
     private long starttijd;
 
