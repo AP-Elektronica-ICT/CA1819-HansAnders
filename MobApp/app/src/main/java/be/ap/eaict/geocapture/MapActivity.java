@@ -23,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
@@ -78,6 +79,15 @@ public class MapActivity extends AppCompatActivity
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
         enableMyLocation();
+
+
+        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                Log.d(TAG, "onMyLocationChange: lat: "+ location.getLatitude());
+                Log.d(TAG, "onMyLocationChange: lng: "+location.getLongitude());
+            }
+        });
     }
 
     /**
