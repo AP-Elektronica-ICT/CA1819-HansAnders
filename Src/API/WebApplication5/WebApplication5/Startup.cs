@@ -32,8 +32,7 @@ namespace WebApplication5
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-            services.AddDbContext<GameContext>(options =>
-options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<GameContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
 
@@ -59,7 +58,7 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             app.UseCors("MyCors");
             app.UseSignalR(routes =>
             {
-                routes.MapHub<GameSessionHub>("/regioHub");
+                routes.MapHub<GameSessionHub>("/gamesessionhub");
             });
             DbInit.Initialize(context);
         }
