@@ -52,6 +52,7 @@ public class MapActivity extends AppCompatActivity
     private boolean mPermissionDenied = false;
 
     private GoogleMap mMap;
+    private GameService _gameService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -60,6 +61,8 @@ public class MapActivity extends AppCompatActivity
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        _gameService = new GameService();
+        initializeGameTime();
     }
 
     @Override
@@ -151,5 +154,13 @@ public class MapActivity extends AppCompatActivity
     private void showMissingPermissionError() {
         PermissionUtils.PermissionDeniedDialog
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
+    }
+
+    private void initializeGameTime(){
+        long gameStartTime = _gameService.game.getStarttijd();
+        int gameDurationTime = _gameService.game.getRegio().getTijd() * 60;
+    }
+    public void getRemainingGameTime(){
+
     }
 }
