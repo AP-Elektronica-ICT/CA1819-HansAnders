@@ -24,7 +24,7 @@ namespace WebApplication5.Controllers
         [HttpGet]
         public IEnumerable<Game> GetGames()
         {
-            return _context.Games.Include(t => t.Teams).ThenInclude(p => p.Users).Include(t => t.Teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio);
+            return _context.Games.Include(y => y.EnabledLocaties).Include(t => t.Teams).ThenInclude(p => p.Users).Include(t => t.Teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio);
         }
 
         // GET: api/Game/5
