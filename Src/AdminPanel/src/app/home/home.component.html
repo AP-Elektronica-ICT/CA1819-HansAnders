@@ -57,7 +57,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let vraag of Regios[RegioSelected].locaties[MarkerIndexSelected].puzzels" >
+          <tr *ngFor="let vraag of Regios[RegioSelected].locaties[MarkerIndexSelected].puzzels" (click)="deleteVraag(vraag.id)">
             <th scope="row">{{vraag.id}}</th>
             <td>{{vraag.vraag}}</td>
             <td>{{vraag.antwoord}}</td>

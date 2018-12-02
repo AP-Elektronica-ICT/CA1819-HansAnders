@@ -23,6 +23,9 @@ export class VragenService {
         return this._http.get<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/")
 
     }
+    deleteVraag(VraagId: number){
+        //delete vraag
+    }
 }
 
 

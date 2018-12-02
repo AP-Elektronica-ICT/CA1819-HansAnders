@@ -83,7 +83,8 @@ export class HomeComponent {
   }
 
   deleteVraag(id: number){
-
+    console.log(id)
+    //delete vraag
   }
 }
 
