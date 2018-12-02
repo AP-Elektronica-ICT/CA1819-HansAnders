@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace WebApplication5.Hubs
 {
-    public class RegioHub : Hub
+    public class GameSessionHub : Hub
     {
         public async Task SendMessage(string user, string message)
         {
