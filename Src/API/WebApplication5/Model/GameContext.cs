@@ -20,5 +20,6 @@ namespace Model
         public DbSet<Regio> Regios { get; set; }
         public DbSet<Locatie> locaties { get; set; }
         public DbSet<Puzzel> puzzels { get; set; }
+        public DbSet<Team> Teams { get; set; }
     }
 }
