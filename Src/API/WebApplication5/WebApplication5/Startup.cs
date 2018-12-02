@@ -59,7 +59,7 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             app.UseCors("MyCors");
             app.UseSignalR(routes =>
             {
-                routes.MapHub<RegioHub>("/regioHub");
+                routes.MapHub<GameSessionHub>("/regioHub");
             });
             DbInit.Initialize(context);
         }
