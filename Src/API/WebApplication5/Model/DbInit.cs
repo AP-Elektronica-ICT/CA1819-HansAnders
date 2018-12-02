@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,7 +19,7 @@ namespace Model
             );
             context.Regios.Add(
                new Regio() {
-                   naam = "foemp",
+                   naam = "Antwerpen",
                    locaties = 
                    new List<Locatie> {
                         new Locatie(){

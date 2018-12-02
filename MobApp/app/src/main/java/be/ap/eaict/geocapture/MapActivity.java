@@ -116,6 +116,7 @@ public class MapActivity extends AppCompatActivity
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
+        Log.d(TAG, "onabcxyz lng: "+ location.getLongitude() + " lat: " + location.getLatitude());
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,

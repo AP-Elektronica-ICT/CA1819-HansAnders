@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,7 +61,7 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             {
                 routes.MapHub<RegioHub>("/regioHub");
             });
-            //DbInit.Initialize(context);
+            DbInit.Initialize(context);
         }
     }
 }

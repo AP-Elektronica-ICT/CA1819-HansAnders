@@ -66,8 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 //start game instance in backend so that lobbyid is created and people can join
                 (new GameRepository()).startGame(Teams, findViewById(R.id.txtName).toString(), HomeActivity.this);
-                Intent hostConfigIntent = new Intent(HomeActivity.this, HostConfigActivity.class);
-                startActivity(hostConfigIntent);
+
             }
         });
 

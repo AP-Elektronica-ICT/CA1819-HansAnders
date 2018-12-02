@@ -11,6 +11,7 @@ import java.util.List;
 
 import be.ap.eaict.geocapture.Model.Regio;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpEntity;
 
 public class SyncAPICall {
     //private static final String BASE_URL = "http://localhost:39858/api/Regio/";
@@ -22,8 +23,9 @@ public class SyncAPICall {
         client.get(getAbsoluteUrl(url), responseHandler);
     }
 
-    public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.post(getAbsoluteUrl(url), params, responseHandler);
+    public static void post(String url, HttpEntity params, AsyncHttpResponseHandler responseHandler) {
+        //client.post(getAbsoluteUrl(url), params, responseHandler);
+        client.post(null, getAbsoluteUrl(url), params,"application/json" ,responseHandler);
     }
 
     public static void put(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {

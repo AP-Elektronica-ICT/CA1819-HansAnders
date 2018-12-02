@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -27,6 +28,9 @@ import be.ap.eaict.geocapture.Model.Regio;
 import be.ap.eaict.geocapture.Model.Team;
 import be.ap.eaict.geocapture.Model.User;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.message.BasicHeader;
+import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class GameRepository extends AppCompatActivity implements IGameRepository {
 
@@ -82,8 +86,21 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
         params.put("user", user);
         params.put("team", intTeam);
 
+        Gson g = new Gson();
+        String jsonString = g.toJson(user);
+        //JsonObject jsonObject = g.
 
-        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId), params, new AsyncHttpResponseHandler() {
+
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(jsonString);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+
+
+        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId), entity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
@@ -121,13 +138,28 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
         }
         Game startgame = new Game(null,System.currentTimeMillis(), listTeams, null);
         //POST startgame
+        Gson g = new Gson();
+        String jsonString = g.toJson(startgame);
+        //JsonObject jsonObject = g.
+
+
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(jsonString);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+
+
 
         //api call to create new game and create lobby id so people can join
         // API POST EMPTY GAME! --> WILL RETURN GAME WITH ID
-        RequestParams params = new RequestParams();
-        params.put("game", startgame);
 
-        SyncAPICall.post("Game/", params, new AsyncHttpResponseHandler() {
+        //RequestParams params = new RequestParams();
+        //params.put("game", jsonString);
+
+        SyncAPICall.post("Game/", entity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
