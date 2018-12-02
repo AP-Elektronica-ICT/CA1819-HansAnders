@@ -18,7 +18,7 @@
             </tr>                                        
           </tbody>
         </table>
-      
+
       </div>
   </div>
 
@@ -26,8 +26,8 @@
   <div class="col-md-6">  
     <h1>{{ title }}</h1>
     <agm-map *ngIf="Regios" style="height:700px" (mapClick)="clickMap($event)"  [latitude]="lat" [longitude]="lng">
-      <agm-marker (markerClick)="markerClicked(marker)"
-      *ngFor="let marker of Regios[RegioSelected].locaties"
+      <agm-marker (markerClick)="markerClicked(marker, i)"
+      *ngFor="let marker of Regios[RegioSelected].locaties; let i = index"
       [latitude]="marker.lat"
       [longitude]="marker.lng">
       <agm-info-window><strong>{{marker.locatienaam}}</strong></agm-info-window>
@@ -46,8 +46,27 @@
       <input type="text" id="form1" class="form-control" [(ngModel)]= Antwoord>
       <button type="button" class="btn btn-indigo waves-light" mdbWavesEffect (click)="AddQuestion()">Vraag toevoegen</button>
     </div>
-  </div>
 
+    <div class="table-wrapper-scroll-y" *ngIf="Regios" >
+      <table class="table table-bordered table-striped" *ngIf="Regios[RegioSelected].locaties[MarkerIndexSelected].puzzels">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Vraag</th>
+            <th scope="col">Antwoord</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vraag of Regios[RegioSelected].locaties[MarkerIndexSelected].puzzels" >
+            <th scope="row">{{vraag.id}}</th>
+            <td>{{vraag.vraag}}</td>
+            <td>{{vraag.antwoord}}</td>
+          </tr>                                        
+        </tbody>
+      </table>
+    </div>
+
+  </div>
   
 </div>
 

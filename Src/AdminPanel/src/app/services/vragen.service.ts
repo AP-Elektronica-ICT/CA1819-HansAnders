@@ -19,13 +19,17 @@ export class VragenService {
     postLocatie(regioId: number, locatie: Locatie): Observable<Locatie> {
         return this._http.post<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+regioId+"/addLocatie", locatie)
     }
+    getVragen(markerId: number): Observable<Vraag[]>{
+        return this._http.get<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/")
+
+    }
 }
 
 
 export interface Vraag{
     Id: number,
-    Vraag: string,
-    Antwoord: string
+    vraag: string,
+    antwoord: string
 }
 
 export interface Regio{

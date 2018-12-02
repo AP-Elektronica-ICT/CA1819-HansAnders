@@ -12,9 +12,10 @@ export class HomeComponent {
   Vraag: string
   Antwoord: string
   Regios: Regio[]
-
+  
   RegioSelected:number=0
   MarkerSelected: number=0
+  MarkerIndexSelected: number=0
   constructor(
     public auth: AuthService,
     private _svc: VragenService
@@ -59,23 +60,30 @@ export class HomeComponent {
 
   }
 
-  markerClicked(marker){
-    console.log(marker.id)
+  markerClicked(marker, index: number){
+    this.MarkerIndexSelected = index
+    console.log(this.MarkerIndexSelected)
     this.MarkerSelected = marker.id
   }
 
   RegioSelect(id: number) {
     this.RegioSelected = id
-    console.log(id)
+    console.log(id + " regioid")
+    this.MarkerIndexSelected = 0
   }
 
   AddQuestion() {
+    console.log("regioId: " + this.RegioSelected + " markerid: "+ this.MarkerSelected)
     var vraag: Vraag=({
       Id: 0,
-      Vraag: this.Vraag,
-      Antwoord: this.Antwoord
+      vraag: this.Vraag,
+      antwoord: this.Antwoord
     })
     this._svc.postVraag(vraag,this.RegioSelected, this.MarkerSelected).subscribe(() => {alert("Vraag Toegevoegd")} )  
+  }
+
+  deleteVraag(id: number){
+
   }
 }
 
