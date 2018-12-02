@@ -25,12 +25,12 @@ namespace Model
                     starttijd = 1500,
                     regio = new Regio()
                     {
+                        plaats = "Antwerpen",
                         naam = "Antwerpen",
                         locaties =
                         new List<Locatie> {
                             new Locatie(){
                                 locatienaam = "antwerpen centraal",
-
                                 puzzels = new List<Puzzel> {
                                     new Puzzel(){Vraag = "wat wordt het meetst verkocht in starbucks", Antwoord = "drankje 3"},
                                     new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x"},
@@ -71,7 +71,6 @@ namespace Model
                                 new Locatie()
                                 {
                                     locatienaam = "antwerpen centraal",
-
                                     puzzels = new List<Puzzel> {
                                         new Puzzel(){Vraag = "wat wordt het meetst verkocht in starbucks", Antwoord = "drankje 3"},
                                         new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x"},
@@ -116,7 +115,6 @@ namespace Model
                             },
                             lat = 55.217263f,
                             lng = 6.421034f
-
                         },
                         new Locatie(){
                             locatienaam = "kathdraal",
@@ -128,14 +126,12 @@ namespace Model
                             },
                             lat = 55.220214f,
                             lng = 6.402223f
-
                         }
                    },
                    tijd = 60 * 60 * 5
                }
            );
             context.SaveChanges();
-
         }
     }
 }
