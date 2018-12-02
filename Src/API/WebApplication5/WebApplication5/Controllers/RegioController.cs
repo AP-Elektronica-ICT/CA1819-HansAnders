@@ -98,8 +98,15 @@ namespace WebApplication5.Controllers
             //_regioService.addGame(regio);
             if (regio != null)
             {
+                List<Locatie> locaties = regio.locaties;
+                regio.locaties = null;
                 _context.Regios.Add(regio);
                 _context.SaveChanges();
+                if(locaties != null)
+                {
+                    foreach (Locatie locatie in locaties)
+                        AddMarker(locatie, regio.Id);
+                }
                 return Created("Created regio", regio);
             }
             else {
