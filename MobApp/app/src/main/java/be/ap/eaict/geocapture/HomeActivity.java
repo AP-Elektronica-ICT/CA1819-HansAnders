@@ -13,29 +13,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.util.IOUtils;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.*;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import be.ap.eaict.geocapture.Model.Regio;
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.HttpEntity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -51,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
             init();
         }
         HttpCall();
-        (new GameRepository()).getRegios();
+        (new GameService()).getRegios();
     }
 
     private  void init(){
@@ -64,8 +51,8 @@ public class HomeActivity extends AppCompatActivity {
                 if(teams.getText().length() > 0)
                     Teams = Integer.parseInt(teams.getText().toString());
 
-                //start game instance in backend so that lobbyid is created and people can join
-                (new GameRepository()).startGame(Teams, findViewById(R.id.txtName).toString(), HomeActivity.this);
+                //game service probeerd een game te creeeren in de backend, wanneer succesvol zal deze de hostconfig activity starten, clients kunnen ook al joinen
+                (new GameService()).CreateGame(Teams, findViewById(R.id.txtName).toString(), HomeActivity.this);
 
             }
         });
@@ -74,14 +61,12 @@ public class HomeActivity extends AppCompatActivity {
         btnJoinGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final GameRepository gameRepository = new GameRepository();
-                gameRepository.JoinGame(
+                //game service zal zien of de game bestaat, of het team bestaat, en zal je gebruiker toevoegen aan de game, start ook de mapactivity
+                (new GameService()).JoinGame(
                         findViewById(R.id.txtName).toString(),
                         Integer.parseInt(findViewById(R.id.txtTeam).toString()),
                         Integer.parseInt(findViewById(R.id.txtLobbyId).toString()), HomeActivity.this);
 
-                Intent mapintent = new Intent(HomeActivity.this, MapActivity.class);
-                startActivity(mapintent);
             }
         });
     }
@@ -103,6 +88,7 @@ public class HomeActivity extends AppCompatActivity {
         return false;
     }
 
+    //shit da de yorick heeft toegevoegd en moet verwijderen:
     public void HttpCall(){
         AsyncHttpClient client = new AsyncHttpClient();
         client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {

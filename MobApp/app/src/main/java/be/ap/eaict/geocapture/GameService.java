@@ -4,18 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.*;
 import com.loopj.android.http.*;
 
 import java.io.UnsupportedEncodingException;
@@ -32,14 +24,14 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
-public class GameRepository extends AppCompatActivity implements IGameRepository {
+public class GameService extends AppCompatActivity implements IGameRepository {
 
     private static IGameRepository repo = null;
 
     private static IGameRepository getInstance() {
         if (repo == null)
         {
-            repo = new GameRepository();
+            repo = new GameService();
         }
         return repo;
     }
@@ -52,7 +44,7 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
 
 
     @Override
-    public void getRegios() {
+    public void getRegios() { // steekt alle regio's in de variabele 'regio's' zodat deze kunnen gebruikt worden door hostconfigactivity
         //API CALL
         SyncAPICall.get("Regio/", new AsyncHttpResponseHandler() {
             @Override
@@ -78,18 +70,14 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
 
     public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)
     {
-
-        //try to join game with information:  txtTeam, txtLobbyId, txtName is valid by doing API CALL
-        //if returns false, game can't be started, API call should return the error information (game doesn't exist, name already in use, can't join team xx....)
+        //maak user aan en steek het in een json entity
         final User user = new User(username, 4,6);
-        RequestParams params = new RequestParams();
-        params.put("user", user);
-        params.put("team", intTeam);
+//        RequestParams params = new RequestParams();
+//        params.put("user", user);
+//        params.put("team", intTeam);
 
         Gson g = new Gson();
         String jsonString = g.toJson(user);
-        //JsonObject jsonObject = g.
-
 
         StringEntity entity = null;
         try {
@@ -99,8 +87,8 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
         }
         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
-
-        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId), entity, new AsyncHttpResponseHandler() {
+        // stuur api call die user in team in game toevoegd
+        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId)+"/"+Integer.toString(intTeam), entity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
@@ -112,6 +100,7 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
                     team = intTeam;
                     lobbyId = intLobbyId;
 
+                    // start mapactivity
                     Intent i = new Intent(homeActivity , MapActivity.class);
                     startActivity(i);
 
@@ -129,7 +118,7 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
         return false;
     }
 
-    public void startGame(int teams, final String name, final HomeActivity homeActivity)//new lobby that people can join
+    public void CreateGame(int teams, final String name, final HomeActivity homeActivity)//new lobby that people can join
     {
         List<Team> listTeams = new ArrayList<>();
         for(int i =0; i< teams; i++)
@@ -185,7 +174,8 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
         });
     }
 
-    public void createGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) {
+
+    public void StartGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) {
         game = new Game(regio, game.getStarttijd(), game.Teams, enabledlocaties);
         //API CALL to create game in backend
 
@@ -197,7 +187,7 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
-                (new GameRepository()).JoinGame(userName,0,lobbyId, hostConfigActivity); // host joins team 0 by default
+                (new GameService()).JoinGame(userName,0,lobbyId, hostConfigActivity); // host joins team 0 by default
             }
 
             @Override
@@ -209,7 +199,7 @@ public class GameRepository extends AppCompatActivity implements IGameRepository
     }
 
     public static Game game;
-    static public void getGame(int lobbyId) {
+    static public void getGame(int lobbyId) {//moet via socket gebeuren
 
         SyncAPICall.get("Game/"+Integer.toString(lobbyId), new AsyncHttpResponseHandler() {
             @Override

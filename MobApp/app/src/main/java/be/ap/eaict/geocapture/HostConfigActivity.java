@@ -15,10 +15,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.ap.eaict.geocapture.Model.Game;
 import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Regio;
-import be.ap.eaict.geocapture.Model.Team;
 
 public class HostConfigActivity extends AppCompatActivity {
     private static final String TAG = "HOSTCONFIG";
@@ -37,13 +35,13 @@ public class HostConfigActivity extends AppCompatActivity {
         //TextView_teams.setText(""+teams);
 
         //final DummyRepositoryRegios dummyRepositoryRegios = new DummyRepositoryRegios();
-        final GameRepository gameRepository = new GameRepository();
+        final GameService gameService = new GameService();
 
-        Log.d(TAG, "onCreate: "+gameRepository.regios);
+        Log.d(TAG, "onCreate: "+ gameService.regios);
 
 
         final ListView regiosList = (ListView) findViewById(R.id.region_list);
-        final HostConfigRegioAdapter hostConfigRegioAdapter = new HostConfigRegioAdapter(this, gameRepository.regios);
+        final HostConfigRegioAdapter hostConfigRegioAdapter = new HostConfigRegioAdapter(this, gameService.regios);
         regiosList.setAdapter(hostConfigRegioAdapter);
 
 
@@ -59,7 +57,7 @@ public class HostConfigActivity extends AppCompatActivity {
                 locationAdapter.clear();
                 regiolocaties = regio.getLocaties();
                 Log.d(TAG, "onItemClick: ");
-                //regiolocaties = gameRepository.regios
+                //regiolocaties = gameService.regios
                 locationAdapter.addAll(regiolocaties);
             }
         });
@@ -83,7 +81,7 @@ public class HostConfigActivity extends AppCompatActivity {
         // somehow let this pull the amount of players from database and let it show here
 
         Button btnStart = (Button) findViewById(R.id.btnStart);
-        gameRepository.userName = getIntent().getStringExtra("name");
+        gameService.userName = getIntent().getStringExtra("name");
         btnStart.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //create new game
@@ -95,18 +93,14 @@ public class HostConfigActivity extends AppCompatActivity {
                         if(locatie.used==null || locatie.used==true) enabledLocaties.add(locatie);
                     Log.d(TAG,"enabledlocaties caluclated");
 
-                    //dummyRepositoryRegios.createGame(new Game(0,regio,System.currentTimeMillis(),null,enabledLocaties));// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
-// public void createGame(Regio regio, List<Locatie> enabledlocaties, String userName) {
+                    // game service doet api call waarbij de game opties worden geconfigureerd (regio & enabled locaties) , hierna zal de game gejoined worden.
+                    (new GameService()).StartGame(regio,enabledLocaties, HostConfigActivity.this);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
-                    (new GameRepository()).createGame(regio,enabledLocaties, HostConfigActivity.this);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
-
-                    Intent mapintent = new Intent(HostConfigActivity.this, MapActivity.class);
-                    startActivity(mapintent);
                 }
                 else
                 {
                     //error!
-                    Toast.makeText(HostConfigActivity.this, "you can't make a new game", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HostConfigActivity.this, "you can't start a new game", Toast.LENGTH_SHORT).show();
                 }
             }
         });
