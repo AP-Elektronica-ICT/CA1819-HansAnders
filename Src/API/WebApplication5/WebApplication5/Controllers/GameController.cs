@@ -145,7 +145,7 @@ namespace WebApplication5.Controllers
 
 
         [HttpPost("join/{id}/{team}")]
-        public async Task<IActionResult> JoinGame(int id,[FromBody] User user, int team)
+        public async Task<IActionResult> JoinGame(int id,[FromBody] User user, [FromRoute] int team)
         {
             if (!ModelState.IsValid)
             {
