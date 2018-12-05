@@ -118,7 +118,7 @@ namespace WebApplication5.Controllers
         // POST: api/puzzel
         [HttpPost]
         [Route("{regioid}/{LocatieId}/addpuzzel")]
-        public async Task<IActionResult> AddPuzzelToMarker([FromBody] Puzzel puzzel, int LocatieId)
+        public async Task<IActionResult> AddPuzzelToMarker([FromBody] Puzzel puzzel, [FromRoute] int LocatieId)
         {
             if (!ModelState.IsValid)
             {
@@ -137,6 +137,31 @@ namespace WebApplication5.Controllers
                 return NotFound();
         }
 
+        // DELETE: api/Regio/5
+        [HttpDelete("{id}/{locatieid}/{puzzelid}")]
+        public async Task<IActionResult> DeletePuzzel([FromRoute] int id, [FromRoute] int locatieid, [FromRoute] int puzzelid)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(r=>r.puzzels).SingleOrDefaultAsync(m => m.Id == id);
+            if (regio == null)
+            {
+                return NotFound();
+            }
+            var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
+            if (locatie == null) return NotFound();
+            var puzzel = locatie.puzzels.SingleOrDefault(t => t.Id == puzzelid);
+            if (puzzel == null) return NotFound();
+
+            _context.puzzels.Remove(puzzel);
+            await _context.SaveChangesAsync();
+
+            return Ok(regio);
+        }
+
         // POST: api/Regio/5/addMarker
         [HttpPost("{id}/addLocatie")]
         public async Task<IActionResult> AddMarker([FromBody] Locatie locatie,[FromRoute] int Id)
@@ -151,6 +176,29 @@ namespace WebApplication5.Controllers
             _context.SaveChanges();
 
             return CreatedAtAction("Getregio", new { id = locatie.Id }, locatie);
+        }
+
+        // DELETE: api/Regio/5
+        [HttpDelete("{id}/{locatieid}")]
+        public async Task<IActionResult> DeleteMarker([FromRoute] int id, [FromRoute] int locatieid)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var regio = await _context.Regios.Include(r=>r.locaties).SingleOrDefaultAsync(m => m.Id == id);
+            if (regio == null)
+            {
+                return NotFound();
+            }
+            var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
+            if (locatie == null) return NotFound();
+
+            _context.locaties.Remove(locatie);
+            await _context.SaveChangesAsync();
+
+            return Ok(regio);
         }
 
         // DELETE: api/Regio/5
