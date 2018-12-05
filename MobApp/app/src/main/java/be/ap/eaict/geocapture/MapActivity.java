@@ -1,6 +1,8 @@
 package be.ap.eaict.geocapture;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
@@ -24,9 +26,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import be.ap.eaict.geocapture.Model.Locatie;
 
@@ -53,6 +58,7 @@ public class MapActivity extends AppCompatActivity
 
     private GoogleMap mMap;
     private GameService _gameService;
+    TextView gameTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -62,6 +68,7 @@ public class MapActivity extends AppCompatActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         _gameService = new GameService();
+        gameTime = (TextView) findViewById(R.id.gametime);
         initializeGameTime();
     }
 
@@ -157,10 +164,19 @@ public class MapActivity extends AppCompatActivity
     }
 
     private void initializeGameTime(){
-        long gameStartTime = _gameService.game.getStarttijd();
-        int gameDurationTime = _gameService.game.getRegio().getTijd() * 60;
-    }
-    public void getRemainingGameTime(){
+        new CountDownTimer(TimeUnit.MINUTES.toMillis(_gameService.game.getRegio().getTijd() * 60), 1000) {
 
+            public void onTick(long millisUntilFinished) {
+                String timer = String.format(Locale.getDefault(), "Time Remaining %02d min: %02d sec",
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60);
+                gameTime.setText(timer);
+            }
+
+            public void onFinish() {
+                gameTime.setText("einde");
+            }
+
+        }.start();
     }
 }
