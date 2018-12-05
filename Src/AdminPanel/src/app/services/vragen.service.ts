@@ -23,8 +23,11 @@ export class VragenService {
         return this._http.get<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/")
 
     }
-    deleteVraag(VraagId: number){
-        return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio"+VraagId)
+    deleteVraag(RegioId: number, markerId: number, VraagId: number){
+        return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId + "/" + VraagId)
+    }
+    deleteMarker(RegioId: number, markerId: number){
+        return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId)
     }
 }
 
