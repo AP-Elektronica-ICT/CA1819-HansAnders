@@ -84,7 +84,7 @@ export class HomeComponent {
 
   deleteVraag(id: number){
     console.log(id)
-    //delete vraag
+    this._svc.deleteVraag(id)
   }
 }
 

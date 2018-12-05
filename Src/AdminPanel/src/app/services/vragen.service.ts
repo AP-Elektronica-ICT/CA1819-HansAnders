@@ -24,7 +24,7 @@ export class VragenService {
 
     }
     deleteVraag(VraagId: number){
-        //delete vraag
+        return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio"+VraagId)
     }
 }
 
