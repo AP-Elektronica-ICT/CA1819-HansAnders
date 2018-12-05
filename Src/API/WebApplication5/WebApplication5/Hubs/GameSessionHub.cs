@@ -16,7 +16,7 @@ namespace WebApplication5.Hubs
             DateTime currentUTC = currentZone.ToUniversalTime(currentDate);
             TimeZoneInfo selectedTimeZone = TimeZoneInfo.FindSystemTimeZoneById(countryZone);
             DateTime currentDateTime = TimeZoneInfo.ConvertTimeFromUtc(currentUTC, selectedTimeZone);
-            Clients.Caller.setTime(currentDateTime.ToString("h:mm:ss tt"));
+            //Clients.Caller.setTime(currentDateTime.ToString("h:mm:ss tt"));
         }
         public async Task SendMessage(string user, string message)
         {

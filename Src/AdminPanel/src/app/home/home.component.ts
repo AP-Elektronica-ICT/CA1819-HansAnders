@@ -79,12 +79,28 @@ export class HomeComponent {
       vraag: this.Vraag,
       antwoord: this.Antwoord
     })
-    this._svc.postVraag(vraag,this.RegioSelected, this.MarkerSelected).subscribe(() => {alert("Vraag Toegevoegd")} )  
+    this._svc.postVraag(vraag,this.RegioSelected, this.MarkerSelected).subscribe(() => {
+      alert("Vraag Toegevoegd")
+      this._svc.getRegios().subscribe((result)=> this.Regios = result);
+    })  
   }
 
   deleteVraag(id: number){
-    console.log(id)
-    //delete vraag
+    console.log(this.Regios[this.RegioSelected].id)
+    console.log(this.MarkerSelected)
+    //console.log(this.Regios[this.RegioSelected].locaties[this.MarkerSelected].id)
+    console.log(id);
+    this._svc.deleteVraag(this.Regios[this.RegioSelected].id, this.MarkerSelected, id).subscribe(() => {
+      alert("vraag verwijderd")
+      this._svc.getRegios().subscribe((result)=> this.Regios = result);
+    })
+  }
+
+  deleteMarker(){
+    this._svc.deleteMarker(this.Regios[this.RegioSelected].id, this.MarkerSelected).subscribe(() => {
+      alert("marker verwijderd")
+      this._svc.getRegios().subscribe((result)=> this.Regios = result);
+    })
   }
 }
 
