@@ -178,6 +178,27 @@ namespace WebApplication5.Controllers
             return CreatedAtAction("Getregio", new { id = locatie.Id }, locatie);
         }
 
+        // PUT: api/Regio/5/addMarker
+        [HttpPost("{regioid}/{locatieid}/addLocatie")]
+        public async Task<IActionResult> PutMarker([FromBody] Locatie locatie, [FromRoute] int regioid, [FromRoute] int locatieid)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == regioid);
+            if(regio == null) return NotFound();
+            var dblocatie = regio.locaties.SingleOrDefault(r => r.Id == locatieid);
+            if (dblocatie == null) return NotFound();
+            dblocatie.lat = locatie.lat;
+            dblocatie.lng = locatie.lng;
+            dblocatie.locatienaam = locatie.locatienaam;
+            //await _context.SaveChangesAsync();
+            _context.SaveChanges();
+
+            return Ok(dblocatie);
+        }
+
         // DELETE: api/Regio/5
         [HttpDelete("{id}/{locatieid}")]
         public async Task<IActionResult> DeleteMarker([FromRoute] int id, [FromRoute] int locatieid)
