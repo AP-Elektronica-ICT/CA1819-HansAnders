@@ -208,15 +208,15 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.Include(r=>r.locaties).SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r=>r.locaties).ThenInclude(p=>p.puzzels).SingleOrDefaultAsync(m => m.Id == id);
             if (regio == null)
             {
                 return NotFound();
             }
             var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
             if (locatie == null) return NotFound();
-
-            _context.puzzels.RemoveRange(locatie.puzzels);
+            if(locatie.puzzels != null)
+                _context.puzzels.RemoveRange(locatie.puzzels);
             _context.locaties.Remove(locatie);
             await _context.SaveChangesAsync();
 
