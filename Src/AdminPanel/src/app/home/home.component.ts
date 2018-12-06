@@ -11,7 +11,9 @@ export class HomeComponent {
   id: string
   Vraag: string
   Antwoord: string
+  locatienaam: string
   Regios: Regio[]
+
   
   RegioSelected:number=0
   MarkerSelected: number=0
@@ -99,6 +101,21 @@ export class HomeComponent {
   deleteMarker(){
     this._svc.deleteMarker(this.Regios[this.RegioSelected].id, this.MarkerSelected).subscribe(() => {
       alert("marker verwijderd")
+      this._svc.getRegios().subscribe((result)=> this.Regios = result);
+    })
+  }
+
+  changeName(){
+    var locatie: Locatie=({
+      id: 0,
+      locatienaam: this.locatienaam,
+      puzzels: null,
+      lat: this.Regios[this.RegioSelected].locaties[this.MarkerIndexSelected].lat,
+      lng: this.Regios[this.RegioSelected].locaties[this.MarkerIndexSelected].lng
+    })
+
+    this._svc.changeLocatienaam(this.Regios[this.RegioSelected].id, this.MarkerSelected, locatie).subscribe(() => {
+      alert("Naam aangepast")
       this._svc.getRegios().subscribe((result)=> this.Regios = result);
     })
   }

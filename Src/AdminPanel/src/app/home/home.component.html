@@ -66,6 +66,13 @@
       </table>
     </div>
 
+    <div class="md-form">
+      Locatienaam:
+      <input type="text" id="form1" class="form-control" [(ngModel)]= locatienaam>
+      <button type="button" class="btn btn-indigo waves-light" mdbWavesEffect (click)="changeName()">locatienaam aanpassen</button>
+    </div>
+    <br><br>
+
     <button type="button" class="btn btn-danger waves-light" mdbWavesEffect (click)="deleteMarker()">Delete this marker</button>
 
   </div>
