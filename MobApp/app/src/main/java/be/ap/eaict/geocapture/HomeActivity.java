@@ -20,6 +20,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import be.ap.eaict.geocapture.Model.Regio;
 import cz.msebera.android.httpclient.Header;

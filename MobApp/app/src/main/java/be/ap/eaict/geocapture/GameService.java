@@ -141,9 +141,8 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
 
-
         //api call to create new game and create lobby id so people can join
-        // API POST EMPTY GAME! --> WILL RETURN GAME WITH ID
+        //API POST EMPTY GAME! --> WILL RETURN GAME WITH ID
 
         //RequestParams params = new RequestParams();
         //params.put("game", jsonString);
@@ -195,7 +194,6 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
             }
         });
-
     }
 
     public static Game game;
