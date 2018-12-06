@@ -179,7 +179,7 @@ namespace WebApplication5.Controllers
         }
 
         // PUT: api/Regio/5/addMarker
-        [HttpPost("{regioid}/{locatieid}/addLocatie")]
+        [HttpPut("{regioid}/{locatieid}/addLocatie")]
         public async Task<IActionResult> PutMarker([FromBody] Locatie locatie, [FromRoute] int regioid, [FromRoute] int locatieid)
         {
             if (!ModelState.IsValid)
