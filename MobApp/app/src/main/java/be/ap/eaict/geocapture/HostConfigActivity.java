@@ -2,6 +2,7 @@ package be.ap.eaict.geocapture;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -104,6 +105,15 @@ public class HostConfigActivity extends AppCompatActivity {
                     // game service doet api call waarbij de game opties worden geconfigureerd (regio & enabled locaties) , hierna zal de game gejoined worden.
                     (new GameService()).StartGame(regio,enabledLocaties, HostConfigActivity.this);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
+                    new CountDownTimer(5000, 10) {
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+                        public void onFinish() {
+                            Intent i = new Intent(HostConfigActivity.this , MapActivity.class);
+                            startActivity(i);
+                        }
+                    }.start();
                 }
                 else
                 {
