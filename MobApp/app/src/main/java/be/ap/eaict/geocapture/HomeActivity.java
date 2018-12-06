@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -62,15 +63,24 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Button btnJoinGame = (Button) findViewById(R.id.btnJoinGame);
+        final TextView lobbyId = (TextView) findViewById(R.id.txtLobbyId);
+        final TextView Team = (TextView) findViewById(R.id.txtTeam);
+        final TextView Naam = (TextView) findViewById(R.id.txtName);
+
         btnJoinGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //game service zal zien of de game bestaat, of het team bestaat, en zal je gebruiker toevoegen aan de game, start ook de mapactivity
+                Log.d(TAG, "onClick: " + Integer.parseInt(lobbyId.getText().toString()) );
+                Log.d(TAG, "onClick: " + Integer.parseInt(Team.getText().toString()) );
+                Log.d(TAG, "onClick: " + Naam.getText().toString());
                 (new GameService()).JoinGame(
-                        findViewById(R.id.txtName).toString(),
-                        Integer.parseInt(findViewById(R.id.txtTeam).toString()),
-                        Integer.parseInt(findViewById(R.id.txtLobbyId).toString()), HomeActivity.this);
+                        Naam.getText().toString(),
+                        Integer.parseInt(Team.getText().toString()),
+                        Integer.parseInt(lobbyId.getText().toString()), HomeActivity.this);
 
+                //Intent i = new Intent(HomeActivity.this , MapActivity.class);
+                //startActivity(i);
             }
         });
 

@@ -87,11 +87,13 @@ public class GameService extends AppCompatActivity implements IGameRepository {
             e.printStackTrace();
         }
         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-
+        Log.d(" ", "JoinGame: ");
+        Log.d(" ", "JoinGame: " + "Game/join/"+Integer.toString(intLobbyId)+"/"+Integer.toString(intTeam));
         // stuur api call die user in team in game toevoegd
         SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId)+"/"+Integer.toString(intTeam), entity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                Log.d(" ", "onSuccess: game joined" );
                 // called when response HTTP status is "200 OK"
                 try {
                     String str = new String(res, "UTF-8");
@@ -100,10 +102,6 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                     userName = username;
                     team = intTeam;
                     lobbyId = intLobbyId;
-
-                    // start mapactivity
-                    Intent i = new Intent(homeActivity , MapActivity.class);
-                    startActivity(i);
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
