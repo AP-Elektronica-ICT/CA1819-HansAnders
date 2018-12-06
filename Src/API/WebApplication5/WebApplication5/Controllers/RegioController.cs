@@ -179,7 +179,7 @@ namespace WebApplication5.Controllers
         }
 
         // PUT: api/Regio/5/addMarker
-        [HttpPut("{regioid}/{locatieid}/addLocatie")]
+        [HttpPut("{regioid}/{locatieid}/putlocatie")]
         public async Task<IActionResult> PutMarker([FromBody] Locatie locatie, [FromRoute] int regioid, [FromRoute] int locatieid)
         {
             if (!ModelState.IsValid)
@@ -215,9 +215,7 @@ namespace WebApplication5.Controllers
             }
             var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
             if (locatie == null) return NotFound();
-            if (locatie.puzzels.Count > 0)
-                foreach (Puzzel puzzel in locatie.puzzels)
-                    locatie.puzzels.Remove(puzzel);
+            locatie.puzzels.Clear();
             _context.locaties.Remove(locatie);
             await _context.SaveChangesAsync();
 
@@ -233,12 +231,17 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == id);
 
             if (regio == null)
             {
                 return NotFound();
             }
+            foreach(Locatie locatie in regio.locaties)
+            {
+                locatie.puzzels.Clear();
+            }
+            regio.locaties.Clear();
 
             _context.Regios.Remove(regio);
             await _context.SaveChangesAsync();
