@@ -15,7 +15,7 @@ namespace Model
                   new Game() {  speelLocatie=}
               );*/
 
-            if (context.Regios.Any())
+            if (!context.Regios.Any())
             {
                 context.User.Add(
                     new User() {
