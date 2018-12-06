@@ -215,7 +215,8 @@ namespace WebApplication5.Controllers
             }
             var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
             if (locatie == null) return NotFound();
-            locatie.puzzels.Clear();
+
+            _context.puzzels.RemoveRange(locatie.puzzels);
             _context.locaties.Remove(locatie);
             await _context.SaveChangesAsync();
 
