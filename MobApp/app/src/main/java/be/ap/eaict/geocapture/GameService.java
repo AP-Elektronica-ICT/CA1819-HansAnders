@@ -3,6 +3,7 @@ package be.ap.eaict.geocapture;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -129,9 +130,6 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         //POST startgame
         Gson g = new Gson();
         String jsonString = g.toJson(startgame);
-        //JsonObject jsonObject = g.
-
-
         StringEntity entity = null;
         try {
             entity = new StringEntity(jsonString);
@@ -164,6 +162,8 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                         @Override
                         public void run() {
                             //startActivity(new Intent(GameService.this, HostConfigActivity.class));
+
+                            //Toast.makeText(getApplicationContext(), "successfully created game", Toast.LENGTH_SHORT).show();
                         }
                     });
                     //startActivity(intent);
@@ -187,10 +187,18 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         //API CALL to create game in backend
 
         //API PUT game (.../api/game/id)
-        RequestParams params = new RequestParams();
-        params.put("game", game);
 
-        SyncAPICall.put("Game/"+Integer.toString(lobbyId), params, new AsyncHttpResponseHandler() {
+        Gson g = new Gson();
+        String jsonString = g.toJson(game);
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(jsonString);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+
+        SyncAPICall.put("Game/"+Integer.toString(lobbyId), entity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"

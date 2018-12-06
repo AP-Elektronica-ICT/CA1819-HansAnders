@@ -81,6 +81,10 @@ namespace Model
                                 }
                             },
                             TeamName = "teamHansAnders"
+                        },
+                        new Team()
+                        {
+
                         }
                     },
                     EnabledLocaties = new List<Locatie> {

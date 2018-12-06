@@ -153,21 +153,23 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var game = await _context.Games.Include(t => t.Teams).Include(l => l.regio).ThenInclude(m => m.locaties).SingleOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Games.Include(t => t.Teams).ThenInclude(p=>p.Users).Include(l => l.regio).ThenInclude(m => m.locaties).SingleOrDefaultAsync(m => m.ID == id);
 
             if (game == null)
             {
                 return NotFound();
             }
-            
-            for(int i = 0; i < game.Teams.Count; i++)
+            var dbteam = game.Teams.SingleOrDefault(r => r.Id == team);
+            if (dbteam == null) return NotFound();
+            dbteam.Users.Add(user);
+         /*   for(int i = 0; i < game.Teams.Count; i++)
                 if(i == team)
                 {
                     game.Teams[team].Users.Add(user);
                     return Ok(user);
                 }
-
-            return NotFound();
+                */
+            return Ok(game);
         }
 
 
