@@ -3,6 +3,7 @@ package be.ap.eaict.geocapture;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import be.ap.eaict.geocapture.Model.Regio;
@@ -79,8 +82,15 @@ public class HomeActivity extends AppCompatActivity {
                         Integer.parseInt(Team.getText().toString()),
                         Integer.parseInt(lobbyId.getText().toString()), HomeActivity.this);
 
-                //Intent i = new Intent(HomeActivity.this , MapActivity.class);
-                //startActivity(i);
+                new CountDownTimer(5000, 10) {
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+                    public void onFinish() {
+                        Intent i = new Intent(HomeActivity.this , MapActivity.class);
+                        startActivity(i);
+                    }
+                }.start();
             }
         });
 

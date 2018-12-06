@@ -98,6 +98,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 try {
                     String str = new String(res, "UTF-8");
                     Gson gson = new Gson();
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
 
                     userName = username;
                     team = intTeam;
