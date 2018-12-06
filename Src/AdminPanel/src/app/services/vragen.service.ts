@@ -21,13 +21,15 @@ export class VragenService {
     }
     getVragen(markerId: number): Observable<Vraag[]>{
         return this._http.get<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/")
-
     }
     deleteVraag(RegioId: number, markerId: number, VraagId: number){
         return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId + "/" + VraagId)
     }
     deleteMarker(RegioId: number, markerId: number){
         return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId)
+    }
+    changeLocatienaam(RegioId: number, markerId: number, locatie: Locatie) {
+        return this._http.put<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+ RegioId + "/" + markerId + "/putlocatie", locatie)
     }
 }
 

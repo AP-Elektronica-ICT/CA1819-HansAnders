@@ -72,18 +72,19 @@ public class MapActivity extends AppCompatActivity
         initializeGameTime();
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap){
         DummyRepositoryRegios dummyRepositoryRegios = new DummyRepositoryRegios();
-        List<Locatie> locaties = dummyRepositoryRegios.getGame().getEnabledLocaties();
+        //List<Locatie> locaties = dummyRepositoryRegios.getGame().getEnabledlocaties();
 
-        for(Locatie locatie:locaties){
+        /*for(Locatie locatie:locaties){
             LatLng latLng = new LatLng(locatie.getLng(), locatie.getLat());
             googleMap.addMarker(new MarkerOptions().position(latLng)
                     .title(locatie.getLocatienaam()));
-        }
+        }*/
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locaties.get(0).getLng(), locaties.get(0).getLat()),14));
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locaties.get(0).getLng(), locaties.get(0).getLat()),14));
 
         mMap = googleMap;
         mMap.setOnMyLocationButtonClickListener(this);

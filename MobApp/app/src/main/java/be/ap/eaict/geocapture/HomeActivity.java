@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
@@ -44,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private  void init(){
         //create new game:
-        Button btnHostConfig = (Button) findViewById(R.id.btnHostGame);
+        final Button btnHostConfig = (Button) findViewById(R.id.btnHostGame);
         btnHostConfig.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 EditText teams = (EditText) findViewById(R.id.txtHostTeams);
@@ -52,9 +53,11 @@ public class HomeActivity extends AppCompatActivity {
                 if(teams.getText().length() > 0)
                     Teams = Integer.parseInt(teams.getText().toString());
 
-                //game service probeerd een game te creeeren in de backend, wanneer succesvol zal deze de hostconfig activity starten, clients kunnen ook al joinen
-                (new GameService()).CreateGame(Teams, findViewById(R.id.txtName).toString(), HomeActivity.this);
 
+                //game service probeerd een game te creeeren in de backend, wanneer succesvol zal deze de hostconfig activity starten, clients kunnen ook al joinen
+                (new GameService()).CreateGame(Teams, findViewById(R.id.txtName).toString(), new Intent(HomeActivity.this, HostConfigActivity.class));
+                //hack: , gaat ervan uit dat de api call successvol was
+                startActivity(new Intent(HomeActivity.this, HostConfigActivity.class));
             }
         });
 
@@ -68,6 +71,15 @@ public class HomeActivity extends AppCompatActivity {
                         Integer.parseInt(findViewById(R.id.txtTeam).toString()),
                         Integer.parseInt(findViewById(R.id.txtLobbyId).toString()), HomeActivity.this);
 
+            }
+        });
+
+        Button btnMap = (Button) findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent map = new Intent(HomeActivity.this, MapActivity.class);
+                startActivity(map);
             }
         });
     }

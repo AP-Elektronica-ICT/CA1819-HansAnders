@@ -4,19 +4,19 @@ import java.util.List;
 
 public class Game {
 
-    public int ID;
-    private Regio regio;
-    private long starttijd;
+    public int id;
+    public  Regio regio;
+    public  long starttijd;
 
-    public List<Team> Teams;
-    private List<Locatie> EnabledLocaties;
+    public List<Team> teams;
+    public  List<Locatie> enabledlocaties;
 
     public Game(Regio regio, long starttijd, List<Team> teams, List<Locatie> enabledLocaties)
     {
         this.regio = regio;
         this.starttijd = starttijd;
-        this.Teams = teams;
-        this.EnabledLocaties = enabledLocaties;
+        this.teams = teams;
+        this.enabledlocaties = enabledLocaties;
 
     }
 
@@ -29,7 +29,7 @@ public class Game {
         return starttijd;
     }
 
-    public List<Locatie> getEnabledLocaties() {
-        return EnabledLocaties;
+    public List<Locatie> getEnabledlocaties() {
+        return enabledlocaties;
     }
 }

@@ -3,10 +3,10 @@ package be.ap.eaict.geocapture.Model;
 import java.util.List;
 
 public class Regio {
-    private int Id;
-    private String naam;
-    private List<Locatie> locaties;
-    private int tijd;
+    public int id;
+    public String naam;
+    public List<Locatie> locaties;
+    public int tijd;
 
     public Regio(String naam, List<Locatie> locaties, int tijd)
     {

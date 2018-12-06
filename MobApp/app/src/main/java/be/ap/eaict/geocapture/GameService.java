@@ -39,7 +39,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     public static String userName;
     private static int userKey; // api should return a key it should use to identify the user or sth
     private static int team;
-    private static int lobbyId;
+    public static int lobbyId;
     public static List<Regio> regios = new ArrayList<>();
 
 
@@ -118,7 +118,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         return false;
     }
 
-    public void CreateGame(int teams, final String name, final HomeActivity homeActivity)//new lobby that people can join
+    public void CreateGame(int teams, final String name, final Intent intent)//new lobby that people can join
     {
         List<Team> listTeams = new ArrayList<>();
         for(int i =0; i< teams; i++)
@@ -142,11 +142,12 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
 
         //api call to create new game and create lobby id so people can join
-        //API POST EMPTY GAME! --> WILL RETURN GAME WITH ID
+        // API POST EMPTY GAME! --> WILL RETURN GAME WITH id
 
         //RequestParams params = new RequestParams();
         //params.put("game", jsonString);
 
+        boolean canstart = false;
         SyncAPICall.post("Game/", entity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
@@ -155,12 +156,18 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                     String str = new String(res, "UTF-8");
                     Gson gson = new Gson();
                     game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
-                    lobbyId = game.ID;
+                    Log.d("strid", str);
+                    lobbyId = game.id;
 
-                    Intent i = new Intent(homeActivity , HostConfigActivity.class);
-                    i.putExtra("name", name);
-                    startActivity(i);
-
+                    //intent.putExtra("name", name);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //startActivity(new Intent(GameService.this, HostConfigActivity.class));
+                        }
+                    });
+                    //startActivity(intent);
+                    //new Intent((Activity)GameService.this, HostConfigActivity.class)
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -169,13 +176,14 @@ public class GameService extends AppCompatActivity implements IGameRepository {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                Log.d("fuckdis","logger2");
             }
         });
     }
 
 
     public void StartGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) {
-        game = new Game(regio, game.getStarttijd(), game.Teams, enabledlocaties);
+        game = new Game(regio, game.getStarttijd(), game.teams, enabledlocaties);
         //API CALL to create game in backend
 
         //API PUT game (.../api/game/id)
