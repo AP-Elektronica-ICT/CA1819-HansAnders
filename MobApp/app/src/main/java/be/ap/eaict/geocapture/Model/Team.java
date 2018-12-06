@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
-    private int Id ;
-    private List<User> Users ;
-    private List<Locatie> CapturedLocaties;
-    private String TeamName ;
+    public int Id ;
+    public List<User> Users ;
+    public List<Locatie> CapturedLocaties;
+    public String TeamName ;
 
 
     public Team()

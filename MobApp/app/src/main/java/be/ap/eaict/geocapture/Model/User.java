@@ -1,20 +1,20 @@
 package be.ap.eaict.geocapture.Model;
 
 public class User {
-    private int Id ;
-    private String Name;
-    private float lng;
-    private float lat;
+    public int id;
+    public String name;
+    public float lng;
+    public float lat;
 
     public User(String name, float lng, float lat)
     {
-        this.Name = name;
+        this.name = name;
         this.lng = lng;
         this.lat = lat;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public float getLng() {

@@ -100,4 +100,10 @@
         android:layout_marginBottom="15dp"
         android:text="Create new game"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Map"
+        android:id="@+id/btnMap"/>
+
 </LinearLayout>

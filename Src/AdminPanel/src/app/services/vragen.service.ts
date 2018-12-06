@@ -29,7 +29,7 @@ export class VragenService {
         return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId)
     }
     changeLocatienaam(RegioId: number, markerId: number, locatie: Locatie) {
-        return this._http.put<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+ RegioId + "/" + markerId + "/addLocatie", locatie)
+        return this._http.put<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+ RegioId + "/" + markerId + "/putlocatie", locatie)
     }
 }
 

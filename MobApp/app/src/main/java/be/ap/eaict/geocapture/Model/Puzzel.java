@@ -1,21 +1,21 @@
 package be.ap.eaict.geocapture.Model;
 
 public class Puzzel {
-    private int Id;
-    private String Vraag;
-    private String Antwoord;
+    public int id;
+    public String vraag;
+    public String antwoord;
 
     public Puzzel(String omschrijving, String antwoord)
     {
-        this.Vraag = omschrijving;
-        this.Antwoord = antwoord;
+        this.vraag = omschrijving;
+        this.antwoord = antwoord;
     }
 
     public String getVraag() {
-        return Vraag;
+        return vraag;
     }
 
     public String getAntwoord() {
-        return Antwoord;
+        return antwoord;
     }
 }

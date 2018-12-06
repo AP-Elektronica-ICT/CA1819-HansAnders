@@ -25,6 +25,7 @@ public class HostConfigActivity extends AppCompatActivity {
     List<Locatie> regiolocaties = new ArrayList<Locatie>();
 
     protected void onCreate(@Nullable Bundle savedInstanceState){
+        Log.d("fuckdis","fuckyeah");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_config);
 
@@ -49,6 +50,8 @@ public class HostConfigActivity extends AppCompatActivity {
         final HostConfigLocatiesAdapter locationAdapter = new HostConfigLocatiesAdapter(this, regiolocaties);
         locationsList.setAdapter(locationAdapter);
 
+
+
         regiosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -59,6 +62,11 @@ public class HostConfigActivity extends AppCompatActivity {
                 Log.d(TAG, "onItemClick: ");
                 //regiolocaties = gameService.regios
                 locationAdapter.addAll(regiolocaties);
+
+                //super hack:
+
+                final TextView lobby = (TextView)findViewById(R.id.txtLobbyId);
+                lobby.setText(Integer.toString((new GameService()).lobbyId));
             }
         });
 

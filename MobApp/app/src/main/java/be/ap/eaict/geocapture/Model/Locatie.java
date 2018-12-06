@@ -3,11 +3,11 @@ package be.ap.eaict.geocapture.Model;
 import java.util.List;
 
 public class Locatie {
-    private int Id;
-    private String locatienaam;
-    private List<Puzzel> puzzels;
-    private float lng;
-    private float lat;
+    public int id;
+    public String locatienaam;
+    public List<Puzzel> puzzels;
+    public float lng;
+    public float lat;
 
     public Boolean used = true; //voor de adapter view (grey /white bg)
 
