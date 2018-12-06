@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Model
 {
@@ -14,35 +15,39 @@ namespace Model
                   new Game() {  speelLocatie=}
               );*/
 
-            context.User.Add(
-                new User() { Name = "Jantje" }
-            );
+            if (context.Regios.Any())
+            {
+                context.User.Add(
+                    new User() {
+                        Name = "Jantje"
+                    }
+                );
 
-            context.Games.Add(
-                new Game()
-                {
-                    teamamount = 4,
-                    starttijd = 1500,
-                    regio = new Regio()
+                context.Games.Add(
+                    new Game()
                     {
-                        plaats = "Antwerpen",
-                        naam = "Antwerpen",
-                        locaties =
-                        new List<Locatie> {
-                            new Locatie(){
-                                locatienaam = "antwerpen centraal",
-                                puzzels = new List<Puzzel> {
-                                    new Puzzel(){Vraag = "wat wordt het meetst verkocht in starbucks", Antwoord = "drankje 3"},
-                                    new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x"},
-                                    new Puzzel(){Vraag = "wa uur is locket x open", Antwoord = "5:50"},
-                                },
-                                lat = 55.217263f,
-                                lng = 6.421034f
-                            }
-                       },
-                        tijd = 60 * 60 * 5
-                    },
-                    Teams = new List<Team>() {
+                        teamamount = 4,
+                        starttijd = 1500,
+                        regio = new Regio()
+                        {
+                            plaats = "Antwerpen",
+                            naam = "Antwerpen",
+                            locaties =
+                            new List<Locatie> {
+                                new Locatie(){
+                                    locatienaam = "antwerpen centraal",
+                                    puzzels = new List<Puzzel> {
+                                        new Puzzel(){Vraag = "wat wordt het meetst verkocht in starbucks", Antwoord = "drankje 3"},
+                                        new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x"},
+                                        new Puzzel(){Vraag = "wa uur is locket x open", Antwoord = "5:50"},
+                                    },
+                                    lat = 55.217263f,
+                                    lng = 6.421034f
+                                }
+                            },
+                            tijd = 60 * 60 * 5
+                        },
+                        Teams = new List<Team>() {
                         new Team()
                         {
                             Users = new List<User>
@@ -86,8 +91,8 @@ namespace Model
                         {
 
                         }
-                    },
-                    EnabledLocaties = new List<Locatie> {
+                        },
+                        EnabledLocaties = new List<Locatie> {
                         new Locatie()
                         {
                             locatienaam = "antwerpen centraal",
@@ -100,15 +105,16 @@ namespace Model
                             lat = 55.217263f,
                             lng = 6.421034f
                         }
+                        }
                     }
-                }
-            );
+                );
 
-            context.Regios.Add(
-               new Regio() {
-                   naam = "Antwerpen",
-                   locaties = 
-                   new List<Locatie> {
+                context.Regios.Add(
+                   new Regio()
+                   {
+                       naam = "Antwerpen",
+                       locaties =
+                       new List<Locatie> {
                         new Locatie(){
                             locatienaam = "antwerpen centraal",
 
@@ -131,11 +137,15 @@ namespace Model
                             lat = 55.220214f,
                             lng = 6.402223f
                         }
-                   },
-                   tijd = 60 * 60 * 5
-               }
-           );
-            context.SaveChanges();
+                       },
+                       tijd = 60 * 60 * 5
+                   }
+               );
+
+               context.SaveChanges();
+
+            }
+
         }
     }
 }
