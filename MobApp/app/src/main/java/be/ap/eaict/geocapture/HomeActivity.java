@@ -69,7 +69,13 @@ public class HomeActivity extends AppCompatActivity {
         final TextView lobbyId = (TextView) findViewById(R.id.txtLobbyId);
         final TextView Team = (TextView) findViewById(R.id.txtTeam);
         final TextView Naam = (TextView) findViewById(R.id.txtName);
-
+        new CountDownTimer(50000, 3000) {
+            public void onTick(long millisUntilFinished) {
+                //Toast.makeText(HomeActivity.this, "game does not exist!", Toast.LENGTH_SHORT).show();
+            }
+            public void onFinish() {
+            }
+        }.start();
         btnJoinGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,13 +88,20 @@ public class HomeActivity extends AppCompatActivity {
                         Integer.parseInt(Team.getText().toString()),
                         Integer.parseInt(lobbyId.getText().toString()), HomeActivity.this);
 
-                new CountDownTimer(5000, 10) {
+                new CountDownTimer(500, 100) {
                     public void onTick(long millisUntilFinished) {
 
                     }
                     public void onFinish() {
-                        Intent i = new Intent(HomeActivity.this , MapActivity.class);
-                        startActivity(i);
+                        if ((new GameService()).game != null)
+                        {
+                            Intent i = new Intent(HomeActivity.this , MapActivity.class);
+                            startActivity(i);
+                        }
+                        else
+                        {
+                            Toast.makeText(HomeActivity.this, "game does not exist!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }.start();
             }
@@ -103,6 +116,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+
     public boolean IsServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 

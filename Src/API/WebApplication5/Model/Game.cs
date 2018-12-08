@@ -8,8 +8,8 @@ namespace Model
     {
         public int ID { get; set; }
         public int teamamount { get; set; }
-        public List<Team> Teams { get; set; }
-        public List<Locatie> EnabledLocaties { get; set; }
+        public List<Team> teams { get; set; }
+        public List<Locatie> enabledLocaties { get; set; }
         public Regio regio { get; set; }
         public long starttijd { get; set; }
     }

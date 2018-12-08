@@ -100,12 +100,12 @@ public class HostConfigActivity extends AppCompatActivity {
                     List<Locatie> enabledLocaties = new ArrayList<>();
                     for(Locatie locatie: regiolocaties)
                         if(locatie.used==null || locatie.used==true) enabledLocaties.add(locatie);
-                    Log.d(TAG,"enabledlocaties caluclated");
+                    Log.d(TAG,"enabledLocaties caluclated");
 
                     // game service doet api call waarbij de game opties worden geconfigureerd (regio & enabled locaties) , hierna zal de game gejoined worden.
                     (new GameService()).StartGame(regio,enabledLocaties, HostConfigActivity.this);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
-                    new CountDownTimer(5000, 10) {
+                    new CountDownTimer(500, 100) {
                         public void onTick(long millisUntilFinished) {
 
                         }

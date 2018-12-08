@@ -9,14 +9,14 @@ public class Game {
     public  long starttijd;
 
     public List<Team> teams;
-    public  List<Locatie> enabledlocaties;
+    public  List<Locatie> enabledLocaties;
 
     public Game(Regio regio, long starttijd, List<Team> teams, List<Locatie> enabledLocaties)
     {
         this.regio = regio;
         this.starttijd = starttijd;
         this.teams = teams;
-        this.enabledlocaties = enabledLocaties;
+        this.enabledLocaties = enabledLocaties;
 
     }
 
@@ -29,7 +29,7 @@ public class Game {
         return starttijd;
     }
 
-    public List<Locatie> getEnabledlocaties() {
-        return enabledlocaties;
+    public List<Locatie> getEnabledLocaties() {
+        return enabledLocaties;
     }
 }

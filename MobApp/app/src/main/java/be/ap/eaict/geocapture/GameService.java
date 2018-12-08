@@ -98,7 +98,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 try {
                     String str = new String(res, "UTF-8");
                     Gson gson = new Gson();
-                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+                    //game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
 
                     userName = username;
                     team = intTeam;
@@ -114,6 +114,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
             }
         });
+        getGame(intLobbyId);
 
         return false;
     }

@@ -2,8 +2,6 @@ package be.ap.eaict.geocapture;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,11 +18,9 @@ import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +53,7 @@ public class MapActivity extends AppCompatActivity
     private boolean mPermissionDenied = false;
 
     private GoogleMap mMap;
-    private GameService _gameService;
+    private GameService _gameService = new GameService();
     TextView gameTime;
 
     @Override
@@ -67,7 +63,6 @@ public class MapActivity extends AppCompatActivity
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        _gameService = new GameService();
         gameTime = (TextView) findViewById(R.id.gametime);
         initializeGameTime();
     }
@@ -75,16 +70,20 @@ public class MapActivity extends AppCompatActivity
 
     @Override
     public void onMapReady(GoogleMap googleMap){
-        DummyRepositoryRegios dummyRepositoryRegios = new DummyRepositoryRegios();
-        //List<Locatie> locaties = dummyRepositoryRegios.getGame().getEnabledlocaties();
+        List<Locatie> locaties = _gameService.game.getEnabledLocaties();
 
-        /*for(Locatie locatie:locaties){
-            LatLng latLng = new LatLng(locatie.getLng(), locatie.getLat());
+        LatLng center = new LatLng(0, 0);
+        for(Locatie locatie:locaties){
+            LatLng latLng = new LatLng(locatie.getLat(), locatie.getLng());
+            center = new LatLng(center.latitude + locatie.getLat(),center.longitude + locatie.getLng());
             googleMap.addMarker(new MarkerOptions().position(latLng)
                     .title(locatie.getLocatienaam()));
-        }*/
+        }
+        if(locaties.size()>0)
+            center = new LatLng(center.latitude/locaties.size(), center.longitude/locaties.size());
 
-        //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locaties.get(0).getLng(), locaties.get(0).getLat()),14));
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,14));
 
         mMap = googleMap;
         mMap.setOnMyLocationButtonClickListener(this);
@@ -165,13 +164,15 @@ public class MapActivity extends AppCompatActivity
     }
 
     private void initializeGameTime(){
-        new CountDownTimer(TimeUnit.MINUTES.toMillis(_gameService.game.getRegio().getTijd() * 60), 1000) {
+        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                String timer = String.format(Locale.getDefault(), "Time Remaining %02d min: %02d sec",
+                String timer = String.format(Locale.getDefault(), "Time Remaining %02d hours: %02d minutes, %02d seconds",
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60);
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
                 gameTime.setText(timer);
+                //Toast.makeText(MapActivity.this, timer, Toast.LENGTH_SHORT).show();
             }
 
             public void onFinish() {

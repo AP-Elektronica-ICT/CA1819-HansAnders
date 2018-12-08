@@ -24,7 +24,7 @@ namespace WebApplication5.Controllers
         [HttpGet]
         public IEnumerable<Game> GetGames()
         {
-            return _context.Games.Include(y => y.EnabledLocaties).ThenInclude(t=>t.puzzels).Include(t => t.Teams).ThenInclude(p => p.Users).Include(t => t.Teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio);
+            return _context.Games.Include(y => y.enabledLocaties).ThenInclude(t=>t.puzzels).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio);
         }
 
         // GET: api/Game/5
@@ -36,7 +36,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var game = await _context.Games.Include(y=>y.EnabledLocaties).ThenInclude(t => t.puzzels).Include(t=>t.Teams).ThenInclude(p=>p.Users).Include(t => t.Teams).ThenInclude(o=>o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r=>r.regio).SingleOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Games.Include(y=>y.enabledLocaties).ThenInclude(t => t.puzzels).Include(t=>t.teams).ThenInclude(p=>p.Users).Include(t => t.teams).ThenInclude(o=>o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r=>r.regio).SingleOrDefaultAsync(m => m.ID == id);
 
             if (game == null)
             {
@@ -61,7 +61,10 @@ namespace WebApplication5.Controllers
             }
 
             _context.Entry(game).State = EntityState.Modified;
+            var dbgame = await _context.Games.Include(y => y.enabledLocaties).ThenInclude(t => t.puzzels).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio).SingleOrDefaultAsync(m => m.ID == id);
 
+            dbgame.regio = _context.Regios.SingleOrDefault(d => d.Id == game.regio.Id);
+            dbgame.enabledLocaties = game.enabledLocaties;
             try
             {
                 await _context.SaveChangesAsync();
@@ -78,7 +81,7 @@ namespace WebApplication5.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(game);
         }
 
 
@@ -93,16 +96,16 @@ namespace WebApplication5.Controllers
             }
             if(game != null)
             {
-                List<Team> teams = game.Teams;
+                List<Team> teams = game.teams;
                 Regio regio = game.regio;
-                List<Locatie> locaties = game.EnabledLocaties;
-                game.Teams = null;
+                List<Locatie> locaties = game.enabledLocaties;
+                game.teams = null;
                 game.regio = null;
-                game.EnabledLocaties = null;
+                game.enabledLocaties = null;
                 _context.Games.Add(game);
                 _context.SaveChanges();
 
-                game = await _context.Games.Include(t => t.Teams).ThenInclude(p => p.Users).Include(t => t.Teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio).SingleOrDefaultAsync(m => m.ID == game.ID);
+                game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio).SingleOrDefaultAsync(m => m.ID == game.ID);
                 if (regio != null)
                 {
                     var dbregio = _context.Regios.SingleOrDefault(m => m.Id == regio.Id);
@@ -114,24 +117,25 @@ namespace WebApplication5.Controllers
                 {
                     foreach (Team team in teams)
                     {
-                        _context.Teams.Add(team);
+                        Team Team = new Team() { TeamName = team.TeamName };
+                        _context.Teams.Add(Team);
                         _context.SaveChanges();
-                        var dbTeam = _context.Teams.SingleOrDefault(m => m.Id == team.Id);
-                        game.Teams.Add(dbTeam);
+                        var dbTeam = _context.Teams.SingleOrDefault(m => m.Id == Team.Id);
+                        game.teams.Add(dbTeam);
                         _context.SaveChanges();
                     }
                 }
                 if (locaties != null)
                 {
+                    var dbregio = _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefault(m => m.Id == regio.Id);
+                    if (dbregio == null) return NotFound();
                     foreach (Locatie locatie in locaties)
                     {
-                        var dbregio = _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefault(m => m.Id == regio.Id);
-                        if (dbregio == null) return NotFound();
                         //foreach(Locatie locatie in )
                         var dblocatie = dbregio.locaties.SingleOrDefault(m => m.Id == locatie.Id);
                         if (dblocatie == null) return NotFound();
-                        game.EnabledLocaties = new List<Locatie>();
-                        game.EnabledLocaties.Add(dblocatie);
+                        game.enabledLocaties = new List<Locatie>();
+                        game.enabledLocaties.Add(dblocatie);
                         _context.SaveChanges();
                     }
 
@@ -153,13 +157,13 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var game = await _context.Games.Include(t => t.Teams).ThenInclude(p=>p.Users).Include(l => l.regio).ThenInclude(m => m.locaties).SingleOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Games.Include(p=>p.enabledLocaties).ThenInclude(m=>m.puzzels).Include(t => t.teams).ThenInclude(p=>p.Users).Include(l => l.regio).SingleOrDefaultAsync(m => m.ID == id);
 
             if (game == null)
             {
                 return NotFound();
             }
-            var dbteam = game.Teams.SingleOrDefault(r => r.Id == team);
+            var dbteam = game.teams.SingleOrDefault(r => r.Id == team);
             if (dbteam == null) return NotFound();
             dbteam.Users.Add(user);
          /*   for(int i = 0; i < game.Teams.Count; i++)
