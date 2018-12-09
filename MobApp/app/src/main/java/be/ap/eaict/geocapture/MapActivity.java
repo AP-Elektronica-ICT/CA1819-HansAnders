@@ -161,6 +161,7 @@ public class MapActivity extends AppCompatActivity
     private void showMissingPermissionError() {
         PermissionUtils.PermissionDeniedDialog
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
+        
     }
 
     private void initializeGameTime(){

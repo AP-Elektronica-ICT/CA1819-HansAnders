@@ -187,14 +187,16 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var game = await _context.Games.SingleOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Games.Include(y => y.enabledLocaties).ThenInclude(t => t.puzzels).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio).SingleOrDefaultAsync(m => m.ID == id);
             if (game == null)
             {
                 return NotFound();
             }
-
+            game.enabledLocaties = null;
+            game.regio = null;
+            game.teams = null;
             _context.Games.Remove(game);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return Ok(game);
         }
