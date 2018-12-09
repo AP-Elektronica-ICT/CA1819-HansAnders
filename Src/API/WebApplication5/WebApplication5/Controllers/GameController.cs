@@ -134,7 +134,8 @@ namespace WebApplication5.Controllers
                         //foreach(Locatie locatie in )
                         var dblocatie = dbregio.locaties.SingleOrDefault(m => m.Id == locatie.Id);
                         if (dblocatie == null) return NotFound();
-                        game.enabledLocaties = new List<Locatie>();
+                        if(game.enabledLocaties == null)
+                            game.enabledLocaties = new List<Locatie>();
                         game.enabledLocaties.Add(dblocatie);
                         _context.SaveChanges();
                     }
