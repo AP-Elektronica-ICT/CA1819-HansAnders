@@ -6,20 +6,36 @@
   </div>
   <div class="row">
     <div class="col">
-      <h2>Hoe maak in een spel aan?</h2>
-      <p>
-        Om een spel aan te maken, geef je een naam en locatie op. ook geef je een tijdspan van het spel aan. De tijdspan kan varieren van minimaal 1 uur tot maximaal 6 uur.
-      </p>
+      <h2>Bestaande regios</h2>
+      <div class="table-wrapper-scroll-y" *ngIf="regios">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">naam</th>
+              <th scope="col">tijd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let regio of regios">
+              <th scope="row">{{regio.naam}}</th>
+              <td>{{regio.plaats}}</td>
+              <td>{{regio.tijd}}</td>
+            </tr>                                        
+          </tbody>
+        </table>
+        </div>
     </div>
     <div class="col">
         <h2>Create Game</h2>
         <form class="text-center border border-light p-5">
-            <label for="title">Naam spel</label>
-            <input id="title" type="text" class="form-control mb-4" required />
+            <label for="name">Naam spel</label>
+            <input #name id="name" type="text" class="form-control mb-4" required />
             <label for="city">Locatie/Stad</label>
-            <input id="city" type="text" class="form-control mb-4" required />
+            <input #city id="city" type="text" class="form-control mb-4" required />
             <label for="timespan">Tijsspan (in uren)</label>
-            <input id="timespan" type="number" min="1" max="6" class="form-control mb-4" required />
+            <input #timespan id="timespan" type="number" min="1" max="6" class="form-control mb-4" required />
+            <button class="btn btn-unique" (click)="postRegio(name.value, city.value, timespan.value)">Voeg Game toe</button>
         </form>
     </div>
   </div>
