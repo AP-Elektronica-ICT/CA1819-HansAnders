@@ -27,6 +27,7 @@ export class CreateGameComponent implements OnInit {
     }
     console.log(regio);
     this._service.postRegio(regio).subscribe(()=>{
+      this._service.getRegios().subscribe(result => this.regios = result);
     });
   }
 }

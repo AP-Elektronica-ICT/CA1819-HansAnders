@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
 
-const url = "http://localhost:39858/api/";
+const url = "http://webapplication520181127093524.azurewebsites.net/api/";
 
 @Injectable({
   providedIn: 'root'
