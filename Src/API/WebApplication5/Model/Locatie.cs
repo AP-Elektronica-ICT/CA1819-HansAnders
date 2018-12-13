@@ -9,7 +9,6 @@ namespace Model
         public int Id { get; set; }
         public string locatienaam { get; set; }
         public List<Puzzel> puzzels { get; set; }
-        public int VragenJuist { get; set; }
         public float lng { get; set; }
         public float lat { get; set; }
 

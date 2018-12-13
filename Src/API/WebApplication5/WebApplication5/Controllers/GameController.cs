@@ -207,7 +207,7 @@ namespace WebApplication5.Controllers
         }
 
         [HttpPut("{id}/updatelocation")]
-        public async Task<IActionResult> UpdateLocation([FromRoute] int id)
+        public async Task<IActionResult> UpdatePlayerLocation([FromRoute] int id)
         {
             return NotFound();
         }
