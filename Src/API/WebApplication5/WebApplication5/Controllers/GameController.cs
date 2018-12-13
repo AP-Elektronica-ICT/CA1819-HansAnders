@@ -205,5 +205,20 @@ namespace WebApplication5.Controllers
         {
             return _context.Games.Any(e => e.ID == id);
         }
+
+        [HttpPut("{id}/updatelocation")]
+        public async Task<IActionResult> UpdateLocation([FromRoute] int id)
+        {
+            return NotFound();
+        }
+
+        [HttpPost("{id}/capturelocation")]
+        public async Task<IActionResult> CaptureLocation([FromRoute] int id)
+        {
+            return NotFound();
+        }
     }
+
+
+
 }
