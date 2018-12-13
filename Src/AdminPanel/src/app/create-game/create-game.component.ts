@@ -22,7 +22,7 @@ export class CreateGameComponent implements OnInit {
   postRegio(name, city, timespan){
     var regio: Regio={
       naam: name,
-      tijd: +timespan,
+      tijd: +timespan*60*1000,
       plaats: city
     }
     console.log(regio);
