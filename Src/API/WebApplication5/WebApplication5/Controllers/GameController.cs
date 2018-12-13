@@ -35,6 +35,8 @@ namespace WebApplication5.Controllers
             {
                 return BadRequest(ModelState);
             }
+            string test = "";
+            int i = Convert.ToInt32(test);
 
             var game = await _context.Games.Include(y=>y.enabledLocaties).ThenInclude(t => t.puzzels).Include(t=>t.teams).ThenInclude(p=>p.Users).Include(t => t.teams).ThenInclude(o=>o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r=>r.regio).SingleOrDefaultAsync(m => m.ID == id);
 
@@ -141,11 +143,11 @@ namespace WebApplication5.Controllers
                     }
 
                 }
-
                 return Created("Created game", game);
             }
             return BadRequest();
         }
+
 
 
 
@@ -176,6 +178,15 @@ namespace WebApplication5.Controllers
                 */
             return Ok(game);
         }
+        
+        [HttpPost("{gameid}/{userid}/{vraagid}")]
+        public async Task<IActionResult> UserCheckQuestion([FromBody] String antwoord, [FromRoute] int gameid, [FromRoute] int userid, [FromRoute] int vraagid)
+        {
+            return null;
+        }
+
+
+
 
 
         // DELETE: api/Game/5
@@ -218,7 +229,4 @@ namespace WebApplication5.Controllers
             return NotFound();
         }
     }
-
-
-
 }

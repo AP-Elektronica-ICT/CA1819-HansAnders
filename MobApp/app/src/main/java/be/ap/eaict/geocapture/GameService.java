@@ -44,12 +44,12 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     private static int team;
     public static int lobbyId;
     public static List<Regio> regios = new ArrayList<>();
-    public static HubConnection hubConnection;
-    private static String serverUrl = "http://webapplication520181127093524.azurewebsites.net/gamesessionhub";
+    //public static HubConnection hubConnection;
+    //private static String serverUrl = "http://webapplication520181127093524.azurewebsites.net/gamesessionhub";
 
     public GameService()
     {
-        hubConnection = HubConnectionBuilder.create(serverUrl).build();
+        //hubConnection = HubConnectionBuilder.create(serverUrl).build();
     }
 
 
@@ -223,29 +223,29 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
     public static Game game;
     static public void getGame(int lobbyId) {//moet via socket gebeuren
-        Log.d("connectionstate",hubConnection.getConnectionState().toString());
-        hubConnection.send("JoinRoom", String.valueOf(lobbyId));
+        //Log.d("connectionstate",hubConnection.getConnectionState().toString());
+        //hubConnection.send("JoinRoom", String.valueOf(lobbyId));
 
-//
-//        SyncAPICall.get("Game/"+Integer.toString(lobbyId), new AsyncHttpResponseHandler() {
-//            @Override
-//            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
-//                // called when response HTTP status is "200 OK"
-//                try {
-//                    String str = new String(res, "UTF-8");
-//
-//                    Gson gson = new Gson();
-//                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
-//
-//                } catch (UnsupportedEncodingException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-//            }
-//        });
+
+        SyncAPICall.get("Game/"+Integer.toString(lobbyId), new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+                try {
+                    String str = new String(res, "UTF-8");
+
+                    Gson gson = new Gson();
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
     }
 }
