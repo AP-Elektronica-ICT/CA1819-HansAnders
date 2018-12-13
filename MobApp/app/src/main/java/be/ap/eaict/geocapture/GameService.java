@@ -45,7 +45,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     public static int lobbyId;
     public static List<Regio> regios = new ArrayList<>();
     public static HubConnection hubConnection;
-    private static String serverUrl = "http://192.168.25.226/gamesessionhub";
+    private static String serverUrl = "http://webapplication520181127093524.azurewebsites.net/gamesessionhub";
 
     public GameService()
     {
