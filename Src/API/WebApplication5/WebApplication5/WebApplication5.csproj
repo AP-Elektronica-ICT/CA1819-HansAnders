@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Hubs\GameSessionHub.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Hubs\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

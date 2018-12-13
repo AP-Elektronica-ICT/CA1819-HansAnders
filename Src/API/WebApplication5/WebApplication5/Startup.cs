@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Model;
-using WebApplication5.Hubs;
+//using WebApplication5.Hubs;
 
 namespace WebApplication5
 {
@@ -38,7 +38,7 @@ namespace WebApplication5
 
             services.AddMvc();
             services.AddCors();
-            services.AddSignalR();
+          //  services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +56,10 @@ namespace WebApplication5
 
             app.UseMvc();
             app.UseCors("MyCors");
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<GameSessionHub>("/gamesessionhub");
-            });
+          // app.UseSignalR(routes =>
+          // {
+          //     routes.MapHub<GameSessionHub>("/gamesessionhub");
+          // });
             DbInit.Initialize(context);
         }
     }
