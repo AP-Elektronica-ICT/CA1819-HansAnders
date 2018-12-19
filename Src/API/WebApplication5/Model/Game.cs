@@ -6,7 +6,7 @@ namespace Model
 {
     public class Game
     {
-        public int ID { get; set; }
+        public int id { get; set; }
         public int teamamount { get; set; }
         public List<Team> teams { get; set; }
         public List<Locatie> enabledLocaties { get; set; }

@@ -6,7 +6,7 @@ namespace Model
 {
     public class Regio
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string naam { get; set; }
         public List<Locatie> locaties { get; set; }
         public int tijd { get; set; }

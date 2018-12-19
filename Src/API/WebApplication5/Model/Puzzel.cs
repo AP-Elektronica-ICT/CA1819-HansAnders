@@ -6,7 +6,7 @@ namespace Model
 {
     public class Puzzel
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string Vraag { get; set; }
         public string Antwoord { get; set; }
         public bool juist { get; set; }

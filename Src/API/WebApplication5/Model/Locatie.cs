@@ -6,7 +6,7 @@ namespace Model
 {
     public class Locatie
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string locatienaam { get; set; }
         public List<Puzzel> puzzels { get; set; }
         public float lng { get; set; }

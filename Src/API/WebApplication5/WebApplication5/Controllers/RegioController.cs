@@ -41,7 +41,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.id == id);
 
             if (regio == null)
             {
@@ -60,7 +60,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != regio.Id)
+            if (id != regio.id)
             {
                 return BadRequest();
             }
@@ -105,7 +105,7 @@ namespace WebApplication5.Controllers
                 if(locaties != null)
                 {
                     foreach (Locatie locatie in locaties)
-                        AddMarker(locatie, regio.Id);
+                        AddMarker(locatie, regio.id);
                 }
                 return Created("Created regio", regio);
             }
@@ -125,7 +125,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var locatie = await _context.locaties.Include(l=>l.puzzels).SingleOrDefaultAsync(m => m.Id == LocatieId);
+            var locatie = await _context.locaties.Include(l=>l.puzzels).SingleOrDefaultAsync(m => m.id == LocatieId);
 
             if (locatie != null)
             {
@@ -146,7 +146,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(r=>r.puzzels).SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(r=>r.puzzels).SingleOrDefaultAsync(m => m.id == id);
             if (regio == null)
             {
                 return NotFound();
@@ -170,12 +170,12 @@ namespace WebApplication5.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == Id);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.id == Id);
             regio.locaties.Add(locatie);
             //await _context.SaveChangesAsync();
             _context.SaveChanges();
 
-            return CreatedAtAction("Getregio", new { id = locatie.Id }, locatie);
+            return CreatedAtAction("Getregio", new { id = locatie.id }, locatie);
         }
 
         // PUT: api/Regio/5/addMarker
@@ -186,7 +186,7 @@ namespace WebApplication5.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == regioid);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.id == regioid);
             if(regio == null) return NotFound();
             var dblocatie = regio.locaties.SingleOrDefault(r => r.Id == locatieid);
             if (dblocatie == null) return NotFound();
@@ -208,7 +208,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.Include(r=>r.locaties).ThenInclude(p=>p.puzzels).SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r=>r.locaties).ThenInclude(p=>p.puzzels).SingleOrDefaultAsync(m => m.id == id);
             if (regio == null)
             {
                 return NotFound();
@@ -232,7 +232,7 @@ namespace WebApplication5.Controllers
                 return BadRequest(ModelState);
             }
 
-            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.Id == id);
+            var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.id == id);
 
             if (regio == null)
             {
@@ -252,7 +252,7 @@ namespace WebApplication5.Controllers
 
         private bool regioExists(int id)
         {
-            return _context.Regios.Any(e => e.Id == id);
+            return _context.Regios.Any(e => e.id == id);
         }
     }
 }
