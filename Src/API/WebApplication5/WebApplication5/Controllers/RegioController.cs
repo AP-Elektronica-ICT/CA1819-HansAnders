@@ -151,9 +151,9 @@ namespace WebApplication5.Controllers
             {
                 return NotFound();
             }
-            var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
+            var locatie = regio.locaties.SingleOrDefault(m => m.id == locatieid);
             if (locatie == null) return NotFound();
-            var puzzel = locatie.puzzels.SingleOrDefault(t => t.Id == puzzelid);
+            var puzzel = locatie.puzzels.SingleOrDefault(t => t.id == puzzelid);
             if (puzzel == null) return NotFound();
 
             _context.puzzels.Remove(puzzel);
@@ -188,7 +188,7 @@ namespace WebApplication5.Controllers
             }
             var regio = await _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefaultAsync(m => m.id == regioid);
             if(regio == null) return NotFound();
-            var dblocatie = regio.locaties.SingleOrDefault(r => r.Id == locatieid);
+            var dblocatie = regio.locaties.SingleOrDefault(r => r.id == locatieid);
             if (dblocatie == null) return NotFound();
             dblocatie.lat = locatie.lat;
             dblocatie.lng = locatie.lng;
@@ -213,7 +213,7 @@ namespace WebApplication5.Controllers
             {
                 return NotFound();
             }
-            var locatie = regio.locaties.SingleOrDefault(m => m.Id == locatieid);
+            var locatie = regio.locaties.SingleOrDefault(m => m.id == locatieid);
             if (locatie == null) return NotFound();
             if(locatie.puzzels != null)
                 _context.puzzels.RemoveRange(locatie.puzzels);
