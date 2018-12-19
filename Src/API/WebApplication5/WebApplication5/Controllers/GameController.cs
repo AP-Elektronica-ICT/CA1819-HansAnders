@@ -58,24 +58,29 @@ namespace WebApplication5.Controllers
             _context.Entry(game).State = EntityState.Modified;
             var dbgame = await _context.Games.Include(y => y.enabledLocaties).ThenInclude(t => t.puzzels).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio).SingleOrDefaultAsync(m => m.ID == id);
 
-            dbgame.regio = _context.Regios.SingleOrDefault(d => d.Id == game.regio.Id);
-            dbgame.enabledLocaties = game.enabledLocaties;
+
+            var dbregio = _context.Regios.SingleOrDefault(m => m.Id == game.regio.Id);
+            if (dbregio == null) return NotFound();
+            dbgame.regio = dbregio;
             _context.Games.Update(dbgame);
-            try
+            _context.SaveChanges();
+
+
+            dbregio = _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefault(m => m.Id == game.regio.Id);
+            if (dbregio == null) return NotFound();
+            foreach (Locatie locatie in game.enabledLocaties)
             {
-                await _context.SaveChangesAsync();
+                var dblocatie = dbregio.locaties.SingleOrDefault(m => m.Id == locatie.Id);
+                if (dblocatie == null) return NotFound();
+                if (dbgame.enabledLocaties == null)
+                    dbgame.enabledLocaties = new List<Locatie>();
+                dbgame.enabledLocaties.Add(dblocatie);
+                _context.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GameExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
+            //dbgame.enabledLocaties = game.enabledLocaties;
+            _context.Games.Update(dbgame);
+            _context.SaveChanges();
 
             return Ok(game);
         }
