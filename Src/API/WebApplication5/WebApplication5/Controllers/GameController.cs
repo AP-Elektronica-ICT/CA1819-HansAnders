@@ -50,6 +50,7 @@ namespace WebApplication5.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGame([FromRoute] int id, [FromBody] Game game)
         {
+            Game test = game;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -68,15 +69,18 @@ namespace WebApplication5.Controllers
 
             dbregio = _context.Regios.Include(r => r.locaties).ThenInclude(l => l.puzzels).SingleOrDefault(m => m.Id == game.regio.Id);
             if (dbregio == null) return NotFound();
-            foreach (Locatie locatie in game.enabledLocaties)
+            List<Locatie> enabledlocaties = game.enabledLocaties;
+
+            dbgame.enabledLocaties = enabledlocaties;
+            /*foreach (Locatie locatie in enabledlocaties)
             {
                 var dblocatie = dbregio.locaties.SingleOrDefault(m => m.Id == locatie.Id);
                 if (dblocatie == null) return NotFound();
                 if (dbgame.enabledLocaties == null)
                     dbgame.enabledLocaties = new List<Locatie>();
                 dbgame.enabledLocaties.Add(dblocatie);
-                _context.SaveChanges();
-            }
+                await _context.SaveChangesAsync();
+            }*/
 
             //dbgame.enabledLocaties = game.enabledLocaties;
             _context.Games.Update(dbgame);

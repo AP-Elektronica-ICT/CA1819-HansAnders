@@ -11,8 +11,9 @@ public class Game {
     public List<Team> teams;
     public  List<Locatie> enabledLocaties;
 
-    public Game(Regio regio, long starttijd, List<Team> teams, List<Locatie> enabledLocaties)
+    public Game(int id, Regio regio, long starttijd, List<Team> teams, List<Locatie> enabledLocaties)
     {
+        this.id = id;
         this.regio = regio;
         this.starttijd = starttijd;
         this.teams = teams;

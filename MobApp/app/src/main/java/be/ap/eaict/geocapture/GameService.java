@@ -135,7 +135,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         {
            listTeams.add(new Team());//empty teams initiated
         }
-        Game startgame = new Game(null,System.currentTimeMillis(), listTeams, null);
+        Game startgame = new Game(0, null,System.currentTimeMillis(), listTeams, null);
         //POST startgame
         Gson g = new Gson();
         String jsonString = g.toJson(startgame);
@@ -192,7 +192,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
 
     public void StartGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) {
-        game = new Game(regio, game.getStarttijd(), game.teams, enabledlocaties);
+        game = new Game(game.id, regio, game.getStarttijd(), game.teams, enabledlocaties);
         //API CALL to create game in backend
 
         //API PUT game (.../api/game/id)
