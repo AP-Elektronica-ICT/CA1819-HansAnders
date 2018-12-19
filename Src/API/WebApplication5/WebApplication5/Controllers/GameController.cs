@@ -65,6 +65,7 @@ namespace WebApplication5.Controllers
 
             dbgame.regio = _context.Regios.SingleOrDefault(d => d.Id == game.regio.Id);
             dbgame.enabledLocaties = game.enabledLocaties;
+            _context.Games.Update(dbgame);
             try
             {
                 await _context.SaveChangesAsync();
