@@ -54,12 +54,7 @@ namespace WebApplication5.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != game.ID)
-            {
-                return BadRequest();
-            }
-
+            
             _context.Entry(game).State = EntityState.Modified;
             var dbgame = await _context.Games.Include(y => y.enabledLocaties).ThenInclude(t => t.puzzels).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(r => r.regio).SingleOrDefaultAsync(m => m.ID == id);
 

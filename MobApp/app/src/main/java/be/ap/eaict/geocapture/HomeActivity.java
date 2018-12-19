@@ -93,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     }
                     public void onFinish() {
-                        if ((new GameService()).game != null)
+                        if ((new GameService()).game != null && (new GameService()).game.regio != null)
                         {
                             Intent i = new Intent(HomeActivity.this , MapActivity.class);
                             startActivity(i);
