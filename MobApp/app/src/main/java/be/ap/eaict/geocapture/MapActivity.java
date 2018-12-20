@@ -65,6 +65,7 @@ public class MapActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
         gameTime = (TextView) findViewById(R.id.gametime);
         initializeGameTime();
+        keepGameUpToDate();
     }
 
 
