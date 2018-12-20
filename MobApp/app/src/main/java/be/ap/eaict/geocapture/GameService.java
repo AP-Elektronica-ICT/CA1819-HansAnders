@@ -216,7 +216,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                     String str = new String(res, "UTF-8");
 
                     Gson gson = new Gson();
-                    List<Locatie> l = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+                    List<Locatie> l = gson.fromJson(str, new TypeToken<List<Locatie>>() {}.getType());
                     Log.d("", "");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
