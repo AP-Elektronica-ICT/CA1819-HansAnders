@@ -92,7 +92,7 @@ namespace Model
                             {
                             }
                         },
-                        enabledLocaties = locaties
+                        enabledLocaties = { 1, 2 }
                     }
                 );
 
