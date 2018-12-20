@@ -5,33 +5,33 @@ import java.util.List;
 
 public class Team {
     public int Id ;
-    public List<User> Users ;
-    public List<Locatie> CapturedLocaties;
-    public String TeamName ;
+    public List<User> users;
+    public List<Locatie> capturedLocaties;
+    public String teamName;
 
 
     public Team()
     {
-        this.Users = new ArrayList<>();
-        this.TeamName = "zoibfkd";// randomize this shit or sth
+        this.users = new ArrayList<>();
+        this.teamName = "zoibfkd";// randomize this shit or sth
     }
 
     public Team(List<User> Users, List<Locatie> capturedLocaties, String teamName)
     {
-        this.Users = Users;
-        this.CapturedLocaties = capturedLocaties;
-        this.TeamName = teamName;
+        this.users = Users;
+        this.capturedLocaties = capturedLocaties;
+        this.teamName = teamName;
     }
 
     public List<User> getUsers() {
-        return Users;
+        return users;
     }
 
     public List<Locatie> getCapturedLocaties() {
-        return CapturedLocaties;
+        return capturedLocaties;
     }
 
     public String getTeamName() {
-        return TeamName;
+        return teamName;
     }
 }
