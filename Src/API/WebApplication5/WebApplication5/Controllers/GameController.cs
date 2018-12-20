@@ -173,14 +173,15 @@ namespace WebApplication5.Controllers
             var dbteam = game.teams.SingleOrDefault(r => r.Id == team);
             if (dbteam == null) return NotFound();
             dbteam.Users.Add(user);
-         /*   for(int i = 0; i < game.Teams.Count; i++)
+            for(int i = 0; i < game.teams.Count; i++)
                 if(i == team)
                 {
-                    game.Teams[team].Users.Add(user);
+                    game.teams[team].Users.Add(user);
+                    _context.SaveChanges();
                     return Ok(user);
                 }
-                */
-            return Ok(game);
+                
+            return BadRequest();
         }
         
         [HttpPost("{gameid}/{userid}/{vraagid}")]
