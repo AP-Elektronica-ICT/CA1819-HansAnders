@@ -31,6 +31,6 @@ public class Game {
     }
 
     public List<Locatie> getEnabledLocaties() {
-        return enabledLocaties;
+        return regio.locaties;
     }
 }
