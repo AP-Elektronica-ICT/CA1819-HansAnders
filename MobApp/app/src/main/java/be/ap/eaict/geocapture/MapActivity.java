@@ -214,7 +214,7 @@ public class MapActivity extends AppCompatActivity
             if (afstand < 0.00026949458){
                 return(locaties.get(i));
             }
-            else return null;
         }
+        return null;
     }
 }
