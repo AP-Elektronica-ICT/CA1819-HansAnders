@@ -105,13 +105,20 @@ public class HostConfigActivity extends AppCompatActivity {
                     // game service doet api call waarbij de game opties worden geconfigureerd (regio & enabled locaties) , hierna zal de game gejoined worden.
                     (new GameService()).StartGame(regio,enabledLocaties, HostConfigActivity.this);// Regio regio, int starttijd, List<Team> teams, List<Locatie> enabledLocaties)
 
-                    new CountDownTimer(500, 100) {
+                    new CountDownTimer(1000, 100) {
                         public void onTick(long millisUntilFinished) {
 
                         }
                         public void onFinish() {
-                            Intent i = new Intent(HostConfigActivity.this , MapActivity.class);
-                            startActivity(i);
+                            if ((new GameService()).game != null && (new GameService()).game.regio != null)
+                            {
+                                Intent i = new Intent(HostConfigActivity.this , MapActivity.class);
+                                startActivity(i);
+                            }
+                            else
+                            {
+                                Toast.makeText(HostConfigActivity.this, "can't start game!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }.start();
                 }

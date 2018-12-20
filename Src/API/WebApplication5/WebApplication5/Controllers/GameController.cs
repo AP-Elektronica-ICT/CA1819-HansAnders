@@ -84,9 +84,10 @@ namespace WebApplication5.Controllers
 
             //dbgame.enabledLocaties = game.enabledLocaties;
             _context.Games.Update(dbgame);
+            dbgame.enabledLocaties = enabledlocaties;
             _context.SaveChanges();
 
-            return Ok(game);
+            return Ok(dbgame.enabledLocaties);
         }
 
 

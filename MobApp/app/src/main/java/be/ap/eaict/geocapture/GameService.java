@@ -211,12 +211,25 @@ public class GameService extends AppCompatActivity implements IGameRepository {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
+
+                try {
+                    String str = new String(res, "UTF-8");
+
+                    Gson gson = new Gson();
+                    List<Locatie> l = gson.fromJson(str, new TypeToken<List<Locatie>>() {}.getType());
+                    Log.d("", "");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+
                 (new GameService()).JoinGame(userName,0,lobbyId, hostConfigActivity); // host joins team 0 by default
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                Log.d("onfailure", error.getMessage());
             }
         });
     }
