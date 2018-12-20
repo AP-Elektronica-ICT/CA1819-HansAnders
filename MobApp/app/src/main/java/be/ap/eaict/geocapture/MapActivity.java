@@ -164,6 +164,19 @@ public class MapActivity extends AppCompatActivity
 
     }
 
+    private void keepGameUpToDate() {
+        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                //getgame
+                _gameService.getGame(_gameService.game.id);
+            }
+
+            public void onFinish() {
+            }
+
+        }.start();
+    }
     private void initializeGameTime(){
         new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 1000) {
 
