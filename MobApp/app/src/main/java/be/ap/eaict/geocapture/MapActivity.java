@@ -55,6 +55,7 @@ public class MapActivity extends AppCompatActivity
     private GoogleMap mMap;
     private GameService _gameService = new GameService();
     TextView gameTime;
+    private Location _locatie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -95,8 +96,8 @@ public class MapActivity extends AppCompatActivity
         mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                Log.d(TAG, "onMyLocationChange: lat: "+ location.getLatitude());
-                Log.d(TAG, "onMyLocationChange: lng: "+location.getLongitude());
+                _locatie.setLatitude(location.getLatitude());
+                _locatie.setLongitude(location.getLongitude());
             }
         });
     }
@@ -166,11 +167,12 @@ public class MapActivity extends AppCompatActivity
     }
 
     private void keepGameUpToDate() {
-        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 1000) {
+        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 3000) {
 
             public void onTick(long millisUntilFinished) {
                 //getgame
                 _gameService.getGame(_gameService.game.id);
+                canCapture();
             }
 
             public void onFinish() {
@@ -195,5 +197,24 @@ public class MapActivity extends AppCompatActivity
             }
 
         }.start();
+    }
+
+    private Locatie canCapture(){
+        List<Locatie> locaties = _gameService.game.getEnabledLocaties();
+        for (int i = 0; i < locaties.size(); i++) {
+
+            double x = _locatie.getLongitude() - locaties.get(i).lng;
+            double y = _locatie.getLatitude() - locaties.get(i).lat;
+
+            x = x * x;
+            y = y * y;
+
+            double afstand = Math.sqrt(x+y);
+
+            if (afstand < 0.00026949458){
+                return(locaties.get(i));
+            }
+            else return null;
+        }
     }
 }

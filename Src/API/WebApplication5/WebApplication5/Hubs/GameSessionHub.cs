@@ -46,7 +46,7 @@ namespace WebApplication5.Hubs
         }
 
 
-        public async Task SendCaptureInfo(string team)
+        public async Task SendCaptureInfo(string lobbyId, string team)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
