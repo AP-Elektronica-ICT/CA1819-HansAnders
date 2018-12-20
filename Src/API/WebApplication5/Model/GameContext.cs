@@ -12,8 +12,21 @@ namespace Model
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelbuilder)
-        { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EnabledGameLocaties>()
+            .HasKey(t => new { t.GameId, t.LocatieId });
+
+            modelBuilder.Entity<EnabledGameLocaties>()
+                .HasOne(pt => pt.game)
+                .WithMany(p => p.enabledLocaties)
+                .HasForeignKey(pt => pt.GameId);
+
+            modelBuilder.Entity<EnabledGameLocaties>()
+                .HasOne(pt => pt.locatie)
+                .WithMany(t => t.enabledingames)
+                .HasForeignKey(pt => pt.LocatieId);
+        }
 
         public DbSet<Game> Games { get; set; }
         public DbSet<User> User { get; set; }

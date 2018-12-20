@@ -27,7 +27,7 @@ namespace Model
                             new Puzzel(){Vraag = "wa uur is locket x open", Antwoord = "5:50"},
                         },
                         lat = 55.217263f,
-                        lng = 6.421034f
+                        lng = 4.421034f
                     },
                     new Locatie(){
                         locatienaam = "kathdraal",
@@ -38,26 +38,33 @@ namespace Model
                             new Puzzel(){Vraag = "waarom is dit een ding", Antwoord = "nee"},
                         },
                         lat = 55.220214f,
-                        lng = 6.402223f
+                        lng = 4.402223f
                     }
                 };
-                Regio regio = new Regio()
-                {
-                    naam = "Antwerpen",
-                    locaties = locaties,
-                    tijd = 60 * 60 * 5
+                List<Regio> regios = new List<Regio>() { 
+                    new Regio{
+                        naam = "Antwerpen",
+                        locaties = locaties,
+                        tijd = 60 * 60 * 5
+                    },
+                    new Regio{
+                        naam = "Antwerpen",
+                        locaties = locaties,
+                        tijd = 60 * 60 * 5
+                    }
                 };
                 context.locaties.AddRange(locaties);
-                context.Regios.Add(regio);
+                context.Regios.AddRange(regios);
 
                 context.SaveChanges();
 
-                context.Games.Add(
-                    new Game()
+                List<Game> games = new List<Game>()
+                {
+                     new Game()
                     {
                         teamamount = 4,
                         starttijd = 1500,
-                        regio = regio,
+                        regio = regios[0],
                         teams = new List<Team>() {
                             new Team()
                             {
@@ -91,12 +98,55 @@ namespace Model
                             new Team()
                             {
                             }
-                        },
-                        enabledLocaties = locaties
+                        }
+                    },
+                    new Game()
+                    {
+                        starttijd = 15616511,
+                        regio = regios[0],
+                        teams = new List<Team>() {
+                            new Team()
+                            {
+                                Users = new List<User>
+                                {
+                                    new User()
+                                    {
+                                        Name = "brent",
+                                        lat = 5,
+                                        lng = 5
+                                    },
+                                    new User()
+                                    {
+                                        Name = "yorick",
+                                        lat = 5,
+                                        lng = 5
+                                    },
+                                    new User()
+                                    {
+                                        Name = "ruben",
+                                        lat = 5,
+                                        lng = 5
+                                    },
+                                },
+                                CapturedLocaties = new List<Locatie>
+                                {
+                                    locaties[1]
+                                },
+                                TeamName = "teamHansAnders"
+                            },
+                            new Team()
+                            {
+                            }
+                        }
                     }
+                };
+
+                context.AddRange(
+                    new EnabledGameLocaties() {  game = games[0], locatie = locaties[0]},
+                    new EnabledGameLocaties() { game = games[0], locatie = locaties[1] },
+                    new EnabledGameLocaties() { game = games[1], locatie = locaties[0] },
+                    new EnabledGameLocaties() { game = games[1], locatie = locaties[1] }
                 );
-
-
                context.SaveChanges();
 
             }

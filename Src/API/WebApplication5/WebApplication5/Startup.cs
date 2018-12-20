@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Model;
+using Newtonsoft.Json;
 //using WebApplication5.Hubs;
 
 namespace WebApplication5
@@ -38,7 +39,15 @@ namespace WebApplication5
 
             services.AddMvc();
             services.AddCors();
-          //  services.AddSignalR();
+            var mvc = services.AddMvc(options =>
+            {
+                //mvc options
+            });
+            mvc.AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+            //  services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
