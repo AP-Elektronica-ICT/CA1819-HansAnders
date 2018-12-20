@@ -1,14 +1,19 @@
 package be.ap.eaict.geocapture;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -66,6 +71,10 @@ public class MapActivity extends AppCompatActivity
         gameTime = (TextView) findViewById(R.id.gametime);
         initializeGameTime();
         keepGameUpToDate();
+
+
+
+
     }
 
 
@@ -80,6 +89,26 @@ public class MapActivity extends AppCompatActivity
             googleMap.addMarker(new MarkerOptions().position(latLng)
                     .title(locatie.getLocatienaam()));
         }
+
+
+
+
+
+        Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
+        Bitmap marker = Bitmap.createScaledBitmap(b, 30, 30, false);
+
+        MarkerOptions a = new MarkerOptions()
+                .position(new LatLng(50,6))
+                .alpha(0.7f)
+                .icon(BitmapDescriptorFactory.fromBitmap(marker));
+        Marker m = googleMap.addMarker(a);
+        
+        //update location
+        m.setPosition(new LatLng(50,7));
+
+
+
+
         if(locaties.size()>0)
             center = new LatLng(center.latitude/locaties.size(), center.longitude/locaties.size());
 
