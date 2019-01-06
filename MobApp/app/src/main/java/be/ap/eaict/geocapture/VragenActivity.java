@@ -3,6 +3,7 @@ package be.ap.eaict.geocapture;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class VragenActivity extends AppCompatActivity {
             puzzels.add(p1);
         }
 
-
-        
+        final ListView vragenList = (ListView) findViewById(R.id.vragen_list);
+        final VragenAdapter vragenAdapter = new VragenAdapter(this, puzzels);
+        vragenList.setAdapter(vragenAdapter);
     }
 }
