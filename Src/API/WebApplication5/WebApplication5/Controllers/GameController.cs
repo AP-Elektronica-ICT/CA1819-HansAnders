@@ -185,8 +185,8 @@ namespace WebApplication5.Controllers
             return NotFound();
         }
 
-        [HttpPost("{gameid}/{teamid}/{userid}/{lat}/{lng}")]
-        public async Task<IActionResult> UpdatePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid, [FromRoute] int lat, [FromRoute] int lng)
+        [HttpPost("updateplayerlocatie/{gameid}/{teamid}/{userid}/{lat}/{lng}")]
+        public async Task<IActionResult> UpdatePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid, [FromRoute] float lat, [FromRoute] float lng)
         {
             if (!ModelState.IsValid)
             {
@@ -198,7 +198,7 @@ namespace WebApplication5.Controllers
             if (game == null) return NotFound();
             
             for (int i = 0; i <= game.teams.Count; i++)
-                if (i == teamid)
+                if (i == teamid-1)
                 {
                     for(int j = 0; j <= game.teams[i].Users.Count; j++)
                         if(game.teams[i].Users[j].Id == userid)
