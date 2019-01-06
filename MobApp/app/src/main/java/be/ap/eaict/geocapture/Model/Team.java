@@ -13,7 +13,7 @@ public class Team {
     public Team()
     {
         this.users = new ArrayList<>();
-        this.teamName = "zoibfkd";// randomize this shit or sth
+        this.teamName = "een cloud team";// randomize this shit or sth
     }
 
     public Team(List<User> Users, List<Locatie> capturedLocaties, String teamName)
