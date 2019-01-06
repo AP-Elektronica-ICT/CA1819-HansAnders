@@ -83,13 +83,21 @@ public class MapActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
 
+
+        float centerlat = 0;
+        float centerlng = 0;
         LatLng center = new LatLng(0, 0);
         for(Locatie locatie:locaties){
             LatLng latLng = new LatLng(locatie.getLat(), locatie.getLng());
-            center = new LatLng(center.latitude + locatie.getLat(),center.longitude + locatie.getLng());
+            centerlat = centerlat + locatie.getLat();
+            centerlng = centerlng + locatie.getLng();
+            //center = new LatLng(center.latitude + locatie.getLat(),center.longitude + locatie.getLng());
             googleMap.addMarker(new MarkerOptions().position(latLng)
                     .title(locatie.getLocatienaam()));
         }
+
+        if(locaties.size()>0)
+            center = new LatLng(centerlat/locaties.size(), centerlng/locaties.size());
 
 
 
@@ -125,9 +133,6 @@ public class MapActivity extends AppCompatActivity
 
 
 
-        if(locaties.size()>0)
-            center = new LatLng(center.latitude/locaties.size(), center.longitude/locaties.size());
-
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,14));
 
@@ -140,8 +145,7 @@ public class MapActivity extends AppCompatActivity
         mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                _locatie.setLatitude(location.getLatitude());
-                _locatie.setLongitude(location.getLongitude());
+                _locatie = location;
             }
         });
     }
@@ -245,20 +249,20 @@ public class MapActivity extends AppCompatActivity
 
     private Locatie canCapture(){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
-        for (int i = 0; i < locaties.size(); i++) {
+        if(_locatie != null)
+            for (int i = 0; i < locaties.size(); i++) {
+                double x = _locatie.getLongitude() - locaties.get(i).lng;
+                double y = _locatie.getLatitude() - locaties.get(i).lat;
 
-            double x = _locatie.getLongitude() - locaties.get(i).lng;
-            double y = _locatie.getLatitude() - locaties.get(i).lat;
+                x = x * x;
+                y = y * y;
 
-            x = x * x;
-            y = y * y;
+                double afstand = Math.sqrt(x+y);
 
-            double afstand = Math.sqrt(x+y);
-
-            if (afstand < 0.00026949458){
-                return(locaties.get(i));
+                if (afstand < 0.00026949458){
+                    return(locaties.get(i));
+                }
             }
-        }
         return null;
     }
 }
