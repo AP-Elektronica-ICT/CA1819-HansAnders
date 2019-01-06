@@ -19,5 +19,5 @@
         android:layout_height="wrap_content"
         android:padding="0px"
         android:layout_margin="0px"
-        android:text="Start Game" />
+        android:text="Stuur vragen in" />
 </LinearLayout>

@@ -15,6 +15,8 @@ public class VragenAdapter extends ArrayAdapter<Puzzel>{
     public VragenAdapter(Context context, List<Puzzel> puzzels) {
         super(context, -1 , puzzels);
     }
+
+    
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

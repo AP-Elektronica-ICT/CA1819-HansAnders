@@ -13,7 +13,6 @@ import be.ap.eaict.geocapture.Model.Puzzel;
 
 public class VragenActivity extends AppCompatActivity {
 
-    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +21,8 @@ public class VragenActivity extends AppCompatActivity {
 
 
         List<Puzzel> puzzels= new ArrayList<Puzzel>();
-        for(int i=0; i<4; i+=1){
-            Puzzel p1 = new Puzzel("hoeveel weegt ene appel", "150g");
+        for(int i=0; i<10; i+=1){
+            Puzzel p1 = new Puzzel("hoeveel weegt een appel", "150g");
             puzzels.add(p1);
         }
 
