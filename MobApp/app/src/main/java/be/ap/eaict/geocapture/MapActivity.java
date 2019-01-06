@@ -29,6 +29,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -78,7 +79,7 @@ public class MapActivity extends AppCompatActivity
 
     }
 
-    List<Marker> teamMarkers;
+    List<Marker> teamMarkers = new ArrayList<Marker>() {};
     @Override
     public void onMapReady(GoogleMap googleMap){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
@@ -116,9 +117,9 @@ public class MapActivity extends AppCompatActivity
                     .alpha(0.7f)
                     .icon(BitmapDescriptorFactory.fromBitmap(marker));
             Marker m = googleMap.addMarker(a);
-            //teamMarkers.add(m);
+            teamMarkers.add(m);
         }
-        /*
+        /*  //testmarker:
         MarkerOptions a = new MarkerOptions()
                 .position(new LatLng(5,5))
                 .alpha(0.7f)
@@ -161,7 +162,8 @@ public class MapActivity extends AppCompatActivity
             // Permission to access the location is missing.
             PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
                     Manifest.permission.ACCESS_FINE_LOCATION, true);
-        } else if (mMap != null) {
+        }
+        if (mMap != null) {
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
         }
@@ -217,15 +219,21 @@ public class MapActivity extends AppCompatActivity
     }
 
     private void keepGameUpToDate() {
-        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 3000) {
+        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 2000) {
 
             public void onTick(long millisUntilFinished) {
-                //getgame
-                _gameService.getGame(_gameService.game.id);
+                //update player locatie, returns game
+                _gameService.UpdatePlayerLocatie(new LatLng(_locatie.getLatitude(), _locatie.getLongitude()));
+
+                //update other players locaties
+
+
+
                 //canCapture();
             }
 
             public void onFinish() {
+
             }
 
         }.start();
