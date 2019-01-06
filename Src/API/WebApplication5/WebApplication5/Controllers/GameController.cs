@@ -170,9 +170,9 @@ namespace WebApplication5.Controllers
             {
                 return NotFound();
             }
-            var dbteam = game.teams.SingleOrDefault(r => r.Id == team);
-            if (dbteam == null) return NotFound();
-            dbteam.Users.Add(user);
+            //var dbteam = game.teams.SingleOrDefault(r => r.Id == team);
+            //if (dbteam == null) return NotFound();
+            //dbteam.Users.Add(user);
             for(int i = 0; i <= game.teams.Count; i++)
                 if(i == team)
                 {
@@ -181,8 +181,8 @@ namespace WebApplication5.Controllers
                     _context.SaveChanges();
                     return Ok(user);
                 }
-                
-            return BadRequest();
+
+            return NotFound();
         }
         
         [HttpPost("{gameid}/{userid}/{vraagid}")]

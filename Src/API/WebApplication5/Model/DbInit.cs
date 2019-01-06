@@ -97,7 +97,53 @@ namespace Model
                 );
 
 
-               context.SaveChanges();
+
+                context.Games.Add(
+                    new Game()
+                    {
+                        teamamount = 4,
+                        starttijd = 1500,
+                        regio = regio,
+                        teams = new List<Team>() {
+                            new Team()
+                            {
+                                Users = new List<User>
+                                {
+                                    new User()
+                                    {
+                                        Name = "brent",
+                                        lat = 5,
+                                        lng = 5
+                                    },
+                                    new User()
+                                    {
+                                        Name = "yorick",
+                                        lat = 5,
+                                        lng = 5
+                                    },
+                                    new User()
+                                    {
+                                        Name = "ruben",
+                                        lat = 5,
+                                        lng = 5
+                                    },
+                                },
+                                CapturedLocaties = new List<Locatie>
+                                {
+                                    locaties[1]
+                                },
+                                TeamName = "teamHansAnders"
+                            },
+                            new Team()
+                            {
+                            }
+                        },
+                        enabledLocaties = locaties
+                    }
+                );
+
+
+                context.SaveChanges();
 
             }
 
