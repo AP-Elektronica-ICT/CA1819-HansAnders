@@ -106,7 +106,7 @@ public class MapActivity extends AppCompatActivity
         Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
         Bitmap marker = Bitmap.createScaledBitmap(b, 30, 30, false);
 
-        List<User> users = _gameService.game.teams.get(0).users;
+        List<User> users = _gameService.game.teams.get(GameService.team-1).users;
 
 
         Log.d(TAG, "onMapReady: "  + users);
@@ -145,6 +145,8 @@ public class MapActivity extends AppCompatActivity
         mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
+                //_locatie.setLatitude(location.getLatitude());
+                //_locatie.setLongitude(location.getLongitude());
                 _locatie = location;
             }
         });
@@ -220,7 +222,7 @@ public class MapActivity extends AppCompatActivity
             public void onTick(long millisUntilFinished) {
                 //getgame
                 _gameService.getGame(_gameService.game.id);
-                canCapture();
+                //canCapture();
             }
 
             public void onFinish() {
