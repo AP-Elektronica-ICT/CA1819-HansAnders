@@ -26,7 +26,7 @@ public class HostConfigActivity extends AppCompatActivity {
     List<Locatie> regiolocaties = new ArrayList<Locatie>();
 
     protected void onCreate(@Nullable Bundle savedInstanceState){
-        Log.d("fuckdis","fuckyeah");
+        Log.d("onCreate","homeActivity created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_config);
 
