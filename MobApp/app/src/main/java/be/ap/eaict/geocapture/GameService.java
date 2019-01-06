@@ -82,7 +82,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)
     {
         //maak user aan en steek het in een json entity
-        final User user = new User(username, 4,6);
+        final User user = new User(username, 0,0);
 //        RequestParams params = new RequestParams();
 //        params.put("user", user);
 //        params.put("team", intTeam);
@@ -137,7 +137,6 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         SyncAPICall.post("Game/updateplayerlocatie/"+Integer.toString(lobbyId)+"/"+Integer.toString(team)+"/"+Integer.toString(userId)+"/"+Double.toString(latLng.latitude)+"/"+Double.toString(latLng.longitude), null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
-                Log.d(" ", "onSuccess: game joined" );
                 // called when response HTTP status is "200 OK"
                 try {
                     String str = new String(res, "UTF-8");

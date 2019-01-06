@@ -228,6 +228,27 @@ public class MapActivity extends AppCompatActivity
 
                 //update other players locaties
 
+                List<User> users = _gameService.game.teams.get(GameService.team-1).users;
+                int i = 0;
+                for (Marker marker : teamMarkers)
+                {
+                    marker.setPosition(new LatLng(users.get(i).lat, users.get(i).lng));
+                    i++;
+                }
+                while(i<users.size())//extra user joined
+                {
+                    Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
+                    Bitmap marker = Bitmap.createScaledBitmap(b, 30, 30, false);
+
+                    MarkerOptions a = new MarkerOptions()
+                            .position(new LatLng(users.get(i).lat, users.get(i).lng))
+                            .alpha(0.7f)
+                            .icon(BitmapDescriptorFactory.fromBitmap(marker));
+                    Marker m = mMap.addMarker(a);
+                    teamMarkers.add(m);
+                    i++;
+                }
+                //m.setPosition(new LatLng(50,7));
 
 
                 //canCapture();
@@ -240,8 +261,8 @@ public class MapActivity extends AppCompatActivity
         }.start();
     }
     private void initializeGameTime(){
-        new CountDownTimer(_gameService.game.getRegio().getTijd()*60, 1000) {
-
+        int tijd = _gameService.game.getRegio().getTijd()*60 /* - (huidige tijd - starttijd) */  ;
+        new CountDownTimer(tijd, 1000) {
             public void onTick(long millisUntilFinished) {
                 String timer = String.format(Locale.getDefault(), "Time Remaining %02d hours: %02d minutes, %02d seconds",
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
