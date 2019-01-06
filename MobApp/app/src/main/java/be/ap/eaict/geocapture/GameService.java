@@ -79,7 +79,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         });
     }
 
-    public boolean JoinGame(final String username, final int intLobbyId, final int intTeam, final AppCompatActivity homeActivity)
+    public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)
     {
         //maak user aan en steek het in een json entity
         final User user = new User(username, 4,6);
