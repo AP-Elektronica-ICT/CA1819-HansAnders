@@ -42,7 +42,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
     public static String userName;
     private static int userId; // api should return a key it should use to identify the user or sth
-    private static int team;
+    public static int team;
     public static int lobbyId;
     public static List<Regio> regios = new ArrayList<>();
     //public static HubConnection hubConnection;
