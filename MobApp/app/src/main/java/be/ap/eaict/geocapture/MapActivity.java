@@ -223,7 +223,8 @@ public class MapActivity extends AppCompatActivity
 
             public void onTick(long millisUntilFinished) {
                 //update player locatie, returns game
-                _gameService.UpdatePlayerLocatie(new LatLng(_locatie.getLatitude(), _locatie.getLongitude()));
+                if(_locatie != null)
+                    _gameService.UpdatePlayerLocatie(new LatLng(_locatie.getLatitude(), _locatie.getLongitude()));
 
                 //update other players locaties
 
