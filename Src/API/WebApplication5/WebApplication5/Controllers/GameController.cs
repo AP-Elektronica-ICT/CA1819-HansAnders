@@ -184,7 +184,36 @@ namespace WebApplication5.Controllers
 
             return NotFound();
         }
-        
+
+        [HttpPost("{gameid}/{teamid}/{userid}/{lat}/{lng}")]
+        public async Task<IActionResult> UpdatePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid, [FromRoute] int lat, [FromRoute] int lng)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
+
+            if (game == null) return NotFound();
+            
+            for (int i = 0; i <= game.teams.Count; i++)
+                if (i == teamid)
+                {
+                    for(int j = 0; j <= game.teams[i].Users.Count; j++)
+                        if(game.teams[i].Users[j].Id == userid)
+                        {
+                            game.teams[i].Users[j].lat = lat;
+                            game.teams[i].Users[j].lng = lng;
+                            _context.SaveChanges();
+                            return Ok(game);
+                        }
+                }
+            return BadRequest();
+        }
+
+
+
         [HttpPost("{gameid}/{userid}/{vraagid}")]
         public async Task<IActionResult> UserCheckQuestion([FromBody] String antwoord, [FromRoute] int gameid, [FromRoute] int userid, [FromRoute] int vraagid)
         {

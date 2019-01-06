@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -40,7 +41,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     }
 
     public static String userName;
-    private static int userKey; // api should return a key it should use to identify the user or sth
+    private static int userId; // api should return a key it should use to identify the user or sth
     private static int team;
     public static int lobbyId;
     public static List<Regio> regios = new ArrayList<>();
@@ -78,7 +79,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         });
     }
 
-    public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)
+    public boolean JoinGame(final String username, final int intLobbyId, final int intTeam, final AppCompatActivity homeActivity)
     {
         //maak user aan en steek het in een json entity
         final User user = new User(username, 4,6);
@@ -107,9 +108,10 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 try {
                     String str = new String(res, "UTF-8");
                     Gson gson = new Gson();
-                    //game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+                    User user = gson.fromJson(str, new TypeToken<User>() {}.getType());
 
                     userName = username;
+                    userId = user.id;
                     team = intTeam;
                     lobbyId = intLobbyId;
 
@@ -127,6 +129,35 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
         return false;
     }
+
+    public void UpdatePlayerLocatie(LatLng latLng)
+    {
+
+        // stuur api call die user in team in game toevoegd
+        SyncAPICall.post("Game/updateplayerlocatie/"+Integer.toString(lobbyId)+"/"+Integer.toString(team)+"/"+Integer.toString(userId)+"/"+Double.toString(latLng.latitude)+"/"+Double.toString(latLng.longitude), null, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                Log.d(" ", "onSuccess: game joined" );
+                // called when response HTTP status is "200 OK"
+                try {
+                    String str = new String(res, "UTF-8");
+                    Gson gson = new Gson();
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        });
+    }
+
+
 
     public void CreateGame(int teams, final String name, final Intent intent)//new lobby that people can join
     {
