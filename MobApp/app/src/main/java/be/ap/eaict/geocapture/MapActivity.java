@@ -30,11 +30,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import be.ap.eaict.geocapture.Model.Locatie;
+import be.ap.eaict.geocapture.Model.Team;
 import be.ap.eaict.geocapture.Model.User;
 
 public class MapActivity extends AppCompatActivity
@@ -63,6 +65,8 @@ public class MapActivity extends AppCompatActivity
     TextView gameTime;
     private Location _locatie;
 
+    HashMap<Integer, Marker> locatieMarkers = new HashMap<Integer, Marker>() {};
+    List<Marker> teamMarkers = new ArrayList<Marker>() {};
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -74,12 +78,8 @@ public class MapActivity extends AppCompatActivity
         initializeGameTime();
         keepGameUpToDate();
 
-
-
-
     }
 
-    List<Marker> teamMarkers = new ArrayList<Marker>() {};
     @Override
     public void onMapReady(GoogleMap googleMap){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
@@ -88,13 +88,22 @@ public class MapActivity extends AppCompatActivity
         float centerlat = 0;
         float centerlng = 0;
         LatLng center = new LatLng(0, 0);
+        Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.grey_dot)).getBitmap();
+        Bitmap greymarker = Bitmap.createScaledBitmap(b, 40, 40, false);
+
         for(Locatie locatie:locaties){
             LatLng latLng = new LatLng(locatie.getLat(), locatie.getLng());
             centerlat = centerlat + locatie.getLat();
             centerlng = centerlng + locatie.getLng();
             //center = new LatLng(center.latitude + locatie.getLat(),center.longitude + locatie.getLng());
-            googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .title(locatie.getLocatienaam()));
+            locatieMarkers.put(
+                locatie.id,
+                googleMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .alpha(0.7f)
+                    .icon(BitmapDescriptorFactory.fromBitmap(greymarker))
+                )
+            );
         }
 
         if(locaties.size()>0)
@@ -103,21 +112,23 @@ public class MapActivity extends AppCompatActivity
 
 
 
-
-        Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
-        Bitmap marker = Bitmap.createScaledBitmap(b, 30, 30, false);
+        b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
+        Bitmap marker = Bitmap.createScaledBitmap(b, 27, 27, false);
 
         List<User> users = _gameService.game.teams.get(GameService.team-1).users;
 
 
         Log.d(TAG, "onMapReady: "  + users);
         for(User lid:users){
-            MarkerOptions a = new MarkerOptions()
-                    .position(new LatLng(lid.lat, lid.lng))
-                    .alpha(0.7f)
-                    .icon(BitmapDescriptorFactory.fromBitmap(marker));
-            Marker m = googleMap.addMarker(a);
-            teamMarkers.add(m);
+            if(lid.id != _gameService.userId)
+            {
+                MarkerOptions a = new MarkerOptions()
+                        .position(new LatLng(lid.lat, lid.lng))
+                        .alpha(0.7f)
+                        .icon(BitmapDescriptorFactory.fromBitmap(marker));
+                Marker m = googleMap.addMarker(a);
+                teamMarkers.add(m);
+            }
         }
         /*  //testmarker:
         MarkerOptions a = new MarkerOptions()
@@ -125,15 +136,6 @@ public class MapActivity extends AppCompatActivity
                 .alpha(0.7f)
                 .icon(BitmapDescriptorFactory.fromBitmap(marker));
         Marker m = googleMap.addMarker(a);*/
-
-        //update location
-        //m.setPosition(new LatLng(50,7));
-
-
-
-
-
-
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,14));
 
@@ -146,8 +148,6 @@ public class MapActivity extends AppCompatActivity
         mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                //_locatie.setLatitude(location.getLatitude());
-                //_locatie.setLongitude(location.getLongitude());
                 _locatie = location;
             }
         });
@@ -227,12 +227,13 @@ public class MapActivity extends AppCompatActivity
                     _gameService.UpdatePlayerLocatie(new LatLng(_locatie.getLatitude(), _locatie.getLongitude()));
 
                 //update other players locaties
-
                 List<User> users = _gameService.game.teams.get(GameService.team-1).users;
                 int i = 0;
                 for (Marker marker : teamMarkers)
                 {
-                    marker.setPosition(new LatLng(users.get(i).lat, users.get(i).lng));
+                    if(users.get(i).id != _gameService.userId) {
+                        marker.setPosition(new LatLng(users.get(i).lat, users.get(i).lng));
+                    }
                     i++;
                 }
                 while(i<users.size())//extra user joined
@@ -248,7 +249,28 @@ public class MapActivity extends AppCompatActivity
                     teamMarkers.add(m);
                     i++;
                 }
-                //m.setPosition(new LatLng(50,7));
+
+                //update locatie kleuren:
+                for(Team team : _gameService.game.teams)
+                {
+                    if(team.capturedLocaties.size()>0)
+                    {
+                        if(team.id == _gameService.team)
+                        {
+                            Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.captured_dot)).getBitmap();
+                            Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
+                            for(Locatie locatie : team.capturedLocaties)
+                                 locatieMarkers.get(locatie.id).setIcon(BitmapDescriptorFactory.fromBitmap(marker));
+                        }
+                        else
+                        {
+                            Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.enemycapture_dot)).getBitmap();
+                            Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
+                            for(Locatie locatie : team.capturedLocaties)
+                                locatieMarkers.get(locatie.id).setIcon(BitmapDescriptorFactory.fromBitmap(marker));
+                        }
+                    }
+                }
 
 
                 //canCapture();
