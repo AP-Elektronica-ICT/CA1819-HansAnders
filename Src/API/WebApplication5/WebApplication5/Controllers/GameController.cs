@@ -214,10 +214,35 @@ namespace WebApplication5.Controllers
 
 
 
-        [HttpPost("{gameid}/{userid}/{vraagid}")]
-        public async Task<IActionResult> UserCheckQuestion([FromBody] String antwoord, [FromRoute] int gameid, [FromRoute] int userid, [FromRoute] int vraagid)
+        [HttpPost("checkquestions/{gameid}/{teamid}/{locatieid}")]
+        public async Task<IActionResult> UserCheckQuestions([FromBody] List<Puzzel> puzzels, [FromRoute] int gameid, [FromRoute] int locatieid, [FromRoute] int teamid)
         {
-            return null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
+
+            if (game == null) return NotFound();
+
+            var locatie = game.regio.locaties.SingleOrDefault(r => r.id == locatieid);
+
+            if (locatie == null) return NotFound();
+            var team = game.teams.SingleOrDefault(r => r.Id == teamid);
+
+            bool captured = false;
+            for (int i = 0; i <= game.teams.Count; i++)
+                if (i == teamid - 1)
+                    foreach(Puzzel puzzel in puzzels)
+                    {
+                        var dbpuzzel = locatie.puzzels.SingleOrDefault(r => r.id == puzzel.id);
+                        if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
+                        {
+                            team.CapturedLocaties.Add(locatie);
+                        }
+                    }
+            if (captured) return Ok("successfully captured location");
+            else return Ok("failed to capture location");
         }
 
 

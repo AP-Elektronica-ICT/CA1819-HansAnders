@@ -10,6 +10,12 @@ public class Puzzel {
         this.vraag = omschrijving;
         this.antwoord = antwoord;
     }
+    public Puzzel(int id, String omschrijving, String antwoord)
+    {
+        this.id = id;
+        this.vraag = omschrijving;
+        this.antwoord = antwoord;
+    }
 
     public String getVraag() {
         return vraag;

@@ -1,5 +1,6 @@
 package be.ap.eaict.geocapture;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import be.ap.eaict.geocapture.Model.Locatie;
+import be.ap.eaict.geocapture.Model.Puzzel;
 import be.ap.eaict.geocapture.Model.Team;
 import be.ap.eaict.geocapture.Model.User;
 
@@ -272,8 +274,16 @@ public class MapActivity extends AppCompatActivity
                     }
                 }
 
-
-                //canCapture();
+                Locatie l = canCapture();
+                if(l != null && !_gameService.puzzelactive)
+                {
+                    Intent intent = new Intent(MapActivity.this , VragenActivity.class);
+                    _gameService.puzzels = new ArrayList<>();
+                    for(final Puzzel puzzel : l.puzzels)
+                        _gameService.puzzels.add(new Puzzel(puzzel.id,puzzel.vraag, null));
+                    _gameService.locationid = l.id;
+                    startActivity(intent);
+                }
             }
 
             public void onFinish() {
@@ -282,6 +292,8 @@ public class MapActivity extends AppCompatActivity
 
         }.start();
     }
+
+
     private void initializeGameTime(){
         int tijd = _gameService.game.getRegio().getTijd()*60 /* - (huidige tijd - starttijd) */  ;
         new CountDownTimer(tijd, 1000) {
@@ -312,7 +324,7 @@ public class MapActivity extends AppCompatActivity
                 y = y * y;
 
                 double afstand = Math.sqrt(x+y);
-
+                //afstand = 0.000001; // fake capture testing thingy
                 if (afstand < 0.00026949458){
                     return(locaties.get(i));
                 }

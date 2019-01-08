@@ -20,6 +20,7 @@ import java.util.List;
 
 import be.ap.eaict.geocapture.Model.Game;
 import be.ap.eaict.geocapture.Model.Locatie;
+import be.ap.eaict.geocapture.Model.Puzzel;
 import be.ap.eaict.geocapture.Model.Regio;
 import be.ap.eaict.geocapture.Model.Team;
 import be.ap.eaict.geocapture.Model.User;
@@ -39,6 +40,10 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         }
         return repo;
     }
+
+    public static List<Puzzel> puzzels;
+    public static boolean puzzelactive = false;
+    public static int locationid;
 
     public static String userName;
     public static int userId; // api should return a key it should use to identify the user or sth
