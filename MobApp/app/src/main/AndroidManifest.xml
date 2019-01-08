@@ -33,6 +33,7 @@
         <activity android:name=".MapActivity" />
         <activity android:name=".locationsListActivity"></activity>
         <activity android:name=".HostConfigActivity"></activity>
+        <activity android:name=".VragenActivity"></activity>
     </application>
 
 </manifest>

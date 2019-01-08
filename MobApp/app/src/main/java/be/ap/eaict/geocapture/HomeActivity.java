@@ -117,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Button btnVragen = (Button) findViewById(R.id.btnVragen);
-        btnMap.setOnClickListener(new View.OnClickListener() {
+        btnVragen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent vragen = new Intent(HomeActivity.this, VragenActivity.class);
