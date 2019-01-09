@@ -6,7 +6,3 @@ Cloudapplication project
 * Ruben Nemes
 * Brent Swaenen
 * Yorick Lardenoit
-
-## TODO
-- userstories opslplitsen
-- puzzels
