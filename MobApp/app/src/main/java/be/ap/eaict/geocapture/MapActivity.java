@@ -65,6 +65,7 @@ public class MapActivity extends AppCompatActivity
     private GoogleMap mMap;
     private GameService _gameService = new GameService();
     TextView gameTime;
+    TextView bestTeamTxt;
     private Location _locatie;
 
     HashMap<Integer, Marker> locatieMarkers = new HashMap<Integer, Marker>() {};
@@ -77,6 +78,7 @@ public class MapActivity extends AppCompatActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         gameTime = (TextView) findViewById(R.id.gametime);
+        bestTeamTxt = (TextView) findViewById(R.id.bestTeamTxt);
         initializeGameTime();
         keepGameUpToDate();
 
@@ -273,6 +275,8 @@ public class MapActivity extends AppCompatActivity
                         }
                     }
                 }
+                //update eersteplek
+                bestTeam();
 
                 Locatie l = canCapture();
                 if(l != null && !_gameService.puzzelactive)
@@ -311,6 +315,24 @@ public class MapActivity extends AppCompatActivity
             }
 
         }.start();
+    }
+
+    public void bestTeam(){
+        List<Team> teams = _gameService.game.teams;
+        int bestteamid = 999;
+        int bestscore = 0;
+
+        for(Team team : teams) {
+            int score = team.getCapturedLocaties().size();
+            if (score > bestscore){
+                bestteamid = team.id;
+            }
+        }
+        if (bestteamid == 99){
+            bestTeamTxt.setText("Team: -");
+        }else {
+            bestTeamTxt.setText("Team: " + String.valueOf(bestteamid));
+        }
     }
 
     private Locatie canCapture(){
