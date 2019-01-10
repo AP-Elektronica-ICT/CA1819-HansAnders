@@ -73,6 +73,7 @@ public class MapActivity extends AppCompatActivity
     private GoogleMap mMap;
     private GameService _gameService = new GameService();
     TextView gameTime;
+    TextView bestTeamTxt;
     private Location _locatie;
 
     HashMap<Integer, Marker> locatieMarkers = new HashMap<Integer, Marker>() {};
@@ -85,10 +86,12 @@ public class MapActivity extends AppCompatActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         gameTime = (TextView) findViewById(R.id.gametime);
+        bestTeamTxt = (TextView) findViewById(R.id.bestTeamTxt);
         initializeGameTime();
         keepGameUpToDate();
 
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap){
@@ -286,7 +289,7 @@ public class MapActivity extends AppCompatActivity
                 {
                     if(team.capturedLocaties.size()>0)
                     {
-                        if(team.id == _gameService.team)
+                        if(team.id == _gameService.game.teams.get(_gameService.team).id)
                         {
                             Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.captured_dot)).getBitmap();
                             Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
@@ -302,6 +305,8 @@ public class MapActivity extends AppCompatActivity
                         }
                     }
                 }
+                //update eersteplek
+                bestTeam();
 
                 Locatie l = canCapture();
                 if(l != null && !_gameService.puzzelactive)
@@ -327,7 +332,7 @@ public class MapActivity extends AppCompatActivity
         int tijd = _gameService.game.getRegio().getTijd()*60 /* - (huidige tijd - starttijd) */  ;
         new CountDownTimer(tijd, 1000) {
             public void onTick(long millisUntilFinished) {
-                String timer = String.format(Locale.getDefault(), "Time Remaining %02d hours: %02d minutes, %02d seconds",
+                String timer = String.format(Locale.getDefault(), "%02d:%02d:%02d remaining",
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
@@ -340,6 +345,24 @@ public class MapActivity extends AppCompatActivity
             }
 
         }.start();
+    }
+
+    public void bestTeam(){
+        List<Team> teams = _gameService.game.teams;
+        int bestteamid = 999;
+        int bestscore = 0;
+
+        for(Team team : teams) {
+            int score = team.getCapturedLocaties().size();
+            if (score > bestscore){
+                bestteamid = team.id;
+            }
+        }
+        if (bestteamid == 99){
+            bestTeamTxt.setText("Team: -");
+        }else {
+            bestTeamTxt.setText("Team: " + String.valueOf(bestteamid));
+        }
     }
 
     private Locatie canCapture(){

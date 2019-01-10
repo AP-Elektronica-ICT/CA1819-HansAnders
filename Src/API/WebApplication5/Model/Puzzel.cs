@@ -10,6 +10,7 @@ namespace Model
         public string Vraag { get; set; }
         public string Antwoord { get; set; }
         public bool juist { get; set; }
+        public int points { get; set; }
        /*   public Puzzel(string omschrijving)
           {
               this.Omschrijving = omschrijving;
