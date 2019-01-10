@@ -19,6 +19,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -30,16 +33,19 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import be.ap.eaict.geocapture.Model.Game;
 import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Puzzel;
 import be.ap.eaict.geocapture.Model.Team;
 import be.ap.eaict.geocapture.Model.User;
+import cz.msebera.android.httpclient.Header;
 
 public class MapActivity extends AppCompatActivity
         implements
@@ -47,6 +53,8 @@ public class MapActivity extends AppCompatActivity
         OnMyLocationClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback {
+
+    GameService _gameservice = new GameService();
     private static final String TAG = "MapActivity";
 
     /**
@@ -155,6 +163,27 @@ public class MapActivity extends AppCompatActivity
         });
     }
 
+
+    @Override
+    protected void onDestroy() {
+        SyncAPICall.delete("Game/deleteplayerlocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team)+"/"+ Integer.toString(_gameservice.userId), null, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
+                // called when response HTTP status is "200 OK"
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+
+            }
+        });
+        super.onDestroy();
+    }
+
+
+
     /**
      * Enables the My Location layer if the fine location permission has been granted.
      */
@@ -165,7 +194,7 @@ public class MapActivity extends AppCompatActivity
             PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
                     Manifest.permission.ACCESS_FINE_LOCATION, true);
         }
-        if (mMap != null) {
+        else if (mMap != null) {
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
         }
