@@ -230,6 +230,8 @@ namespace WebApplication5.Controllers
             if (locatie == null) return NotFound();
             var team = game.teams.SingleOrDefault(r => r.Id == teamid);
 
+            if (team == null) return NotFound();
+
             bool captured = false;
             for (int i = 0; i <= game.teams.Count; i++)
                 if (i == teamid - 1)
@@ -239,8 +241,11 @@ namespace WebApplication5.Controllers
                         if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
                         {
                             team.CapturedLocaties.Add(locatie);
+                            captured = true;
+
                         }
                     }
+            _context.SaveChanges();
             if (captured) return Ok("successfully captured location");
             else return Ok("failed to capture location");
         }
