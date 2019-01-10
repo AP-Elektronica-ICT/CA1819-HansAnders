@@ -212,6 +212,35 @@ namespace WebApplication5.Controllers
             return BadRequest();
         }
 
+        [HttpDelete("deleteplayerlocatie/{gameid}/{teamid}/{userid}")]
+        public async Task<IActionResult> DeletePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
+
+            if (game == null) return NotFound();
+
+            for (int i = 0; i <= game.teams.Count; i++)
+                if (i == teamid - 1)
+                {
+                    for (int j = 0; j <= game.teams[i].Users.Count; j++)
+                        if (game.teams[i].Users[j].Id == userid)
+                        {
+                            var user = game.teams[i].Users[j];
+                            _context.User.Remove(user);
+                            await _context.SaveChangesAsync();
+                            return Ok(user);
+                        }
+                }
+            return BadRequest();
+        }
+
+
+
 
 
         [HttpPost("checkquestions/{gameid}/{teamid}/{locatieid}")]
@@ -223,19 +252,19 @@ namespace WebApplication5.Controllers
             }
             var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
 
-            if (game == null) return NotFound();
+            if (game == null) return NotFound("game not found");
 
             var locatie = game.regio.locaties.SingleOrDefault(r => r.id == locatieid);
 
-            if (locatie == null) return NotFound();
-            var team = game.teams.SingleOrDefault(r => r.Id == teamid);
-
-            if (team == null) return NotFound();
+            if (locatie == null) return NotFound("locatie not found");
 
             bool captured = false;
             for (int i = 0; i <= game.teams.Count; i++)
                 if (i == teamid - 1)
-                    foreach(Puzzel puzzel in puzzels)
+                {
+                    var team = game.teams[teamid];
+                    if (team == null) return NotFound("team not found");
+                    foreach (Puzzel puzzel in puzzels)
                     {
                         var dbpuzzel = locatie.puzzels.SingleOrDefault(r => r.id == puzzel.id);
                         if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
@@ -245,6 +274,7 @@ namespace WebApplication5.Controllers
 
                         }
                     }
+                }
             _context.SaveChanges();
             if (captured) return Ok("successfully captured location");
             else return Ok("failed to capture location");
