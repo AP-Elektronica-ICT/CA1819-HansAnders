@@ -82,6 +82,7 @@ public class MapActivity extends AppCompatActivity
 
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
@@ -257,7 +258,7 @@ public class MapActivity extends AppCompatActivity
                 {
                     if(team.capturedLocaties.size()>0)
                     {
-                        if(team.id == _gameService.team)
+                        if(team.id == _gameService.game.teams.get(_gameService.team).id)
                         {
                             Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.captured_dot)).getBitmap();
                             Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
@@ -298,7 +299,7 @@ public class MapActivity extends AppCompatActivity
         int tijd = _gameService.game.getRegio().getTijd()*60 /* - (huidige tijd - starttijd) */  ;
         new CountDownTimer(tijd, 1000) {
             public void onTick(long millisUntilFinished) {
-                String timer = String.format(Locale.getDefault(), "Time Remaining %02d hours: %02d minutes, %02d seconds",
+                String timer = String.format(Locale.getDefault(), "%02d:%02d:%02d remaining",
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
