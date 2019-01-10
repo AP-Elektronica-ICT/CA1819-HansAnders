@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import be.ap.eaict.geocapture.Model.CaptureLocatie;
 import be.ap.eaict.geocapture.Model.Locatie;
 import be.ap.eaict.geocapture.Model.Puzzel;
 import be.ap.eaict.geocapture.Model.Team;
@@ -264,15 +265,15 @@ public class MapActivity extends AppCompatActivity
                         {
                             Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.captured_dot)).getBitmap();
                             Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
-                            for(Locatie locatie : team.capturedLocaties)
-                                 locatieMarkers.get(locatie.id).setIcon(BitmapDescriptorFactory.fromBitmap(marker));
+                            for(CaptureLocatie captureLocatie : team.capturedLocaties)
+                                 locatieMarkers.get(captureLocatie.locatie.id).setIcon(BitmapDescriptorFactory.fromBitmap(marker));
                         }
                         else
                         {
                             Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.enemycapture_dot)).getBitmap();
                             Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
-                            for(Locatie locatie : team.capturedLocaties)
-                                locatieMarkers.get(locatie.id).setIcon(BitmapDescriptorFactory.fromBitmap(marker));
+                            for(CaptureLocatie captureLocatie : team.capturedLocaties)
+                                locatieMarkers.get(captureLocatie.locatie.id).setIcon(BitmapDescriptorFactory.fromBitmap(marker));
                         }
                     }
                 }

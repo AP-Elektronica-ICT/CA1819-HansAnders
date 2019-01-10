@@ -12,6 +12,7 @@ namespace Model
         public float lng { get; set; }
         public float lat { get; set; }
 
+
      /*   public Locatie(string naam, List<Puzzel> puzzels, float lng, float lat)
         {
             this.locatienaam = naam;

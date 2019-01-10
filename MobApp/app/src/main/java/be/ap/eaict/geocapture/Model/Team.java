@@ -6,7 +6,8 @@ import java.util.List;
 public class Team {
     public int id ;
     public List<User> users;
-    public List<Locatie> capturedLocaties;
+    //public List<Locatie> capturedLocaties;
+    public List<CaptureLocatie> capturedLocaties;
     public String teamName;
 
 
@@ -16,7 +17,7 @@ public class Team {
         this.teamName = "een cloud team";// randomize this shit or sth
     }
 
-    public Team(List<User> Users, List<Locatie> capturedLocaties, String teamName)
+    public Team(List<User> Users, List<CaptureLocatie> capturedLocaties, String teamName)
     {
         this.users = Users;
         this.capturedLocaties = capturedLocaties;
@@ -27,7 +28,7 @@ public class Team {
         return users;
     }
 
-    public List<Locatie> getCapturedLocaties() {
+    public List<CaptureLocatie> getCapturedLocaties() {
         return capturedLocaties;
     }
 

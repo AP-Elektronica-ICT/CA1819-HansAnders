@@ -88,10 +88,7 @@ namespace Model
                                         lng = 5
                                     },
                                 },
-                                CapturedLocaties = new List<Locatie>
-                                {
-                                    locaties[1]
-                                },
+                                CapturedLocaties = new List<CaptureLocatie>(){ },
                                 TeamName = "teamHansAnders"
                             },
                             new Team()
@@ -134,11 +131,7 @@ namespace Model
                                         lng = 5
                                     },
                                 },
-                                CapturedLocaties = new List<Locatie>
-                                {
-                                    locaties[1]
-                                },
-                                CapturedLocaties2 = captureLocaties,
+                                CapturedLocaties = captureLocaties,
                                 TeamName = "teamHansAnders"
                             },
                             new Team()

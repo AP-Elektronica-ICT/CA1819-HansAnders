@@ -8,8 +8,8 @@ namespace Model
     {
         public int Id { get; set; }
         public List<User> Users { get; set; }
-        public List<Locatie> CapturedLocaties { get; set; }
-        public List<CaptureLocatie> CapturedLocaties2 { get; set; }
+        //public List<Locatie> CapturedLocaties { get; set; }
+        public List<CaptureLocatie> CapturedLocaties { get; set; }
 
         public string TeamName { get; set; }
        /* public Team(string teamname, List<User> users)

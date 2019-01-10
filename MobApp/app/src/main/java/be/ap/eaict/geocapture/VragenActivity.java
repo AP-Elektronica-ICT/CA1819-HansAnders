@@ -85,7 +85,7 @@ public class VragenActivity extends AppCompatActivity {
                     entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
                     // stuur api call die user in team in game toevoegd
-                    SyncAPICall.post("Game/checkquestions/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team)+"/"+Integer.toString(_gameservice.locationid), entity, new AsyncHttpResponseHandler() {
+                    SyncAPICall.post("Game/capturelocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team)+"/"+Integer.toString(_gameservice.locationid), entity, new AsyncHttpResponseHandler() {
                         @Override
                         public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                             // called when response HTTP status is "200 OK"
