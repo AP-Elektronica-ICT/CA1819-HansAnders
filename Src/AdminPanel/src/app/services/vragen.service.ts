@@ -37,7 +37,8 @@ export class VragenService {
 export interface Vraag{
     Id: number,
     vraag: string,
-    antwoord: string
+    antwoord: string,
+    points: number
 }
 
 export interface Regio{

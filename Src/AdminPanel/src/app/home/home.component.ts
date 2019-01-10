@@ -12,6 +12,7 @@ export class HomeComponent {
   Vraag: string
   Antwoord: string
   locatienaam: string
+  Points: string
   Regios: Regio[]
 
   
@@ -79,7 +80,8 @@ export class HomeComponent {
     var vraag: Vraag=({
       Id: 0,
       vraag: this.Vraag,
-      antwoord: this.Antwoord
+      antwoord: this.Antwoord,
+      points: parseInt(this.Points)
     })
     this._svc.postVraag(vraag,this.RegioSelected, this.MarkerSelected).subscribe(() => {
       alert("Vraag Toegevoegd")
