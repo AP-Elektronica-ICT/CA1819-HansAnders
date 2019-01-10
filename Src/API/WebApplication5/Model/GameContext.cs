@@ -21,5 +21,6 @@ namespace Model
         public DbSet<Locatie> locaties { get; set; }
         public DbSet<Puzzel> puzzels { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<CaptureLocatie> captureLocaties { get; set; }
     }
 }

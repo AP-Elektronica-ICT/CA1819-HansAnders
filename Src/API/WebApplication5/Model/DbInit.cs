@@ -47,6 +47,12 @@ namespace Model
                     locaties = locaties,
                     tijd = 60 * 60 * 5
                 };
+                List<CaptureLocatie> captureLocaties = new List<CaptureLocatie>() {
+                    new CaptureLocatie(){ locatie = locaties[0] },
+                    new CaptureLocatie(){ locatie = locaties[1] }
+                };
+
+                context.captureLocaties.AddRange(captureLocaties);
                 context.locaties.AddRange(locaties);
                 context.Regios.Add(regio);
 
@@ -132,6 +138,7 @@ namespace Model
                                 {
                                     locaties[1]
                                 },
+                                CapturedLocaties2 = captureLocaties,
                                 TeamName = "teamHansAnders"
                             },
                             new Team()
