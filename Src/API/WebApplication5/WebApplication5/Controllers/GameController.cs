@@ -252,24 +252,30 @@ namespace WebApplication5.Controllers
             }
             var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
 
-            if (game == null) return NotFound();
+            if (game == null) return NotFound("game not found");
 
             var locatie = game.regio.locaties.SingleOrDefault(r => r.id == locatieid);
 
-            if (locatie == null) return NotFound();
-            var team = game.teams.SingleOrDefault(r => r.Id == teamid);
+            if (locatie == null) return NotFound("locatie not found");
 
             bool captured = false;
             for (int i = 0; i <= game.teams.Count; i++)
                 if (i == teamid - 1)
-                    foreach(Puzzel puzzel in puzzels)
+                {
+                    var team = game.teams[teamid];
+                    if (team == null) return NotFound("team not found");
+                    foreach (Puzzel puzzel in puzzels)
                     {
                         var dbpuzzel = locatie.puzzels.SingleOrDefault(r => r.id == puzzel.id);
                         if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
                         {
                             team.CapturedLocaties.Add(locatie);
+                            captured = true;
+
                         }
                     }
+                }
+            _context.SaveChanges();
             if (captured) return Ok("successfully captured location");
             else return Ok("failed to capture location");
         }
