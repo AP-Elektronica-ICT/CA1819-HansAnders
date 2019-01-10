@@ -53,14 +53,14 @@
       <table class="table table-bordered table-striped" *ngIf="Regios[RegioSelected].locaties[MarkerIndexSelected].puzzels">
         <thead>
           <tr>
-            <th scope="col">id</th>
+            <th scope="col">Points</th>
             <th scope="col">Vraag</th>
             <th scope="col">Antwoord</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let vraag of Regios[RegioSelected].locaties[MarkerIndexSelected].puzzels" (click)="deleteVraag(vraag.id)">
-            <th scope="row">{{vraag.id}}</th>
+            <th scope="row">{{vraag.points}}</th>
             <td>{{vraag.vraag}}</td>
             <td>{{vraag.antwoord}}</td>
           </tr>                                        
