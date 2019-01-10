@@ -212,6 +212,35 @@ namespace WebApplication5.Controllers
             return BadRequest();
         }
 
+        [HttpDelete("deleteplayerlocatie/{gameid}/{teamid}/{userid}")]
+        public async Task<IActionResult> DeletePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).ThenInclude(o => o.CapturedLocaties).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
+
+            if (game == null) return NotFound();
+
+            for (int i = 0; i <= game.teams.Count; i++)
+                if (i == teamid - 1)
+                {
+                    for (int j = 0; j <= game.teams[i].Users.Count; j++)
+                        if (game.teams[i].Users[j].Id == userid)
+                        {
+                            var user = game.teams[i].Users[j];
+                            _context.User.Remove(user);
+                            await _context.SaveChangesAsync();
+                            return Ok(user);
+                        }
+                }
+            return BadRequest();
+        }
+
+
+
 
 
         [HttpPost("checkquestions/{gameid}/{teamid}/{locatieid}")]
