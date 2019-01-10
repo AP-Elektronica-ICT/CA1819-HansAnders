@@ -33,6 +33,10 @@ public class SyncAPICall {
         client.put(null, getAbsoluteUrl(url), params,"application/json" ,responseHandler);
     }
 
+    public static void delete(String url, HttpEntity params, AsyncHttpResponseHandler responseHandler) {
+        client.delete(null, getAbsoluteUrl(url), params,"application/json" ,responseHandler);
+    }
+
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;
     }
