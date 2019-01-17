@@ -128,7 +128,7 @@ public class MapActivity extends AppCompatActivity
         b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
         Bitmap marker = Bitmap.createScaledBitmap(b, 27, 27, false);
 
-        List<User> users = _gameService.game.teams.get(GameService.team-1).users;
+        List<User> users = _gameService.game.teams.get(GameService.team).users;
 
 
         Log.d(TAG, "onMapReady: "  + users);
@@ -261,7 +261,7 @@ public class MapActivity extends AppCompatActivity
                     _gameService.UpdatePlayerLocatie(new LatLng(_locatie.getLatitude(), _locatie.getLongitude()));
 
                 //update other players locaties
-                List<User> users = _gameService.game.teams.get(GameService.team-1).users;
+                List<User> users = _gameService.game.teams.get(GameService.team).users;
                 int i = 0;
                 for (Marker marker : teamMarkers)
                 {
@@ -305,7 +305,7 @@ public class MapActivity extends AppCompatActivity
                         }
                     }
                 }
-                //update eersteplek
+
                 bestTeam();
 
                 Locatie l = canCapture();
@@ -329,7 +329,7 @@ public class MapActivity extends AppCompatActivity
 
 
     private void initializeGameTime(){
-        int tijd = _gameService.game.getRegio().getTijd()*60 /* - (huidige tijd - starttijd) */  ;
+        int tijd = _gameService.game.getRegio().getTijd()*60 - (int)(System.currentTimeMillis() -   _gameService.game.starttijd);
         new CountDownTimer(tijd, 1000) {
             public void onTick(long millisUntilFinished) {
                 String timer = String.format(Locale.getDefault(), "%02d:%02d:%02d remaining",
@@ -341,7 +341,8 @@ public class MapActivity extends AppCompatActivity
             }
 
             public void onFinish() {
-                gameTime.setText("einde");
+
+                gameTime.setText("einde game");
             }
 
         }.start();
@@ -358,7 +359,7 @@ public class MapActivity extends AppCompatActivity
                 bestteamid = team.id;
             }
         }
-        if (bestteamid == 99){
+        if (bestteamid == 999){
             bestTeamTxt.setText("Team: -");
         }else {
             bestTeamTxt.setText("Team: " + String.valueOf(bestteamid));

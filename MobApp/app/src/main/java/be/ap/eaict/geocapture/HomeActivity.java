@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         if (IsServicesOK()){
             init();
         }
-        HttpCall();
+        //HttpCall();
         (new GameService()).getRegios();
     }
 

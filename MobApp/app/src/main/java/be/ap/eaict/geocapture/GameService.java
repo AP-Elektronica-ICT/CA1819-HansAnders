@@ -117,7 +117,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
                     userName = username;
                     userId = user.id;
-                    team = intTeam;
+                    team = intTeam-1;
                     lobbyId = intLobbyId;
 
                 } catch (UnsupportedEncodingException e) {
