@@ -1,16 +1,7 @@
 package be.ap.eaict.geocapture;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-
-import be.ap.eaict.geocapture.Model.Regio;
-import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.HttpEntity;
 
 public class SyncAPICall {
