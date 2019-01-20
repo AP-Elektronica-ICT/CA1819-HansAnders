@@ -93,10 +93,18 @@ public class HomeActivity extends AppCompatActivity {
 
                     }
                     public void onFinish() {
+
                         if ((new GameService()).game != null && (new GameService()).game.regio != null)
                         {
-                            Intent i = new Intent(HomeActivity.this , MapActivity.class);
-                            startActivity(i);
+
+                            int tijd = (new GameService()).game.getRegio().getTijd()*60 - (int)(System.currentTimeMillis() -   (new GameService()).game.starttijd);
+                            if(tijd > 0)
+                            {
+                                Intent i = new Intent(HomeActivity.this , MapActivity.class);
+                                startActivity(i);
+                            }
+                            else
+                                Toast.makeText(HomeActivity.this, "game time has expired!", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {

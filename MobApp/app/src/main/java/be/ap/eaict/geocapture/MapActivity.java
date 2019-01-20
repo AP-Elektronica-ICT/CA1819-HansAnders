@@ -354,20 +354,29 @@ public class MapActivity extends AppCompatActivity
         int bestscore = 0;
 
         for(Team team : teams) {
-            int score = team.getCapturedLocaties().size();
+            int score = 0;
+            for(CaptureLocatie loc :  team.getCapturedLocaties())
+                score += loc.score;
             if (score > bestscore){
                 bestteamid = team.id;
             }
         }
         if (bestteamid == 999){
-            bestTeamTxt.setText("Team: -");
+            bestTeamTxt.setText("Best Team: -" );
         }else {
-            bestTeamTxt.setText("Team: " + String.valueOf(bestteamid));
+            bestTeamTxt.setText("Best Team: " + String.valueOf(bestteamid) + " score: " + bestscore);
         }
+        int score = 0;
+        for(CaptureLocatie loc :  teams.get(_gameService.team).capturedLocaties )
+            score += loc.score;
+        bestTeamTxt.setText(bestTeamTxt.getText() + "\nMy teamId: "+_gameService.team + " score: " + score);
     }
 
     private Locatie canCapture(){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
+        List<Locatie> capturedlocaties = new ArrayList<>();
+        for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team).capturedLocaties)
+            capturedlocaties.add(captureLocatie.locatie);
         if(_locatie != null)
             for (int i = 0; i < locaties.size(); i++) {
                 double x = _locatie.getLongitude() - locaties.get(i).lng;
@@ -378,7 +387,7 @@ public class MapActivity extends AppCompatActivity
 
                 double afstand = Math.sqrt(x+y);
                 //afstand = 0.000001; // fake capture testing thingy
-                if (afstand < 0.00026949458){
+                if (afstand < 0.00026949458 && !capturedlocaties.contains(locaties.get(i))){
                     return(locaties.get(i));
                 }
             }
