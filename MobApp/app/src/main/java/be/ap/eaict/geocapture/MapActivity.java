@@ -289,7 +289,7 @@ public class MapActivity extends AppCompatActivity
                 {
                     if(team.capturedLocaties.size()>0)
                     {
-                        if(team.id == _gameService.game.teams.get(_gameService.team).id)
+                        if(team.id == _gameService.game.teams.get(_gameService.team+1).id)
                         {
                             Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.captured_dot)).getBitmap();
                             Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
@@ -308,14 +308,16 @@ public class MapActivity extends AppCompatActivity
 
                 bestTeam();
 
-                Locatie l = canCapture();
-                if(l != null && !_gameService.puzzelactive)
+                int l = canCapture();
+                if(l != 0 && !_gameService.puzzelactive)
                 {
                     Intent intent = new Intent(MapActivity.this , VragenActivity.class);
                     _gameService.puzzels = new ArrayList<>();
-                    for(final Puzzel puzzel : l.puzzels)
-                        _gameService.puzzels.add(new Puzzel(puzzel.id,puzzel.vraag, null));
-                    _gameService.locationid = l.id;
+                    for(final Locatie locatie : _gameService.game.regio.locaties)
+                        if(locatie.id == l)
+                            for(Puzzel puzzel : locatie.puzzels)
+                                _gameService.puzzels.add(new Puzzel(puzzel.id,puzzel.vraag, null));
+                    _gameService.locationid = l;
                     startActivity(intent);
                 }
             }
@@ -372,10 +374,10 @@ public class MapActivity extends AppCompatActivity
         bestTeamTxt.setText(bestTeamTxt.getText() + "\nMy teamId: "+_gameService.team + " score: " + score);
     }
 
-    private Locatie canCapture(){
+    private int canCapture(){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
         List<Locatie> capturedlocaties = new ArrayList<>();
-        for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team).capturedLocaties)
+        for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team+1).capturedLocaties)
             capturedlocaties.add(captureLocatie.locatie);
         if(_locatie != null)
             for (int i = 0; i < locaties.size(); i++) {
@@ -387,10 +389,21 @@ public class MapActivity extends AppCompatActivity
 
                 double afstand = Math.sqrt(x+y);
                 //afstand = 0.000001; // fake capture testing thingy
-                if (afstand < 0.00026949458 && !capturedlocaties.contains(locaties.get(i))){
-                    return(locaties.get(i));
+
+                if (afstand < 0.00026949458){
+                    boolean contains = false;
+                    for(Locatie ll : capturedlocaties)
+                    {
+                        if(ll.id == locaties.get(i).id)
+                            contains = true;
+                    }
+                    if(contains == false)
+                    {
+                        int send = locaties.get(i).id;
+                        return send;
+                    }
                 }
             }
-        return null;
+        return 0;
     }
 }
