@@ -139,7 +139,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     {
 
         // stuur api call die user in team in game toevoegd
-        SyncAPICall.post("Game/updateplayerlocatie/"+Integer.toString(lobbyId)+"/"+Integer.toString(team)+"/"+Integer.toString(userId)+"/"+Double.toString(latLng.latitude)+"/"+Double.toString(latLng.longitude), null, new AsyncHttpResponseHandler() {
+        SyncAPICall.post("Game/updateplayerlocatie/"+Integer.toString(lobbyId)+"/"+Integer.toString(team+1)+"/"+Integer.toString(userId)+"/"+Double.toString(latLng.latitude)+"/"+Double.toString(latLng.longitude), null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
