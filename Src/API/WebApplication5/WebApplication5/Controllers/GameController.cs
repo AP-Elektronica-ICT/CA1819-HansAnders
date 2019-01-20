@@ -318,14 +318,18 @@ namespace WebApplication5.Controllers
                         {
                             if(!captured)
                             {
-                                if (team.CapturedLocaties == null) team.CapturedLocaties = new List<CaptureLocatie>();
-                                _context.captureLocaties.Add(captureLocatie);
-                                team.CapturedLocaties.Add(captureLocatie);
-                                _context.SaveChanges();
                                 captured = true;
+                                captureLocatie.score = 0;
                             }
-                            team.CapturedLocaties[team.CapturedLocaties.Count - 1].score += puzzel.points;
+                            captureLocatie.score += dbpuzzel.points;
                         }
+                    }
+                    if (captured)
+                    {
+                        if (team.CapturedLocaties == null) team.CapturedLocaties = new List<CaptureLocatie>();
+                        _context.captureLocaties.Add(captureLocatie);
+                        team.CapturedLocaties.Add(captureLocatie);
+                        _context.SaveChanges();
                     }
                 }
             _context.SaveChanges();

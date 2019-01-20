@@ -169,7 +169,7 @@ public class MapActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        SyncAPICall.delete("Game/deleteplayerlocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team)+"/"+ Integer.toString(_gameservice.userId), null, new AsyncHttpResponseHandler() {
+        SyncAPICall.delete("Game/deleteplayerlocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team+1)+"/"+ Integer.toString(_gameservice.userId), null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
@@ -360,6 +360,7 @@ public class MapActivity extends AppCompatActivity
             for(CaptureLocatie loc :  team.getCapturedLocaties())
                 score += loc.score;
             if (score > bestscore){
+                bestscore = score;
                 bestteamid = team.id;
             }
         }
@@ -369,9 +370,9 @@ public class MapActivity extends AppCompatActivity
             bestTeamTxt.setText("Best Team: " + String.valueOf(bestteamid) + " score: " + bestscore);
         }
         int score = 0;
-        for(CaptureLocatie loc :  teams.get(_gameService.team).capturedLocaties )
+        for(CaptureLocatie loc :  teams.get(_gameService.team+1).capturedLocaties )
             score += loc.score;
-        bestTeamTxt.setText(bestTeamTxt.getText() + "\nMy teamId: "+_gameService.team + " score: " + score);
+        bestTeamTxt.setText(bestTeamTxt.getText() + "\nMy teamId: "+ teams.get(_gameService.team+1).id + " score: " + score);
     }
 
     private int canCapture(){
