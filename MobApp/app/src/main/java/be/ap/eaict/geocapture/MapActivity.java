@@ -329,7 +329,8 @@ public class MapActivity extends AppCompatActivity
             }
 
             public void onFinish() {
-
+                Intent Leaderboard = new Intent(MapActivity.this, LeaderboardActivity.class);
+                startActivity(Leaderboard);
             }
 
         }.start();
