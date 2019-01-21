@@ -10,5 +10,6 @@ namespace Model
         public int locatieId { get; set; }
         public Locatie locatie { get; set; }
         public int score { get; set; }
+        
     }
 }

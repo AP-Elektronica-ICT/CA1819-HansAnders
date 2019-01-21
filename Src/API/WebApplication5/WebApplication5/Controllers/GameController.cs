@@ -198,7 +198,7 @@ namespace WebApplication5.Controllers
             if (game == null) return NotFound();
 
             if (game.teams[teamid] == null) return NotFound();
-            for(int j = 0; j <= game.teams[teamid].Users.Count; j++)
+            for(int j = 0; j < game.teams[teamid].Users.Count; j++)
                 if(game.teams[teamid].Users[j].Id == userid)
                 {
                     game.teams[teamid].Users[j].lat = lat;
@@ -222,7 +222,7 @@ namespace WebApplication5.Controllers
             if (game == null) return NotFound();
 
             if (game.teams[teamid] == null) return NotFound();
-            for (int j = 0; j <= game.teams[teamid].Users.Count; j++)
+            for (int j = 0; j < game.teams[teamid].Users.Count; j++)
                 if (game.teams[teamid].Users[j].Id == userid)
                 {
                     var user = game.teams[teamid].Users[j];
@@ -259,7 +259,7 @@ namespace WebApplication5.Controllers
             int strength = 0;
             int captureteamid = 0;
             int captureid = 0;
-            for (int i = 0; i <= game.teams.Count; i++)
+            for (int i = 0; i < game.teams.Count; i++)
             {
                 var someteam = game.teams[i];
                 int j = 0;
@@ -300,7 +300,6 @@ namespace WebApplication5.Controllers
                     game.teams[captureteamid].CapturedLocaties.RemoveAt(captureid);
                 _context.SaveChanges();
             }
-            _context.SaveChanges();
             if (captured) return Ok("successfully captured location");
             else return Ok("failed to capture location");
         }
