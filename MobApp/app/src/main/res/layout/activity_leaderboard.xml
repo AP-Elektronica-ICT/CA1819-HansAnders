@@ -7,7 +7,7 @@
         android:gravity="center"
         android:text="te zefzefze  zef ze fze fez fst"
         android:textSize="50dp"
-        android:id="@+id/info"
+        android:id="@+id/txtGewonnen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
