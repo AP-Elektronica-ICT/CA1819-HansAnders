@@ -120,12 +120,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btnVragen = (Button) findViewById(R.id.btnVragen);
+        final Button btnVragen = (Button) findViewById(R.id.btnVragen);
         btnVragen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent vragen = new Intent(HomeActivity.this, VragenActivity.class);
                 startActivity(vragen);
+            }
+        });
+
+        Button btnLeaderboard = (Button) findViewById(R.id.btnLeaderboard);
+        btnLeaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Leaderboard = new Intent(HomeActivity.this, LeaderboardActivity.class);
+                startActivity(Leaderboard);
             }
         });
     }
