@@ -3,4 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:gravity="center"
+        android:text="te zefzefze  zef ze fze fez fst"
+        android:textSize="50dp"
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </android.support.constraint.ConstraintLayout>
