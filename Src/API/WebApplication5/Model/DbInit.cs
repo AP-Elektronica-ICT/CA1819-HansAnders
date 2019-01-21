@@ -62,7 +62,7 @@ namespace Model
                     new Game()
                     {
                         teamamount = 4,
-                        starttijd = 1500,
+                        starttijd = 1551102449000, // volgende maand --> cheat voor lange game
                         regio = regio,
                         teams = new List<Team>() {
                             new Team()
@@ -90,6 +90,12 @@ namespace Model
                                 },
                                 CapturedLocaties = new List<CaptureLocatie>(){ },
                                 TeamName = "teamHansAnders"
+                            },
+                            new Team()
+                            {
+                            },
+                            new Team()
+                            {
                             },
                             new Team()
                             {
@@ -133,6 +139,12 @@ namespace Model
                                 },
                                 CapturedLocaties = captureLocaties,
                                 TeamName = "teamHansAnders"
+                            },
+                            new Team()
+                            {
+                            },
+                            new Team()
+                            {
                             },
                             new Team()
                             {

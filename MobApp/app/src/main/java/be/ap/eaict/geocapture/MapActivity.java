@@ -169,7 +169,7 @@ public class MapActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        SyncAPICall.delete("Game/deleteplayerlocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team+1)+"/"+ Integer.toString(_gameservice.userId), null, new AsyncHttpResponseHandler() {
+        SyncAPICall.delete("Game/deleteplayerlocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team)+"/"+ Integer.toString(_gameservice.userId), null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 // called when response HTTP status is "200 OK"
@@ -289,7 +289,7 @@ public class MapActivity extends AppCompatActivity
                 {
                     if(team.capturedLocaties.size()>0)
                     {
-                        if(team.id == _gameService.game.teams.get(_gameService.team+1).id)
+                        if(team.id == _gameService.game.teams.get(_gameService.team).id)
                         {
                             Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.captured_dot)).getBitmap();
                             Bitmap marker = Bitmap.createScaledBitmap(b, 40, 40, false);
@@ -370,15 +370,15 @@ public class MapActivity extends AppCompatActivity
             bestTeamTxt.setText("Best Team: " + String.valueOf(bestteamid) + " score: " + bestscore);
         }
         int score = 0;
-        for(CaptureLocatie loc :  teams.get(_gameService.team+1).capturedLocaties )
+        for(CaptureLocatie loc :  teams.get(_gameService.team).capturedLocaties )
             score += loc.score;
-        bestTeamTxt.setText(bestTeamTxt.getText() + "\nMy teamId: "+ teams.get(_gameService.team+1).id + " score: " + score);
+        bestTeamTxt.setText(bestTeamTxt.getText() + "\nMy teamId: "+ teams.get(_gameService.team).id + " score: " + score);
     }
 
     private int canCapture(){
         List<Locatie> locaties = _gameService.game.getEnabledLocaties();
         List<Locatie> capturedlocaties = new ArrayList<>();
-        for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team+1).capturedLocaties)
+        for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team).capturedLocaties)
             capturedlocaties.add(captureLocatie.locatie);
         if(_locatie != null)
             for (int i = 0; i < locaties.size(); i++) {
