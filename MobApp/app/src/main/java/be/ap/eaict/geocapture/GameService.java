@@ -257,7 +257,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 }
 
 
-                (new GameService()).JoinGame(userName,0,lobbyId, hostConfigActivity); // host joins team 0 by default
+                (new GameService()).JoinGame(userName,1,lobbyId, hostConfigActivity); // host joins team 0 by default
             }
 
             @Override
