@@ -20,8 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'home', component: HomeComponent },
-  { path: 'create-game', component: CreateGameComponent}
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+  { path: 'create-game', component: CreateGameComponent, canActivate:[AuthGuard]}
  //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard]}
 ];
 
