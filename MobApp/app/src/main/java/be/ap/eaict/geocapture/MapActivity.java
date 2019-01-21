@@ -261,28 +261,22 @@ public class MapActivity extends AppCompatActivity
                     _gameService.UpdatePlayerLocatie(new LatLng(_locatie.getLatitude(), _locatie.getLongitude()));
 
                 //update other players locaties
-                List<User> users = _gameService.game.teams.get(GameService.team).users;
-                int i = 0;
                 for (Marker marker : teamMarkers)
                 {
-                    if(users.get(i).id != _gameService.userId) {
-                        marker.setPosition(new LatLng(users.get(i).lat, users.get(i).lng));
-                    }
-                    i++;
+                    marker.remove();
                 }
-                while(i<users.size())//extra user joined
-                {
-                    Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
-                    Bitmap marker = Bitmap.createScaledBitmap(b, 30, 30, false);
+                List<User> users = _gameService.game.teams.get(GameService.team).users;
+                for(User user : users)
+                    if(user.id != _gameService.userId)
+                    {
+                        Bitmap b =((BitmapDrawable)getResources().getDrawable(R.drawable.green_dot)).getBitmap();
+                        Bitmap marker = Bitmap.createScaledBitmap(b, 30, 30, false);
 
-                    MarkerOptions a = new MarkerOptions()
-                            .position(new LatLng(users.get(i).lat, users.get(i).lng))
-                            .alpha(0.7f)
-                            .icon(BitmapDescriptorFactory.fromBitmap(marker));
-                    Marker m = mMap.addMarker(a);
-                    teamMarkers.add(m);
-                    i++;
-                }
+                        teamMarkers.add(mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(user.lat, user.lng))
+                                .alpha(0.7f)
+                                .icon(BitmapDescriptorFactory.fromBitmap(marker))));
+                    }
 
                 //update locatie kleuren:
                 for(Team team : _gameService.game.teams)
@@ -313,6 +307,15 @@ public class MapActivity extends AppCompatActivity
                 {
                     Intent intent = new Intent(MapActivity.this , VragenActivity.class);
                     _gameService.puzzels = new ArrayList<>();
+                    for(Team team : _gameService.game.teams)
+                        for(CaptureLocatie captureLocatie : team.capturedLocaties)
+                            if(captureLocatie.locatie.id == l )
+                            {
+                                int maxpoints = 0;
+                                for(Puzzel puzzel : captureLocatie.locatie.puzzels)
+                                    maxpoints+= puzzel.points;
+                                Toast.makeText(MapActivity.this, "CaptureStrength: "+ captureLocatie.score+ "/"+maxpoints, Toast.LENGTH_SHORT).show();
+                            }
                     for(final Locatie locatie : _gameService.game.regio.locaties)
                         if(locatie.id == l)
                             for(Puzzel puzzel : locatie.puzzels)

@@ -4,6 +4,7 @@ public class Puzzel {
     public int id;
     public String vraag;
     public String antwoord;
+    public int points;
 
     public Puzzel(String omschrijving, String antwoord)
     {
