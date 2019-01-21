@@ -196,18 +196,15 @@ namespace WebApplication5.Controllers
             var game = await _context.Games.Include(ggame => ggame.teams).ThenInclude(team => team.CapturedLocaties).ThenInclude(capt => capt.locatie).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
 
             if (game == null) return NotFound();
-            
-            for (int i = 0; i <= game.teams.Count; i++)
-                if (i == teamid-1)
+
+            if (game.teams[teamid] == null) return NotFound();
+            for(int j = 0; j < game.teams[teamid].Users.Count; j++)
+                if(game.teams[teamid].Users[j].Id == userid)
                 {
-                    for(int j = 0; j <= game.teams[i].Users.Count; j++)
-                        if(game.teams[i].Users[j].Id == userid)
-                        {
-                            game.teams[i].Users[j].lat = lat;
-                            game.teams[i].Users[j].lng = lng;
-                            _context.SaveChanges();
-                            return Ok(game);
-                        }
+                    game.teams[teamid].Users[j].lat = lat;
+                    game.teams[teamid].Users[j].lng = lng;
+                    _context.SaveChanges();
+                    return Ok(game);
                 }
             return BadRequest();
         }
@@ -224,17 +221,14 @@ namespace WebApplication5.Controllers
 
             if (game == null) return NotFound();
 
-            for (int i = 0; i <= game.teams.Count; i++)
-                if (i == teamid - 1)
+            if (game.teams[teamid] == null) return NotFound();
+            for (int j = 0; j < game.teams[teamid].Users.Count; j++)
+                if (game.teams[teamid].Users[j].Id == userid)
                 {
-                    for (int j = 0; j <= game.teams[i].Users.Count; j++)
-                        if (game.teams[i].Users[j].Id == userid)
-                        {
-                            var user = game.teams[i].Users[j];
-                            _context.User.Remove(user);
-                            await _context.SaveChangesAsync();
-                            return Ok(user);
-                        }
+                    var user = game.teams[teamid].Users[j];
+                    _context.User.Remove(user);
+                    await _context.SaveChangesAsync();
+                    return Ok(user);
                 }
             return BadRequest();
         }
@@ -242,43 +236,7 @@ namespace WebApplication5.Controllers
 
 
 
-
-        [HttpPost("DEPRECATED/{gameid}/{teamid}/{locatieid}")]
-        public async Task<IActionResult> UserCheckQuestions([FromBody] List<Puzzel> puzzels, [FromRoute] int gameid, [FromRoute] int locatieid, [FromRoute] int teamid)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var game = await _context.Games.Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).SingleOrDefaultAsync(m => m.id == gameid);
-
-            if (game == null) return NotFound("game not found");
-
-            var locatie = game.regio.locaties.SingleOrDefault(r => r.id == locatieid);
-
-            if (locatie == null) return NotFound("locatie not found");
-
-            bool captured = false;
-            for (int i = 0; i <= game.teams.Count; i++)
-                if (i == teamid - 1)
-                {
-                    var team = game.teams[teamid];
-                    if (team == null) return NotFound("team not found");
-                    foreach (Puzzel puzzel in puzzels)
-                    {
-                        var dbpuzzel = locatie.puzzels.SingleOrDefault(r => r.id == puzzel.id);
-                        if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
-                        {
-                            //team.CapturedLocaties.Add(locatie);
-                            captured = true;
-
-                        }
-                    }
-                }
-            _context.SaveChanges();
-            if (captured) return Ok("successfully captured location");
-            else return Ok("failed to capture location");
-        }
+        
 
 
         [HttpPost("capturelocatie/{gameid}/{teamid}/{locatieid}")]
@@ -288,7 +246,7 @@ namespace WebApplication5.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var game = await _context.Games.Include(ggame => ggame.teams).ThenInclude(team => team.CapturedLocaties).ThenInclude(capt => capt.locatie).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(ggame=>ggame.teams).ThenInclude(team=>team.CapturedLocaties).ThenInclude(capt=>capt.locatie).SingleOrDefaultAsync(m => m.id == gameid);
+            var game = await _context.Games.Include(ggame => ggame.teams).ThenInclude(someteam => someteam.CapturedLocaties).ThenInclude(capt => capt.locatie).Include(t => t.teams).ThenInclude(p => p.Users).Include(t => t.teams).Include(l => l.regio).ThenInclude(m => m.locaties).ThenInclude(i => i.puzzels).Include(ggame=>ggame.teams).ThenInclude(someteam=> someteam.CapturedLocaties).ThenInclude(capt=>capt.locatie).SingleOrDefaultAsync(m => m.id == gameid);
 
             if (game == null) return NotFound("game not found");
 
@@ -297,42 +255,51 @@ namespace WebApplication5.Controllers
             if (locatie == null) return NotFound("locatie not found");
 
             bool captured = false;
-            for (int i = 0; i <= game.teams.Count; i++)
-                if (i == teamid - 1)
+            CaptureLocatie captureLocatie = new CaptureLocatie() { locatie = locatie };
+            int strength = 0;
+            int captureteamid = 0;
+            int captureid = 0;
+            for (int i = 0; i < game.teams.Count; i++)
+            {
+                var someteam = game.teams[i];
+                int j = 0;
+                if (someteam != null && someteam.CapturedLocaties != null)
+                    foreach (CaptureLocatie capLocatie in someteam.CapturedLocaties)
+                    {
+                        j++;
+                        if (capLocatie.locatie.id == locatie.id)
+                        {
+                            strength = capLocatie.score;
+                            captureteamid = i;
+                            captureid = j;
+                        }
+                    }
+            }
+            var team = game.teams[teamid];
+            if (team == null) return NotFound("team not found");
+            
+            foreach (Puzzel puzzel in puzzels)
+            {
+                var dbpuzzel = locatie.puzzels.SingleOrDefault(r => r.id == puzzel.id);
+                if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
                 {
-                    var team = game.teams[teamid];
-                    if (team == null) return NotFound("team not found");
-
-                    if(team.CapturedLocaties != null)
-                        foreach(CaptureLocatie capLocatie in team.CapturedLocaties )
-                        {
-                            if(capLocatie.locatie.id == locatie.id)
-                                return BadRequest();
-                        }
-
-                    CaptureLocatie captureLocatie = new CaptureLocatie() { locatie = locatie };
-                    foreach (Puzzel puzzel in puzzels)
+                    if(!captured)
                     {
-                        var dbpuzzel = locatie.puzzels.SingleOrDefault(r => r.id == puzzel.id);
-                        if (dbpuzzel != null && dbpuzzel.Antwoord == puzzel.Antwoord)
-                        {
-                            if(!captured)
-                            {
-                                captured = true;
-                                captureLocatie.score = 0;
-                            }
-                            captureLocatie.score += dbpuzzel.points;
-                        }
+                        captured = true;
+                        captureLocatie.score = 0;
                     }
-                    if (captured)
-                    {
-                        if (team.CapturedLocaties == null) team.CapturedLocaties = new List<CaptureLocatie>();
-                        _context.captureLocaties.Add(captureLocatie);
-                        team.CapturedLocaties.Add(captureLocatie);
-                        _context.SaveChanges();
-                    }
+                    captureLocatie.score += dbpuzzel.points;
                 }
-            _context.SaveChanges();
+            }
+            if (captured && strength < captureLocatie.score )
+            {
+                if (team.CapturedLocaties == null) team.CapturedLocaties = new List<CaptureLocatie>();
+                _context.captureLocaties.Add(captureLocatie);
+                team.CapturedLocaties.Add(captureLocatie);
+                if (strength > 0)
+                    game.teams[captureteamid].CapturedLocaties.RemoveAt(captureid);
+                _context.SaveChanges();
+            }
             if (captured) return Ok("successfully captured location");
             else return Ok("failed to capture location");
         }

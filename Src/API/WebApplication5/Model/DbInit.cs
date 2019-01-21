@@ -22,9 +22,9 @@ namespace Model
                         locatienaam = "antwerpen centraal",
 
                         puzzels = new List<Puzzel> {
-                            new Puzzel(){Vraag = "wat wordt het meetst verkocht in starbucks", Antwoord = "drankje 3"},
-                            new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x"},
-                            new Puzzel(){Vraag = "wa uur is locket x open", Antwoord = "5:50"},
+                            new Puzzel(){Vraag = "wat wordt het meetst verkocht in starbucks", Antwoord = "drankje 3", points= 5},
+                            new Puzzel(){Vraag = "hoe ver kan je geraken met een enkele trein(locatie)", Antwoord = "destinatie x", points= 5},
+                            new Puzzel(){Vraag = "wa uur is locket x open", Antwoord = "5:50", points= 5},
                         },
                         lat = 55.217263f,
                         lng = 6.421034f
@@ -33,9 +33,9 @@ namespace Model
                         locatienaam = "kathdraal",
 
                         puzzels = new List<Puzzel> {
-                            new Puzzel(){Vraag = "wat is beeld x", Antwoord = "5"},
-                            new Puzzel(){Vraag = "wanneer is beeld x", Antwoord = "2"},
-                            new Puzzel(){Vraag = "waarom is dit een ding", Antwoord = "nee"},
+                            new Puzzel(){Vraag = "wat is beeld x", Antwoord = "5", points= 5},
+                            new Puzzel(){Vraag = "wanneer is beeld x", Antwoord = "2", points= 5},
+                            new Puzzel(){Vraag = "waarom is dit een ding", Antwoord = "nee", points= 5},
                         },
                         lat = 55.220214f,
                         lng = 6.402223f
@@ -62,7 +62,7 @@ namespace Model
                     new Game()
                     {
                         teamamount = 4,
-                        starttijd = 1500,
+                        starttijd = 1551102449000, // volgende maand --> cheat voor lange game
                         regio = regio,
                         teams = new List<Team>() {
                             new Team()
@@ -90,6 +90,12 @@ namespace Model
                                 },
                                 CapturedLocaties = new List<CaptureLocatie>(){ },
                                 TeamName = "teamHansAnders"
+                            },
+                            new Team()
+                            {
+                            },
+                            new Team()
+                            {
                             },
                             new Team()
                             {
@@ -133,6 +139,12 @@ namespace Model
                                 },
                                 CapturedLocaties = captureLocaties,
                                 TeamName = "teamHansAnders"
+                            },
+                            new Team()
+                            {
+                            },
+                            new Team()
+                            {
                             },
                             new Team()
                             {
