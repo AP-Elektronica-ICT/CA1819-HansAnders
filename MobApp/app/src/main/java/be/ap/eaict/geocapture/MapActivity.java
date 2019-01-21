@@ -315,13 +315,16 @@ public class MapActivity extends AppCompatActivity
                                 for(Puzzel puzzel : captureLocatie.locatie.puzzels)
                                     maxpoints+= puzzel.points;
                                 Toast.makeText(MapActivity.this, "CaptureStrength: "+ captureLocatie.score+ "/"+maxpoints, Toast.LENGTH_SHORT).show();
+                                l = 0; // kill capture 'ability'
                             }
                     for(final Locatie locatie : _gameService.game.regio.locaties)
                         if(locatie.id == l)
+                        {
                             for(Puzzel puzzel : locatie.puzzels)
                                 _gameService.puzzels.add(new Puzzel(puzzel.id,puzzel.vraag, null));
-                    _gameService.locationid = l;
-                    startActivity(intent);
+                            _gameService.locationid = l;
+                            startActivity(intent);
+                        }
                 }
             }
 
