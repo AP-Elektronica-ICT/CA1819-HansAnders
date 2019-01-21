@@ -266,13 +266,13 @@ namespace WebApplication5.Controllers
                 if (someteam != null && someteam.CapturedLocaties != null)
                     foreach (CaptureLocatie capLocatie in someteam.CapturedLocaties)
                     {
-                        j++;
                         if (capLocatie.locatie.id == locatie.id)
                         {
                             strength = capLocatie.score;
                             captureteamid = i;
                             captureid = j;
                         }
+                        j++;
                     }
             }
             var team = game.teams[teamid];

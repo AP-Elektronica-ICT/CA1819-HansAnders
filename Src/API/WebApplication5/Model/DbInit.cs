@@ -48,8 +48,8 @@ namespace Model
                     tijd = 60 * 60 * 5
                 };
                 List<CaptureLocatie> captureLocaties = new List<CaptureLocatie>() {
-                    new CaptureLocatie(){ locatie = locaties[0] },
-                    new CaptureLocatie(){ locatie = locaties[1] }
+                    new CaptureLocatie(){ locatie = locaties[0] , score = 1},
+                    new CaptureLocatie(){ locatie = locaties[1] , score = 1}
                 };
 
                 context.captureLocaties.AddRange(captureLocaties);
