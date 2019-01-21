@@ -117,4 +117,10 @@
         android:text="Vragen"
         android:id="@+id/btnVragen"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leaderboard"
+        android:id="@+id/btnLeaderboard"/>
+
 </LinearLayout>
