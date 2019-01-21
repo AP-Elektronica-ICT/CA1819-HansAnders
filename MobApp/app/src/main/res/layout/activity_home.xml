@@ -105,19 +105,10 @@
         android:layout_marginBottom="15dp"
         android:text="Create new game"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Map"
-        android:id="@+id/btnMap"/>
+
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vragen"
-        android:id="@+id/btnVragen"/>
-
-    <Button
+        android:layout_margin="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Leaderboard"
