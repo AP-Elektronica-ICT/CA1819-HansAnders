@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
+const url = "http://webapplication520181127093524.azurewebsites.net/api/";
 
 @Injectable()
 export class VragenService {
@@ -9,27 +10,24 @@ export class VragenService {
 
 
     postVraag(Vraag: Vraag, regioId: number, locatieId: number): Observable<Vraag[]> {
-        return this._http.post<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+regioId+"/"+locatieId+"/addpuzzel", Vraag)
+        return this._http.post<Vraag[]>(url+"Regio/"+regioId+"/"+locatieId+"/addpuzzel", Vraag)
     }
 
     getRegios(): Observable<Regio[]>
     {
-        return this._http.get<Regio[]>("http://webapplication520181127093524.azurewebsites.net/api/Regio")
+        return this._http.get<Regio[]>(url+"Regio")
     }
     postLocatie(regioId: number, locatie: Locatie): Observable<Locatie> {
-        return this._http.post<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+regioId+"/addLocatie", locatie)
-    }
-    getVragen(markerId: number): Observable<Vraag[]>{
-        return this._http.get<Vraag[]>("http://webapplication520181127093524.azurewebsites.net/")
+        return this._http.post<Locatie>(url+"Regio/"+regioId+"/addLocatie", locatie)
     }
     deleteVraag(RegioId: number, markerId: number, VraagId: number){
-        return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId + "/" + VraagId)
+        return this._http.delete<void>(url+"Regio/" + RegioId + "/" + markerId + "/" + VraagId)
     }
     deleteMarker(RegioId: number, markerId: number){
-        return this._http.delete<void>("http://webapplication520181127093524.azurewebsites.net/api/Regio/" + RegioId + "/" + markerId)
+        return this._http.delete<void>(url+"Regio/" + RegioId + "/" + markerId)
     }
     changeLocatienaam(RegioId: number, markerId: number, locatie: Locatie) {
-        return this._http.put<Locatie>("http://webapplication520181127093524.azurewebsites.net/api/Regio/"+ RegioId + "/" + markerId + "/putlocatie", locatie)
+        return this._http.put<Locatie>(url+"Regio/"+ RegioId + "/" + markerId + "/putlocatie", locatie)
     }
 }
 

@@ -103,6 +103,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        /*
         Button btnMap = (Button) findViewById(R.id.btnMap);
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent vragen = new Intent(HomeActivity.this, VragenActivity.class);
                 startActivity(vragen);
             }
-        });
+        });*/
 
         Button btnLeaderboard = (Button) findViewById(R.id.btnLeaderboard);
         btnLeaderboard.setOnClickListener(new View.OnClickListener() {

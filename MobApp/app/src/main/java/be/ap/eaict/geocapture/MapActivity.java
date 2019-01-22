@@ -329,13 +329,15 @@ public class MapActivity extends AppCompatActivity
             }
 
             public void onFinish() {
-
+                Intent Leaderboard = new Intent(MapActivity.this, LeaderboardActivity.class);
+                startActivity(Leaderboard);
             }
 
         }.start();
     }
 
 
+    //gametime wordt via de app met internet tijd geregeld zodat iedereen gelijk loopt.
     private void initializeGameTime(){
         int tijd = _gameService.game.getRegio().getTijd()*60 - (int)(System.currentTimeMillis() -   _gameService.game.starttijd);
         new CountDownTimer(tijd, 1000) {
@@ -345,7 +347,6 @@ public class MapActivity extends AppCompatActivity
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
                 gameTime.setText(timer);
-                //Toast.makeText(MapActivity.this, timer, Toast.LENGTH_SHORT).show();
             }
 
             public void onFinish() {
@@ -361,6 +362,7 @@ public class MapActivity extends AppCompatActivity
         int bestteamid = 999;
         int bestscore = 0;
 
+        //checken of er score zijn gemaakt om het beste team te updaten.
         for(Team team : teams) {
             int score = 0;
             for(CaptureLocatie loc :  team.getCapturedLocaties())
@@ -370,6 +372,7 @@ public class MapActivity extends AppCompatActivity
                 bestteamid = team.id;
             }
         }
+
         if (bestteamid == 999){
             bestTeamTxt.setText("Best Team: -" );
         }else {
@@ -386,6 +389,8 @@ public class MapActivity extends AppCompatActivity
         List<Locatie> capturedlocaties = new ArrayList<>();
         for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team).capturedLocaties)
             capturedlocaties.add(captureLocatie.locatie);
+
+        //controleren of je binnen een straal van 30m bent om te kunnen capturen.
         if(_locatie != null)
             for (int i = 0; i < locaties.size(); i++) {
                 double x = _locatie.getLongitude() - locaties.get(i).lng;
@@ -395,8 +400,8 @@ public class MapActivity extends AppCompatActivity
                 y = y * y;
 
                 double afstand = Math.sqrt(x+y);
-                //afstand = 0.000001; // fake capture testing thingy
 
+                //0.00026949458 is 30m in graden op de wereld
                 if (afstand < 0.00026949458){
                     boolean contains = false;
                     for(Locatie ll : capturedlocaties)
