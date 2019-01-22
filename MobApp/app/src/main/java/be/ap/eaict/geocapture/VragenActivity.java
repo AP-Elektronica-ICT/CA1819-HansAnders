@@ -82,7 +82,7 @@ public class VragenActivity extends AppCompatActivity {
                     }
                     entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
-                    // stuur api call die user in team in game toevoegd
+                    // stuur api call om te kijken of de vragen juist zijn en om de locatie te proberen capturen
                     SyncAPICall.post("Game/capturelocatie/"+Integer.toString(_gameservice.lobbyId)+"/"+Integer.toString(_gameservice.team)+"/"+Integer.toString(_gameservice.locationid), entity, new AsyncHttpResponseHandler() {
                         @Override
                         public void onSuccess (int statusCode, Header[] headers, byte[] res ) {

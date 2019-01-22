@@ -265,7 +265,7 @@ public class MapActivity extends AppCompatActivity
                 {
                     marker.remove();
                 }
-                List<User> users = _gameService.game.teams.get(GameService.team).users;
+                List<User> users = _gameService.game.teams.get(GameService.team).users; // update player locaties op de map
                 for(User user : users)
                     if(user.id != _gameService.userId)
                     {
@@ -278,7 +278,7 @@ public class MapActivity extends AppCompatActivity
                                 .icon(BitmapDescriptorFactory.fromBitmap(marker))));
                     }
 
-                //update locatie kleuren:
+                //update locatie locaties op de map
                 for(Team team : _gameService.game.teams)
                 {
                     if(team.capturedLocaties.size()>0)
@@ -300,11 +300,12 @@ public class MapActivity extends AppCompatActivity
                     }
                 }
 
-                bestTeam();
+                bestTeam();//laat het beste team zien in de balk onderaan in het scherm
 
-                int l = canCapture();
-                if(l != 0 && !_gameService.puzzelactive)
+                int l = canCapture();//kijk of er een locatie is dat men kan capturen
+                if(l != 0 && l != lastl && !_gameService.puzzelactive)//roep de vragenactivity op wanneer mogelijk
                 {
+                    lastl = l;
                     Intent intent = new Intent(MapActivity.this , VragenActivity.class);
                     _gameService.puzzels = new ArrayList<>();
                     for(Team team : _gameService.game.teams)
@@ -327,6 +328,7 @@ public class MapActivity extends AppCompatActivity
                         }
                 }
             }
+            public int lastl = 0;
 
             public void onFinish() {
                 Intent Leaderboard = new Intent(MapActivity.this, LeaderboardActivity.class);
