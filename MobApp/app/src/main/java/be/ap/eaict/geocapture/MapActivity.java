@@ -387,6 +387,8 @@ public class MapActivity extends AppCompatActivity
         List<Locatie> capturedlocaties = new ArrayList<>();
         for(CaptureLocatie captureLocatie :  _gameService.game.teams.get(_gameService.team).capturedLocaties)
             capturedlocaties.add(captureLocatie.locatie);
+
+        //controleren of je binnen een straal van 30m bent om te kunnen capturen.
         if(_locatie != null)
             for (int i = 0; i < locaties.size(); i++) {
                 double x = _locatie.getLongitude() - locaties.get(i).lng;
@@ -396,7 +398,6 @@ public class MapActivity extends AppCompatActivity
                 y = y * y;
 
                 double afstand = Math.sqrt(x+y);
-                //afstand = 0.000001; // fake capture testing thingy
 
                 if (afstand < 0.00026949458){
                     boolean contains = false;
