@@ -48,7 +48,7 @@ namespace WebApplication5.Controllers
 
         // PUT: api/Game/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGame([FromRoute] int id, [FromBody] Game game)
+        public async Task<IActionResult> PutGame([FromRoute] int id, [FromBody] Game game) //adds regio to game and starts the game
         {
             Game test = game;
             if (!ModelState.IsValid)
@@ -72,17 +72,6 @@ namespace WebApplication5.Controllers
             List<Locatie> enabledlocaties = game.enabledLocaties;
 
             dbgame.enabledLocaties = enabledlocaties;
-            /*foreach (Locatie locatie in enabledlocaties)
-            {
-                var dblocatie = dbregio.locaties.SingleOrDefault(m => m.Id == locatie.Id);
-                if (dblocatie == null) return NotFound();
-                if (dbgame.enabledLocaties == null)
-                    dbgame.enabledLocaties = new List<Locatie>();
-                dbgame.enabledLocaties.Add(dblocatie);
-                await _context.SaveChangesAsync();
-            }*/
-
-            //dbgame.enabledLocaties = game.enabledLocaties;
             _context.Games.Update(dbgame);
             dbgame.enabledLocaties = enabledlocaties;
             _context.SaveChanges();
@@ -94,7 +83,7 @@ namespace WebApplication5.Controllers
 
         // POST: api/Game
         [HttpPost]
-        public async Task<IActionResult> PostGame([FromBody] Game game)
+        public async Task<IActionResult> PostGame([FromBody] Game game) // creates new game
         {
             if (!ModelState.IsValid)
             {
@@ -157,7 +146,7 @@ namespace WebApplication5.Controllers
 
 
         [HttpPost("join/{id}/{team}")]
-        public async Task<IActionResult> JoinGame(int id,[FromBody] User user, [FromRoute] int team)
+        public async Task<IActionResult> JoinGame(int id,[FromBody] User user, [FromRoute] int team) // user joins team in a game
         {
             if (!ModelState.IsValid)
             {
@@ -185,7 +174,7 @@ namespace WebApplication5.Controllers
             return NotFound();
         }
 
-        [HttpPost("updateplayerlocatie/{gameid}/{teamid}/{userid}/{lat}/{lng}")]
+        [HttpPost("updateplayerlocatie/{gameid}/{teamid}/{userid}/{lat}/{lng}")] // update player location in a game
         public async Task<IActionResult> UpdatePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid, [FromRoute] float lat, [FromRoute] float lng)
         {
             if (!ModelState.IsValid)
@@ -210,7 +199,7 @@ namespace WebApplication5.Controllers
         }
 
         [HttpDelete("deleteplayerlocatie/{gameid}/{teamid}/{userid}")]
-        public async Task<IActionResult> DeletePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid)
+        public async Task<IActionResult> DeletePlayerLocatie([FromRoute] int gameid, [FromRoute] int teamid, [FromRoute] int userid) // delete player from a game when he leaves the app
         {
             if (!ModelState.IsValid)
             {
@@ -240,7 +229,7 @@ namespace WebApplication5.Controllers
 
 
         [HttpPost("capturelocatie/{gameid}/{teamid}/{locatieid}")]
-        public async Task<IActionResult> capturelocatie([FromBody] List<Puzzel> puzzels, [FromRoute] int gameid, [FromRoute] int locatieid, [FromRoute] int teamid)
+        public async Task<IActionResult> capturelocatie([FromBody] List<Puzzel> puzzels, [FromRoute] int gameid, [FromRoute] int locatieid, [FromRoute] int teamid)// player sends puzzel solutions to capture game
         {
             if (!ModelState.IsValid)
             {
@@ -307,7 +296,7 @@ namespace WebApplication5.Controllers
 
         // DELETE: api/Game/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGame([FromRoute] int id)
+        public async Task<IActionResult> DeleteGame([FromRoute] int id) 
         {
             if (!ModelState.IsValid)
             {
@@ -331,18 +320,6 @@ namespace WebApplication5.Controllers
         private bool GameExists(int id)
         {
             return _context.Games.Any(e => e.id == id);
-        }
-
-        [HttpPut("{id}/updatelocation")]
-        public async Task<IActionResult> UpdatePlayerLocation([FromRoute] int id)
-        {
-            return NotFound();
-        }
-
-        [HttpPost("{id}/capturelocation")]
-        public async Task<IActionResult> CaptureLocation([FromRoute] int id)
-        {
-            return NotFound();
         }
     }
 }

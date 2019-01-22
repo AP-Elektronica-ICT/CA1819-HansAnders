@@ -60,7 +60,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
 
     @Override
-    public void getRegios() { // steekt alle regio's in de variabele 'regio's' zodat deze kunnen gebruikt worden door hostconfigactivity
+    public void getRegios() { // steekt alle regio's in de variabele 'regio's' zodat deze kunnen gebruikt worden door hostconfigactivity/mapactivity
         //API CALL
         SyncAPICall.get("Regio/", new AsyncHttpResponseHandler() {
             @Override
@@ -84,7 +84,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         });
     }
 
-    public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)
+    public boolean JoinGame(final String username, final int intTeam, final int intLobbyId, final AppCompatActivity homeActivity)//doet een API POST om een game te joinen
     {
         //maak user aan en steek het in een json entity
         final User user = new User(username, 0,0);
@@ -105,7 +105,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         Log.d(" ", "JoinGame: ");
         Log.d(" ", "JoinGame: " + "Game/join/"+Integer.toString(intLobbyId)+"/"+Integer.toString(intTeam));
         // stuur api call die user in team in game toevoegd
-        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId)+"/"+Integer.toString(intTeam), entity, new AsyncHttpResponseHandler() {
+        SyncAPICall.post("Game/join/"+Integer.toString(intLobbyId)+"/"+Integer.toString(intTeam), entity, new AsyncHttpResponseHandler() { // API POST
             @Override
             public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
                 Log.d(" ", "onSuccess: game joined" );
@@ -117,7 +117,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
                     userName = username;
                     userId = user.id;
-                    team = intTeam-1;
+                    team = intTeam-1;//arrays beginnen met 0, team 1 -> id 0
                     lobbyId = intLobbyId;
 
                 } catch (UnsupportedEncodingException e) {
@@ -135,7 +135,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
         return false;
     }
 
-    public void UpdatePlayerLocatie(LatLng latLng)
+    public void UpdatePlayerLocatie(LatLng latLng)//doet een API post om de speler locatie te updaten
     {
 
         // stuur api call die user in team in game toevoegd
@@ -146,7 +146,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 try {
                     String str = new String(res, "UTF-8");
                     Gson gson = new Gson();
-                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType()); // krijgt geupdatte game terug
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -162,7 +162,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
 
 
 
-    public void CreateGame(int teams, final String name, final Intent intent)//new lobby that people can join
+    public void CreateGame(int teams, final String name, final Intent intent)//doet een api post om een nieuwe game aan te maken.
     {
         List<Team> listTeams = new ArrayList<>();
         for(int i =0; i< teams; i++)
@@ -196,9 +196,9 @@ public class GameService extends AppCompatActivity implements IGameRepository {
                 try {
                     String str = new String(res, "UTF-8");
                     Gson gson = new Gson();
-                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());
+                    game = gson.fromJson(str, new TypeToken<Game>() {}.getType());//krijgt game terug om te spelen in mapactivity
                     Log.d("strid", str);
-                    lobbyId = game.id;
+                    lobbyId = game.id;// houd de game id bij om een iets later een PUT te kunnen doen om de game te starten in een bepaalde locatie
 
                     //intent.putExtra("name", name);
                     runOnUiThread(new Runnable() {
@@ -219,13 +219,12 @@ public class GameService extends AppCompatActivity implements IGameRepository {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                Log.d("fuckdis","logger2");
             }
         });
     }
 
 
-    public void StartGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) {
+    public void StartGame(Regio regio, List<Locatie> enabledlocaties, final HostConfigActivity hostConfigActivity) { // doet een PUT om de game te starten in een bepaalde regio
         game = new Game(game.id, regio, game.getStarttijd(), game.teams, enabledlocaties);
         //API CALL to create game in backend
 
@@ -269,7 +268,7 @@ public class GameService extends AppCompatActivity implements IGameRepository {
     }
 
     public static Game game;
-    static public void getGame(int lobbyId) {//moet via socket gebeuren
+    static public void getGame(int lobbyId) { // doet een GET om de game met deze lobbyid op te halen
         //Log.d("connectionstate",hubConnection.getConnectionState().toString());
         //hubConnection.send("JoinRoom", String.valueOf(lobbyId));
 

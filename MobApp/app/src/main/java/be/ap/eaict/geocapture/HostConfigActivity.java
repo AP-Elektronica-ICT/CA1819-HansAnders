@@ -32,10 +32,6 @@ public class HostConfigActivity extends AppCompatActivity {
 
 
 
-        //final int teams = getIntent().getIntExtra("teams", 0);
-        //final TextView TextView_teams = (TextView)findViewById(R.id.hostconfig_teams);
-        //TextView_teams.setText(""+teams);
-
         //final DummyRepositoryRegios dummyRepositoryRegios = new DummyRepositoryRegios();
         final GameService gameService = new GameService();
 
@@ -55,7 +51,7 @@ public class HostConfigActivity extends AppCompatActivity {
 
         regiosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) { // select nieuwe regio om game in te doen
                 regio = (Regio) adapterView.getItemAtPosition(position);
                 Log.d(TAG, "onItemClick: "+regio + " " + position);
                 locationAdapter.clear();
@@ -73,7 +69,7 @@ public class HostConfigActivity extends AppCompatActivity {
 
         locationsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {//change allowed locaties
                 /*if( regiolocaties.get(position).used == null){
                     regiolocaties.get(position).used = false;
                 }
@@ -92,7 +88,7 @@ public class HostConfigActivity extends AppCompatActivity {
         Button btnStart = (Button) findViewById(R.id.btnStart);
         gameService.userName = getIntent().getStringExtra("name");
         btnStart.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
+            public void onClick(View view){ // start game at specific regio
                 //create new game
                 if(regio != null)
                 {

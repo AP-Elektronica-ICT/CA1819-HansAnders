@@ -47,13 +47,11 @@ public class HomeActivity extends AppCompatActivity {
         //create new game:
         final Button btnHostConfig = (Button) findViewById(R.id.btnHostGame);
         btnHostConfig.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
+            public void onClick(View view){ // creeren game
                 EditText teams = (EditText) findViewById(R.id.txtHostTeams);
                 int Teams = 0;
                 if(teams.getText().length() > 0)
                     Teams = Integer.parseInt(teams.getText().toString());
-
-
                 //game service probeerd een game te creeeren in de backend, wanneer succesvol zal deze de hostconfig activity starten, clients kunnen ook al joinen
                 (new GameService()).CreateGame(Teams, findViewById(R.id.txtName).toString(), new Intent(HomeActivity.this, HostConfigActivity.class));
                 //hack: , gaat ervan uit dat de api call successvol was
@@ -65,13 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         final TextView lobbyId = (TextView) findViewById(R.id.txtLobbyId);
         final TextView Team = (TextView) findViewById(R.id.txtTeam);
         final TextView Naam = (TextView) findViewById(R.id.txtName);
-        new CountDownTimer(50000, 3000) {
-            public void onTick(long millisUntilFinished) {
-                //Toast.makeText(HomeActivity.this, "game does not exist!", Toast.LENGTH_SHORT).show();
-            }
-            public void onFinish() {
-            }
-        }.start();
+
         btnJoinGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,33 +150,5 @@ public class HomeActivity extends AppCompatActivity {
         return false;
     }
 
-    //shit da de yorick heeft toegevoegd en moet verwijderen:
-    public void HttpCall(){
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://webapplication520181127093524.azurewebsites.net/api/Regio/", new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess (int statusCode, Header[] headers, byte[] res ) {
-                // called when response HTTP status is "200 OK"
-                Log.d(TAG, "onSuccess: api call success");
-                try {
-                    String str = new String(res, "UTF-8");
-
-                    Gson gson = new Gson();
-                    List<Regio> recipesList = gson.fromJson(str, new TypeToken<List<Regio>>() {}.getType());
-
-                    Log.d(TAG, "onSuccess: fromclasslist: "+recipesList.get(0).getLocaties().get(0).getLat());
-
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                Log.d(TAG, "onFailure: api call failure");
-            }
-        });
-    }
 
 }
